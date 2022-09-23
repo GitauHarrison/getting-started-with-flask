@@ -95,41 +95,41 @@ To begin writing your HTML, you will first need a text editor. By this time, you
 
 Once set up, open VS Code by searching it among your apps. Click on the "Open" command to launch it:
 
-![Search for vscode](search_for_vscode.png)
+![Search for vscode](images/getting_started_with_html_and_css/search_for_vscode.png)
 
 With our editor open, we will begin by creating a folder called _hello_world_.
 
-![Create folder](create_folder.png)
+![Create folder](images/getting_started_with_html_and_css/create_folder.png)
 
 Then name the folder _hello_world_ and press "Enter":
 
-![Hello world folder](name_hello_world_folder.png)
+![Hello world folder](images/getting_started_with_html_and_css/name_hello_world_folder.png)
 
 Click on _hello_world_ folder until you can see it highlighted in a shade of blue.
 
-![Click on hello world folder](click_hello_world_folder.png)
+![Click on hello world folder](images/getting_started_with_html_and_css/click_hello_world_folder.png)
 
 Finally, we need to create a file called _index.html_ just the way we have done for the folder.
 
-![Create index file](create_index_file.png)
+![Create index file](images/getting_started_with_html_and_css/create_index_file.png)
 
 What we need to do now is to create the structure of our HTML file. 
 
-![Create HTML struture](create_html_structure.png)
+![Create HTML struture](images/getting_started_with_html_and_css/create_html_structure.png)
 
 Notice that there is a white dot at the top of the _index.html_ file. This shows that the file has had changes, and therefore, needs to be saved. Click "Ctrl + S" on your keyboard to save your changes.
 
 To see your first web page on a browser, you need to run the file. But before we do that, let us install a new extension called "Live Server". Click on "Extensions", then search for "Live Server". Once found, click "Install in WSL: Ubuntu-20.04".
 
-![Install live server](install_live_server.png)
+![Install live server](images/getting_started_with_html_and_css/install_live_server.png)
 
 Give it some time and you will notice the icon "Go Live" at the bottom right corner of your VS Code.
 
-![Go live icon](go_live_icon.png)
+![Go live icon](images/getting_started_with_html_and_css/go_live_icon.png)
 
 To see your web page, all you need to do now is to click on the "Go Live" icon. 
 
-![Start live server](start_live_server.png)
+![Start live server](images/getting_started_with_html_and_css/start_live_server.png)
 
 You may notice that Windows Defender Firewall pops up to notify you that it has blocked some features of our new app. Click "Allow access" and all will be well moving forward.
 
@@ -145,7 +145,7 @@ As we have learnt earlier, CSS is used primarily to style a web page. You can ag
 
 If you can remember, we said that it is best practice to separate HTML from CSS. Let us begin by creating a new file called _style.css_ inside our original folder _hello_world_.
 
-![Create CSS file](create_css_file.png)
+![Create CSS file](images/getting_started_with_html_and_css/create_css_file.png)
 
 The next step is to link these two files. The linkage normally happens inside the `<head>` element of _index.html_ file. Add this line:
 
@@ -153,7 +153,7 @@ The next step is to link these two files. The linkage normally happens inside th
 <link rel="stylesheet" href="style.css">
 ```
 
-![Link CSS and HTML](link_css_html.png)
+![Link CSS and HTML](images/getting_started_with_html_and_css/link_html_css.png)
 
 We are now ready to make changes that will improve the appearance of our template. Let us do the following inside _style.css_:
 
@@ -166,7 +166,7 @@ h1 {
 }
 ```
 
-![Style H1](style_h1.png)
+![Style H1](images/getting_started_with_html_and_css/style_h1.png)
 
 CSS syntax is a bit different from that of HTML. In CSS, we do not have the less-than (`<`) or greater-than (`>`) signs. Instead, we make use of curly braces. Our custom styles are enclosed in the curly braces. What we have done here is to tell the browswer to add 200 pixels to the left of the `h1` element as well has give it a font size of 70 pixels. 
 
@@ -201,14 +201,14 @@ Here, we are telling the browser to move both the `h1` and teh `p` elements 200 
 
 Be sure to save your changes by pressing "CTrl + S".
 
-![Sample css changes](sample_css_changes.png)
+![Sample css changes](images/getting_started_with_html_and_css/sample_css_changes.png)
 
 
 ## Application of Lessons Learnt
 
 Now that we know who create a simple web page, let us test our skills further by building this sample web page.
 
-![Sample website](sample_website.png)
+![Sample website](images/getting_started_with_html_and_css/sample_website.png)
 
 This sample website features a simple navigation bar, some text and an image. Can you build it on your own?
 
@@ -243,7 +243,7 @@ The first thing that you need to do is to update your _index.html_ file with the
 
 The only addition here is the use of the `nav` element to create a navigation bar. This bar has three links, the _test logo_, the _About_ and the _Contact_. I have added one more paragraph with an image in it so that our initial paragraph styles are used.
 
-![Updated HTML](updated_html.png)
+![Updated HTML](images/getting_started_with_html_and_css/updated_html.png)
 
 Inside our _style.css_ file, we can now style our navigation bar to fit our sample description, as well as limit the size of the image to pre-determined height and width.
 
