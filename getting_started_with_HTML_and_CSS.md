@@ -20,11 +20,11 @@ This article will cover these topics:
 
 ## What Are HTML and CSS
 
-Before you get to excited about building a website, we need to understand how they one is built. We need to know what the building blocks of a website are, what role they play and how different they are from each other.
+Before you get too excited about building a website, we need to understand how one is built. We need to know what the building blocks of a website are, what role they play and how different they are from each other.
 
-**HTML**, short for HyperText Markup Language, is used to give structure to the content of a web page. It defines the headings, paragraphs, images among many other things. 
+- **HTML**, short for HyperText Markup Language, is used to give structure to the content of a web page. It defines the headings, paragraphs, images among many other things. 
 
-**CSS**, short for Cascading Style Sheets, on the other hand, is primarily used to style a web page by improving its appearance using colors, fonts et cetera.
+- **CSS**, short for Cascading Style Sheets, on the other hand, is primarily used to style a web page by improving its appearance using colors, fonts et cetera.
 
 These two languages are interdependent, and should remain that way. It is best practice not to write CSS in HTML or vice versa. As a rule, HTML will always represent content while CSS will always represent appearacne of that content.
 
@@ -97,11 +97,11 @@ Once set up, open VS Code by searching it among your apps. Click on the "Open" c
 
 ![Search for vscode](images/getting_started_with_html_and_css/search_for_vscode.png)
 
-With our editor open, we will begin by creating a folder called _hello_world_.
+With our editor open, we will begin by creating a folder called _hello_world_. Click on the "New Folder" icon shown below.
 
 ![Create folder](images/getting_started_with_html_and_css/create_folder.png)
 
-Then name the folder _hello_world_ and press "Enter":
+Then, name the folder _hello_world_ and press "Enter":
 
 ![Hello world folder](images/getting_started_with_html_and_css/name_hello_world_folder.png)
 
@@ -113,13 +113,13 @@ Finally, we need to create a file called _index.html_ just the way we have done 
 
 ![Create index file](images/getting_started_with_html_and_css/create_index_file.png)
 
-What we need to do now is to create the structure of our HTML file. 
+What we need to do now is to create the structure of our HTML file. If you go back to the section [HTML Document Structure](#html-document-structure), you will see the default file structure.
 
-![Create HTML struture](images/getting_started_with_html_and_css/create_html_structure2.png)
+![Create HTML struture](images/getting_started_with_html_and_css/create_html_struture2.png)
 
-Notice that there is a white dot at the top of the _index.html_ file. This shows that the file has had changes, and therefore, needs to be saved. Click "Ctrl + S" on your keyboard to save your changes.
+Notice that once you have finished writing your code there is a white dot at the top of the _index.html_ file. This shows that the file has had changes, and therefore, needs to be saved. Click "Ctrl + S" on your keyboard to save your changes.
 
-To see your first web page on a browser, you need to run the file. But before we do that, let us install a new extension called "Live Server". Click on "Extensions", then search for "Live Server". Once found, click "Install in WSL: Ubuntu-20.04".
+To see your first web page on a browser, you need to run the _index.html_ file. But before we do that, let us install a new extension called "Live Server". Click on "Extensions", then search for "Live Server". Once found, click "Install in WSL: Ubuntu-20.04".
 
 ![Install live server](images/getting_started_with_html_and_css/install_live_server.png)
 
@@ -127,7 +127,7 @@ Give it some time and you will notice the icon "Go Live" at the bottom right cor
 
 ![Go live icon](images/getting_started_with_html_and_css/go_live_icon2.png)
 
-To see your web page, all you need to do now is to click on the "Go Live" icon. 
+To see your web page, all you need to do now is to click on the "Go Live" icon. Your applciation will launch in your default computer browser.
 
 ![Start live server](images/getting_started_with_html_and_css/start_live_server.png)
 
