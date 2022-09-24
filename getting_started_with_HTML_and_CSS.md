@@ -115,7 +115,7 @@ Finally, we need to create a file called _index.html_ just the way we have done 
 
 What we need to do now is to create the structure of our HTML file. 
 
-![Create HTML struture](images/getting_started_with_html_and_css/create_html_structure.png)
+![Create HTML struture](images/getting_started_with_html_and_css/create_html_structure2.png)
 
 Notice that there is a white dot at the top of the _index.html_ file. This shows that the file has had changes, and therefore, needs to be saved. Click "Ctrl + S" on your keyboard to save your changes.
 
@@ -125,7 +125,7 @@ To see your first web page on a browser, you need to run the file. But before we
 
 Give it some time and you will notice the icon "Go Live" at the bottom right corner of your VS Code.
 
-![Go live icon](images/getting_started_with_html_and_css/go_live_icon.png)
+![Go live icon](images/getting_started_with_html_and_css/go_live_icon2.png)
 
 To see your web page, all you need to do now is to click on the "Go Live" icon. 
 
@@ -145,7 +145,7 @@ As we have learnt earlier, CSS is used primarily to style a web page. You can ag
 
 If you can remember, we said that it is best practice to separate HTML from CSS. Let us begin by creating a new file called _style.css_ inside our original folder _hello_world_.
 
-![Create CSS file](images/getting_started_with_html_and_css/create_css_file.png)
+![Create CSS file](images/getting_started_with_html_and_css/create_css_file2.png)
 
 The next step is to link these two files. The linkage normally happens inside the `<head>` element of _index.html_ file. Add this line:
 
@@ -153,18 +153,15 @@ The next step is to link these two files. The linkage normally happens inside th
 <link rel="stylesheet" href="style.css">
 ```
 
-![Link CSS and HTML](images/getting_started_with_html_and_css/link_html_css.png)
 
-We are now ready to make changes that will improve the appearance of our template. Let us do the following inside _style.css_:
+![Link CSS and HTML](images/getting_started_with_html_and_css/link_html_css2.png)
 
-```css
-/* style.css */
+We are now ready to make changes that will improve the appearance of our template. Let us do the following inside _style.css_
 
-h1 {
-    margin-left: 200px;
-    font-size: 70px;
-}
-```
+![Update CSS](images/getting_started_with_html_and_css/update_css.png)
+
+Above, we are instructing our browser to increase the font-size of our heading after moving it from the left side of the marging. Your outcome should be similar to this below:
+
 
 ![Style H1](images/getting_started_with_html_and_css/style_h1.png)
 
@@ -206,7 +203,7 @@ Be sure to save your changes by pressing "CTrl + S".
 
 ## Application of Lessons Learnt
 
-Now that we know who create a simple web page, let us test our skills further by building this sample web page.
+Now that we know how create a simple web page, let us test our skills further by building this sample web page.
 
 ![Sample website](images/getting_started_with_html_and_css/sample_website.png)
 
