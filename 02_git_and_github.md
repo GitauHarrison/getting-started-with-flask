@@ -62,7 +62,7 @@ Follow the instructions as guided.
 
 ![Create github account](/images/git_and_github/create_github_account.gif)
 
-With your account now created, you can check your profile page.
+With your account now created, you can check your profile page. Click on your avatar as seen below, then select "Your Profile".
 
 ![Profile page](/images/git_and_github/profile.png)
 
@@ -73,18 +73,18 @@ You will be redirected to your GitHub profile.
 
 ## Configure Git in Ubuntu
 
-The next step will be to configure the git available in your local computer. This process is done only once. 
+The next step will be to configure the _git_ available in your local computer. This process is done only once. 
 
 
 ### Step 1
 
-You need to add your username to _git_ configurations. Run the code below in your VS Code terminal:
+You need to add your name to _git_ configurations. Run the code below in your VS Code terminal:
 
 ```python
 git config --global user.name "<put here your username>"
 ```
 
-![Add username to git](images/git_and_github/git_username.png)
+![Add username to git](images/git_and_github/git_name.png)
 
 
 ### Step 2
@@ -106,7 +106,7 @@ Confirm all the changes you have made in the _git_ configuration file by running
 git config --list
 ```
 
-![Confirm git configurations](/images/git_and_github/git_configurations.png)
+![Confirm git configurations](/images/git_and_github/git_config.png)
 
 
 ## Connect to GitHub Using SSH
