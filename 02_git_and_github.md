@@ -64,7 +64,7 @@ Follow the instructions as guided.
 
 With your account now created, you can check your profile page.
 
-![Profile page](/images/git_and_github/profile_page.png)
+![Profile page](/images/git_and_github/profile.png)
 
 You will be redirected to your GitHub profile.
 
@@ -121,7 +121,7 @@ List all existing SSH keys, and check for an existing public SSH key (public SSH
 ls -al ~/.ssh
 ```
 
-![List all ssh keys](ssh_key_list.png)
+![List all ssh keys](/images/git_and_github/ssh_key_list.png)
 
 There is a good chance that when you run the command above you will get the error `ls: cannot access '/home/harry/.ssh': No such file or directory`. This means that no such file or directory currently exists in our file system.
 
@@ -297,7 +297,7 @@ The command `git add` allows us to add the individual files we want tracked by _
 git status
 ```
 
-![Check tracked files](check_tracked_files.png)
+![Check tracked files](/images/git_and_github/check_tracked_files.png)
 
 Notice that the two files are now "green" in color. These means that the changes we made in them are now added to _git_.
 
