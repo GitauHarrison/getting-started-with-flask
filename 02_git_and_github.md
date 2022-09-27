@@ -214,10 +214,16 @@ From our lesson [Getting Started with HTML and CSS](01_getting_started_with_HTML
 
 - `git push` updates the remote repository with any commits made locally to a branch.
 
+Below, we will look at two approaches to working with Git and GitHub:
 
-### Starting With A Project Found In Your Local Computer
+1. [Start With A Project Found In Your Local Computer](#approach-1-start-with-a-project-found-in-your-local-computer)
+2. [Get a Project Already Found on GitHub](#approach-2-get-a-project-already-found-on-github)
 
-Let us assume you have a project in your laptop, or desktop. How do you ensure that it can be located in a version control server like GitHub? Below are the step to follow when you want to add your projec to a remote server.
+
+### Approach 1: Start With A Project Found In Your Local Computer
+
+
+Let us assume you have a project in your laptop, or desktop. How do you ensure that it can be located in a version control server like GitHub? Below are the steps to follow when you want to add your project to a remote server.
 
 ### Step 1
 
@@ -326,6 +332,119 @@ git@github.com:tastebolder/first-web-app.git
 
 ### Step 6
 
+Next, we need to create a new branch called main to comply with the modern developments in the naming of branches. Run the command below in your VS Code terminal:
+
+```python
+git branch -M main
+```
+
+![Main branch](/images/git_and_github/branch_main.png)
+
+This command will switch the main branch found in GitHub to _main_.
+
+### Step 7
+
 Paste the copied link to your VS Code terminal as seen below:
 
+```python
+git remote add origin git@github.com:tastebolder/first-web-app.git
+```
+
 ![Copy SSH link to terminal](/images/git_and_github/copy_ssh_to_terminal.png)
+
+_origin_ is a remote repository that connects the local machine to the remote server. Above, we have added our SSH method of authentication when accessing the remote server.
+
+### Step 8
+
+Finally, we can now push our changes to GitHub by running the command below on VS Code:
+
+```python
+git push -u origin main
+```
+
+![Push changes](/images/git_and_github/push_changes.png)
+
+
+### Step 9
+
+Now let us reload our GitHub page to see the changes we have made thus far.
+
+![Code on GitHub](/images/git_and_github/code_on_github.png)
+
+Congratulations! That is how you get a copy of your project to a remote server such as GitHub.
+
+
+### Adding a README file
+
+If you have observed the new project repository, it asks that we add a README file so as to help people interested to know what the project is all about. A README file is normally used to provide more information to anyone who seens our project.
+
+At the moment, our project has only two files, _index.html_ and _style.css_. We need to add a new file called _README.md_ to the project structure. This can be done as follows:
+
+![Add readme file](/images/git_and_github/add_readme_file.png)
+
+We need to say something about this project. Since there is not much going on with the project, we can simple say this:
+
+![Update readme file](/images/git_and_github/update_readme_file.png)
+
+Remember to save your file by pressing **"Ctrl + S"** if you see the small white dot at the top of the file. Then run these commands in the following order to push it to GitHub:
+
+```python
+git add README.md
+git commit -m 'Add a README file'
+git push origin main
+```
+
+![Push readme file](/images/git_and_github/push_readme_file.png)
+
+Now, if you reload your repository, you should be able to see your changes.
+
+![Repo with readme file](/images/git_and_github/repo_with_readme_file.png)
+
+
+### Approach 2: Get a Project Already Found on GitHub
+
+Let us say you were looking around in GitHub and you came across a project that you really liked, and you want to buil on it instead of starting from scratch. How do you go about it?
+
+### Step 1
+
+Find the project on GitHub. For example this project: https://github.com/GitauHarrison/africanshortstorieswebsite.
+
+![African short stories](/images/git_and_github/african_short_stories.png)
+
+### Step 2
+
+Copy the SSH link from the repository
+
+![Copy repo ssh link](/images/git_and_github/repo_ssh_link.png)
+
+
+### Step 3
+
+Ensure that you are in an appropriate folder in your local machine. In the example below, we go back on step from our folder _hello_world_ to the parent folder _tinker_flask_intro_. This is achieved by running this command:
+
+```python
+cd ..
+```
+
+![Change project directory](/images/git_and_github/change_project_directory.png)
+
+
+### Step 4
+
+Open your VS Code terminal and run this command:
+
+```python
+git clone git@github.com:GitauHarrison/africanshortstorieswebsite.git
+```
+
+![Clone repo](/images/git_and_github/clone_repo.png)
+
+Notice that we have a new folder at the same location as our original_hello_world_ folder.
+
+![New folder](/images/git_and_github/new_folder.png)
+
+At this point, you can interact with the _africanshortstorieswebsite_ contents to your heart's desire.
+
+## Conclusion
+
+GitHub hosts Git repositories and provides developers with tools to ship better code through command line features, issues (threaded discussions), pull requests, or code review. GitHub builds collaboration directly into the development process. Work is organized into repositories where developers can outline requirements or direction and set expectations for team members. Then, using the GitHub flow, developers simply create a branch to work on updates, commit changes to save them, open a pull request to propose and discuss changes, and merge pull requests once everyone is on the same page.
