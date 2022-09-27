@@ -27,7 +27,7 @@ Before you get too excited about building a website, we need to understand how o
 
 - **CSS**, short for Cascading Style Sheets, on the other hand, is primarily used to style a web page by improving its appearance using colors, fonts et cetera.
 
-These two languages are interdependent, and should remain that way. It is best practice not to write CSS in HTML or vice versa. As a rule, HTML will always represent content while CSS will always represent appearacne of that content.
+These two languages are interdependent, and should remain that way. It is best practice not to write CSS in HTML or vice versa. As a rule, HTML will always represent content while CSS will always represent appearance of that content.
 
 ## Common HTML Terms
 
