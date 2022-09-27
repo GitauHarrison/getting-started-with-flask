@@ -28,7 +28,7 @@ To better understand what Git is, let us break it down:
 - **Control System**: This basically means that Git is a content tracker. So Git can be used to store content — it is mostly used to store code due to the other features it provides.
 - **Version Control System**: The code which is stored in Git keeps changing as more code is added. Also, many developers can add code in parallel. So Version Control System helps in handling this by maintaining a history of what changes have happened. Also, Git provides features like branches and merges, which I will be covering later.
 - **Distributed Version Control System**: Git has a remote repository which is stored in a server and a local repository which is stored in the computer of each developer. This means that the code is not just stored in a central server, but the full copy of the code is present in all the developers’ computers. Git is a Distributed Version Control System since the code is present in every developer’s computer.
-![Distributed Version Control System](/images/git_and_github/distributed_version_control_system.png)
+![Distributed Version Control System](/images/git_and_github/distributed_version_control.png)
 
 **[GitHub](https://github.com)**, on the other hand, is a cloud service that allow you to store your projects' versions.
 
