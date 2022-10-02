@@ -40,7 +40,7 @@ In this section, you will learn how to check if your operating system has _git_ 
 
 ### Check For Git
 
-First and foremost, you need to install _git_ in your operating system. At this point, if you have been following along, you should have it already installed. If you don't have it, please refer to the our earlier lesson when [setting up the Windows Subsystem for Linux](https://medium.com/@gitauharrison/get-started-with-the-windows-subsystem-for-linux-e49264a5274e).
+First and foremost, you need to install _git_ in your operating system. At this point, if you have been following along, you should have it already installed. If you don't have it, please refer to the our earlier lesson when setting up the [Windows Subsystem for Linux](https://medium.com/@gitauharrison/get-started-with-the-windows-subsystem-for-linux-e49264a5274e).
 
 How can you know that you have git installed in your operating system? Run this code below in your VS Code terminal:
 
@@ -136,7 +136,7 @@ ssh-keygen -t rsa -b 4096 -C "<your GitHub email address goes here>"
 
 ![Generate new key pair](/images/git_and_github/generate_new_key_pair.png)
 
-You will be prompted to enter a file in which to save teh key. Simply press "Enter" on your keyboard to save it to the default location. Notice that two new files have been created (the _/home/harry/.ssh/id_rsa_ and  _/home/harry/.ssh/id_rsa.pub_ which initially could not be found).
+You will be prompted to enter a file in which to save the key. Simply press "Enter" on your keyboard to save it to the default location. Notice that two new files have been created (the _/home/harry/.ssh/id_rsa_ and  _/home/harry/.ssh/id_rsa.pub_ which initially could not be found).
 
 ![SSH key generated](/images/git_and_github/ssh_key_generated.png)
 
@@ -170,7 +170,7 @@ Add a title and the key as seen in the image below:
 
 ![Add SSH Key to GitHub](/images/git_and_github/add_ssh_key.png)
 
-Once done, press the green button "Add SSH Key". You will see the key added to your Authentication Keys list.
+Once done, press the green button "Add SSH key". You will see the key added to your Authentication Keys list.
 
 ![Authentication keys list](/images/git_and_github/authentication_keys_list.png)
 
@@ -231,7 +231,7 @@ Create a new repository on GitHub. Click on the "+" icon as seen below, then sel
 
 ![Create GitHub Repo](/images/git_and_github/create_github_repo.png)
 
-GitHub will redirect you to create a new repo (or repository) by providing a repo name as well as an optional description for the repository.
+GitHub will redirect you to create a new repo (or repository) by providing a form for your repo name as well as an optional description for the repository.
 
 ![Name repo](/images/git_and_github/name_repo.png)
 
@@ -376,7 +376,7 @@ Congratulations! That is how you get a copy of your project to a remote server s
 
 ### Adding a README file
 
-If you have observed the new project repository, it asks that we add a README file so as to help people interested to know what the project is all about. A README file is normally used to provide more information to anyone who seens our project.
+If you have observed the new project repository, it asks that we add a README file so as to help people interested to know what the project is all about. A README file is normally used to provide more information to anyone who sees our project.
 
 At the moment, our project has only two files, _index.html_ and _style.css_. We need to add a new file called _README.md_ to the project structure. This can be done as follows:
 
@@ -407,7 +407,7 @@ Let us say you were looking around in GitHub and you came across a project that 
 
 ### Step 1
 
-Find the project on GitHub. For example this project: https://github.com/GitauHarrison/africanshortstorieswebsite.
+Find the project on GitHub. For example, this project: https://github.com/GitauHarrison/africanshortstorieswebsite.
 
 ![African short stories](/images/git_and_github/african_short_stories.png)
 
@@ -420,7 +420,7 @@ Copy the SSH link from the repository
 
 ### Step 3
 
-Ensure that you are in an appropriate folder in your local machine. In the example below, we go back on step from our folder _hello_world_ to the parent folder _tinker_flask_intro_. This is achieved by running this command:
+Ensure that you are in an appropriate folder in your local machine. In the example below, we go back on step from our folder _hello_world_ to the parent folder _tinker_flask_intro_. This is achieved by running the command seen below:
 
 ```python
 cd ..
