@@ -12,6 +12,7 @@ Throughout this tutorial, these are the reference links of the things we will be
 3. [Working with Templates](04_working_with_templates.md)
 
 
+
 This article will cover these topics:
 
 - [Install Python](#install-python)
@@ -22,6 +23,8 @@ This article will cover these topics:
 - [Update Project Dependancies](#update-project-dependancies)
 - [Ignore Select Files](#ignore-select-files)
 - [Push Flask Project to GitHub](#push-flask-project-to-github)
+
+If you would like to see the completed project, you can browse [this repository](https://github.com/tastebolder/hello-flask).
 
 
 ## Install Python
@@ -411,7 +414,10 @@ You should be able to see the files in GitHub.
 
 ![Project in github](images/getting_started_with_flask/project_in_github.png)
 
-### Step 9: Add README
+### Step 9: Add README File
 
 Notice that our project on GitHub lacks a README.md file. As an assignment, I would like you to add one to your project and pushit to GitHub. If you are not so sure how to go about it, kindly refer to our previous lesson [Git and GitHub](02_git_and_github.md).
 
+See my updated repository which currently includes the `README.md` file.
+
+![Teacher flask project](images/getting_started_with_flask/teacher_flask_project.png)

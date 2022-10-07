@@ -18,6 +18,8 @@ This article will cover these topics:
 - [Working with CSS](#working-with-css)
 - [Application of Lessons Learnt](#application-of-lessons-learnt)
 
+If you would like to see the completed project, you can browse [this repository](https://github.com/tastebolder/first-web-app).
+
 
 ## What Are HTML and CSS
 
