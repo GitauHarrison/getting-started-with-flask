@@ -24,8 +24,6 @@ This article will cover these topics:
 - [Ignore Select Files](#ignore-select-files)
 - [Push Flask Project to GitHub](#push-flask-project-to-github)
 
-If you would like to see the completed project, you can browse [this repository](https://github.com/tastebolder/hello-flask).
-
 
 ## Install Python
 
@@ -192,7 +190,7 @@ We can confirm if flask was successfully installed in your system. In your pytho
 
 At this point, we are ready to build our very first flask application. But before we do so, let us understand what the files we created earlier are used for.
 
-- `__init__.py`: This is the brain or the engine of the application. Everything begins from here. When you run your project, the application will look for this file as the starting poing.
+- `__init__.py`: This is the brain or the engine of the application. Everything begins from here. When you run your project, the application will look for this file as the starting point.
 - `routes.py`: This file (also known as a module) is used to create URLs. A URL is the location of a resource in an application. For exmaple, the URL `http://localhost:5000/home` will search for the home page.
 - `main.py`: This acts as the entry point to the application. It is like a door that allows access to the brain of the application.
 - `.flaskenv`: This file has the needed configurations (or commands) needed to start our application. Without these commands, our application will not run well.
@@ -258,7 +256,7 @@ Believe it or not, our application is now complete and we can now start our serv
 
 ![Start flask server](images/getting_started_with_flask/start_flask_server.png)
 
-In your terminal, we are told that the application is running on https://127.0.0.1:5000. You can copy this link and paste it in your favourite web browser to see the changes.
+In our terminal, we are told that the application is running on https://127.0.0.1:5000. You can copy this link and paste it in your favourite web browser to see the changes.
 
 ![See flask on browser](images/getting_started_with_flask/flask_on_browser.png)
 
@@ -341,13 +339,13 @@ Remember to save your work. If you notice that you have the white dot (`.`) at t
 
 With the project working as expected, we can now push it to GitHub. We saw from our last lesson [Git and GitHub](02_git_and_github.md) how to push our work to version control platforms. 
 
-### Step 1: Create a Repository on gitHub
+### Step 1: Create a Repository on GitHub
 
 Head over to your GitHub account. Ensure you are logged in. Create a new repository as seen below:
 
 ![Create repository](images/getting_started_with_flask/create_repository.png)
 
-### Step 2: Give Repository a Name and Description
+### Step 2: Give Repository a Name and a Description
 
 You now need to provide a repository name and description to help those interested in it to learn more.
 
@@ -360,7 +358,7 @@ You will be redirected to this page below:
 
 ### Step 3: Initialize Project Directory
 
-Back to VS Code, run the `git init` to make the project folder trackable by `git`
+Back to VS Code, run the `git init` command to make the project folder trackable by `git`.
 
 ![Initialize project folder](images/getting_started_with_flask/initialize_project_folder.png)
 
@@ -390,7 +388,7 @@ After adding the files to version control, we now need to commit them.
 
 ### Step 7: Change Branch
 
-Switch the branch name to a more modern convention called `main`
+Switch the branch name to a more modern convention called `main`.
 
 ![Main branch](images/getting_started_with_flask/main_branch.png)
 
@@ -402,7 +400,7 @@ We now need to add our commit(s) to a remote repository. Ensure that the link us
 
 ### Step 8: Push to GitHub
 
-Now, we are ready to push our work to GitHub
+Now, we are ready to push our work to GitHub.
 
 ![Push to gitHub](images/getting_started_with_flask/push_to_github.png)
 
@@ -416,7 +414,7 @@ You should be able to see the files in GitHub.
 
 ### Step 9: Add README File
 
-Notice that our project on GitHub lacks a README.md file. As an assignment, I would like you to add one to your project and pushit to GitHub. If you are not so sure how to go about it, kindly refer to our previous lesson [Git and GitHub](02_git_and_github.md).
+Notice that our project on GitHub lacks a `README.md` file. As an assignment, I would like you to add one to your project and push it to GitHub. If you are not so sure how to go about it, kindly refer to our previous lesson [Git and GitHub](02_git_and_github.md).
 
 See my updated repository which currently includes the `README.md` file.
 
