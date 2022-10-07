@@ -90,31 +90,31 @@ The folder also features a subfolder called _app_. The _app_ subfolder has two f
 
 Do not worry if you do not understand what all these files are and what they do. We will learn about them in subsequent sections. For now, keep this project structure in mind as you build your software.
 
-### Step 1
+### Step 1: Create Project Folder
 
 Open VS Code and create the project folder called _start_flask_server_
 
 ![Create project folder](images/getting_started_with_flask/create_project_folder.png)
 
-### Step 2
+### Step 2: Add Top-level Files
 
 Create three files called _main.py_, _config.py_, and _.gitignore_.
 
 ![Create top_level files](images/getting_started_with_flask/top_level_files.png)
 
-### Step 3
+### Step 3: Create App Subfolder
 
 Create a subfolder called _app_ inside our main folder _start_a_flask_server_.
 
 ![Create app subfolder](images/getting_started_with_flask/create_app_subfolder.png)
 
-### Step 4
+### Step 4: Update App Subfolder
 
 Create two files inside our _app_ subfolder. These two files are `__init__.py` and `routes.py`.
 
 ![Create app files](images/getting_started_with_flask/create_app_files.png)
 
-### Step 5
+### Step 5: Confirm Project Structure
 
 Confirm that your project structure is similar to the one shown below:
 
