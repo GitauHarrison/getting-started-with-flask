@@ -174,11 +174,11 @@ Notice that the first part of our terminal has changed to `(venv) harry@DESKTOP:
 
 ## Install Flask
 
-It is now much more convinient to install any package within our virtual environment. The first package we shall be installing is `flask`. Runt he command below to install flask in your activated virtual environment.
+It is now much more convinient to install any package within our virtual environment. The first package we shall be installing is `flask`. Run he command below to install flask in your activated virtual environment.
 
 ![Install flask](images/getting_started_with_flask/install_flask.png)
 
-We can confirm if flask was successfully installed in your system. In your python interpreter, run `import flask`.
+We can confirm if flask was successfully installed in our system. In your python interpreter, run `import flask`.
 
 ![Check for flask](images/getting_started_with_flask/check_for_flask.png)
 
@@ -219,14 +219,14 @@ What we need to do next is to update this module and define our very first URL (
 
 A URL is defined by a leading forward slash as seen in the image above. We have created two URLs:
 
-- `/`: it has not word after it
+- `/`: it has no word after it
 - `/index`: it has the word 'index' after it
 
 On a browser, if we paste either of the URLS, for example `http://localhost:5000/` or `http:localhost:5000/index`, we will be redirected to the text "Hello, World"
 
 ### Step 3: Create an Entry Point
 
-We mentioned that an entry point is like a door to the application which leads to the brain of our simple software. In our application, the module or file called `main.py` will act as the entry point. This is how you make the file an entry point.
+We mentioned that an entry point is like a door to the application which leads to the brain of our simple software. In our application, the module (or file) called `main.py` will act as the entry point. This is how you make the file an entry point:
 
 ![Entry point](images/getting_started_with_flask/entry_point.png)
 
@@ -234,7 +234,7 @@ Here, we are importing the `app` application instance from `__init__.py` from th
 
 ### Step 4: Configure Environment Variables
 
-At this point, we are almost done with creating our first application using Flask. We only need to add a few configurations before we can start our flask server. Click on `.flasken` file and add the following:
+At this point, we are almost done with creating our first application using Flask. We only need to add a few configurations before we can start our flask server. Click on `.flaskenv` file and add the following:
 
 ![Environment variables](images/getting_started_with_flask/environment_variables.png)
 
@@ -246,7 +246,7 @@ This is what is happening in our file above:
 
 ### Step 5: Run Environment Variables
 
-Once you have set your environment variables, we typically need to load them when we fire up our server for the firs time. Bundling all variables in our file makes it so much easier to run them instead of running one command at a time. To ensure that all environment variables are loaded on start up, let us install this package within our active virtual environment:
+Once we have set your environment variables, we typically need to load them when we fire up our server for the first time. Bundling all variables in our file makes it so much easier to run them instead of running one command at a time. To ensure that all environment variables are loaded on start up, let us install the `python-dotenv` package within our active virtual environment:
 
 ![Install python dotenv](images/getting_started_with_flask/install_python_dotenv.png)
 
