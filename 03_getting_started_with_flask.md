@@ -96,7 +96,7 @@ Open VS Code and create the project folder called _start_flask_server_
 
 ### Step 2: Add Top-level Files
 
-Create three files called _main.py_, _config.py_, and _.gitignore_.
+Create three files called `main.py`, `.flaskenv`, and `.gitignore`.
 
 ![Create top_level files](images/getting_started_with_flask/top_level_files.png)
 
