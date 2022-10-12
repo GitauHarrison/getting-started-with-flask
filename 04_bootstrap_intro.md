@@ -1,4 +1,4 @@
-# Working with Templates in Flask
+# Responsive Web Pages
 
 ![Bootstrap](images/bootstrap_intro/bootstrap.png)
 
@@ -176,7 +176,7 @@ Now, let us check the changes that have occurred on our web page.
 ![Web page columns](images/bootstrap_intro/web_page_columns.png)
 
 
-Notice that when using the grid system, we have do the following:
+Notice that when using the grid system, we have to do the following:
 
 - Call a _row_ as class `row`
 - Define a _column_ as class `col`
@@ -246,7 +246,7 @@ You will see this page:
 
 Ensure that you have selected "Responsive" from the dropdown menu.
 
-![Select responsive](images/bootstrap_intro/select_responsive.png)
+![Select responsive](images/bootstrap_intro/select_responsive2.png)
 
 ### Step 3: Web Page on Multiple Viewports
 
