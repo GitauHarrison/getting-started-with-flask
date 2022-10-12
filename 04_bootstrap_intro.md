@@ -1,6 +1,6 @@
 # Working with Templates in Flask
 
-![Templates Hero image](images/flask_templates/template.jpg)
+![Bootstrap](images/bootstrap_intro/bootstrap.png)
 
 A template is basically an HTML file. In our previous lesson [Getting Started With Flask](03_getting_started_with_flask.md), we learnt how to display the text "Hello, world" on a browser. What if you want to add more structure to your application, like paragraphs and images? How can you do that in Flask? This is where templates come in. They allow us to achieve all the structural features we may want added to our application.
 
@@ -25,8 +25,6 @@ This article will cover these topics:
 
 ## Introduction to Bootstrap
 
-![Bootstrap](images/flask_templates/bootstrap.png)
-
 [Bootstrap](https://getbootstrap.com/) is a powerful front-end framework for faster and easier web development. It includes HTML and CSS based design templates for creating common user interface components like forms, buttons, navigations, dropdowns, alerts, modals, tabs, accordions, carousels, tooltips, and so on. 
 
 > Bootstrap gives you ability to create flexible and responsive web layouts with much less efforts.
@@ -42,21 +40,21 @@ In this section, you will learn how to use Bootstrap on a plain HTML template. W
 
 Open your VS Code and create a new project folder called _bootstrap_intro_.
 
-![Bootstrap folder](bootstrap_folder.png)
+![Bootstrap folder](images/bootstrap_intro/bootstrap_folder.png)
 
 
 ### Step 2: Create an HTML Templates
 
 Now, create an HTML file called `index.html`
 
-![HTML template](index_template.png)
+![HTML template](images/bootstrap_intro/index_template.png)
 
 
 ### Step 3: Create Sample Web Page
 
 Let us update our `index.html` file with the following code that creates a simple web page.
 
-![Sample web page](sample_web_page.png)
+![Sample web page](images/bootstrap_intro/sample_web_page.png)
 
 
 ### Step 4: Include Bootstrap’s CSS and JS
@@ -70,7 +68,7 @@ Bootstrap requires us to use its two files, namely:
 
 In our `index.html` file, let us add links to Bootstrap CSS file and Bootstrap JS file
 
-![Add Bootstrap CSS file](bootstrap_css_js_link.png)
+![Add Bootstrap CSS file](images/bootstrap_intro/bootstrap_css_js_link.png)
 
 You do not have to memorize these links. To make your work easier, simply head over to the [Bootstrap documentation](https://getbootstrap.com/docs/5.2/getting-started/introduction/) and copy the links from there.
 
@@ -81,21 +79,21 @@ You do not have to memorize these links. To make your work easier, simply head o
 In our terminal, we need to change the directory to reflect our current folder which is _bootstrap_intro_.
 
 
-![Change directory](change_directory.png)
+![Change directory](images/bootstrap_intro/change_directory.png)
 
 
 ### Step 6: Run Code
 
 Click on _Go Live_ to see your web page.
 
-![Run template](run_template.png)
+![Run template](images/bootstrap_intro/run_template.png)
 
 
 ### Step 7: Access Web Page on Browser
 
 Our simple web page should be running on our default browser as seen below.
 
-![Web page running](webpage_on_browser.png)
+![Web page running](images/bootstrap_intro/webpage_on_browser.png)
 
 At this point, there is noting visibly special about our web page. 
 
@@ -109,28 +107,28 @@ A grid is a combination of containers, rows and columns which are used to lay ou
 
 To understand how the grid system works, let us look at these visual representations. We begin by understanding what a row is (horizontal):
 
-![Row](rows.png)
+![Row](images/bootstrap_intro/rows.png)
 
 
 ### Columns
 
 Then, this is a column (vertical):
 
-![Column](columns.png)
+![Column](images/bootstrap_intro/columns.png)
 
 
 ### Total Columns in a Row
 
 A row is made up of up to 12 columns.
 
-![12 Columns](12_columns.png)
+![12 Columns](images/bootstrap_intro/12_columns.png)
 
 
 ### Combination of Columns in a Row
 
 You can divide the number of columns in a row as much as you want. The total number of columns in a row need to add up to 12.
 
-![3 columns of 4](3_of_4_columns.png)
+![3 columns of 4](images/bootstrap_intro/3_of_4_columns.png)
 
 
 To translate these visual representations to code, let us see this example:
@@ -140,42 +138,42 @@ To translate these visual representations to code, let us see this example:
 
 Update the `index.html` file to include the code below:
 
-![HTML rows and columns](rows_columns.png)
+![HTML rows and columns](images/bootstrap_intro/rows_columns.png)
 
 
 ### Step 2: Navigate to Browser
 
 On our default browser, you should be able to see 4 paragraphs saying "This is a column"
 
-![Bootstrap grid](bootstrap_grid.png)
+![Bootstrap grid](images/bootstrap_intro/bootstrap_grid.png)
 
 
 ### Step 3: Add Styling
 
 If you are not so certain that what we have just done are actually columns, we can add a bit of borders around each column for greater visibility. Create a `styles.css` file and add this border style.
 
-![Add column borders](column_borders.png)
+![Add column borders](images/bootstrap_intro/column_borders.png)
 
 
 ### Step 4: Link CSS file to HTML File
 
 Before the style can be applied to targeted elements, we need to create a connection between our `style.css` file and the `index.html` file.
 
-![Create link](css_html_link.png)
+![Create link](images/bootstrap_intro/css_html_link.png)
 
 
 ### Step 5: Target Each Column
 
 We need to now target each column in `index.html` to apply the style we want. To do this, we will add a class called `columns` in each column.
 
-![Target columns](target_columns.png) 
+![Target columns](images/bootstrap_intro/target_columns.png) 
 
 
 ### Step 6: View Web Page
 
 Now, let us check the changes that have occurred on our web page.
 
-![Web page columns](web_page_columns.png)
+![Web page columns](images/bootstrap_intro/web_page_columns.png)
 
 
 Notice that when using the grid system, we have do the following:
@@ -224,7 +222,7 @@ In our `index.html` file, you have seen the use of the breakpoint `md`. Basicall
 
 One more important thing to pay attention to when building responsive web pages using the mobile-first approach is this line in our HTML file:
 
-![Responsive meta tag](responsive_meta_tag.png)
+![Responsive meta tag](images/bootstrap_intro/responsive_meta_tag.png)
 
 What this line does is it **ensures proper rendering and touch zooming for all devices**. Always remember to add this line to your responsive web page. Let us see how the page we have created appears on multiple viewports (viewport means 'screen size').
 
@@ -233,35 +231,35 @@ What this line does is it **ensures proper rendering and touch zooming for all d
 
 Right-click your mouse to access the shortcut "Inspect".
 
-![Mouse inspect shortcut](mouse_inspect_shortcut.png)
+![Mouse inspect shortcut](images/bootstrap_intro/mouse_inspect_shortcut.png)
 
 Alternatively, you may click on the menu command to access "Settings"
 
-![Menu settings](menu_settings.png)
+![Menu settings](images/bootstrap_intro/menu_settings.png)
 
 You will see this page:
 
-![Inspection page](inspection_page.png)
+![Inspection page](images/bootstrap_intro/inspection_page.png)
 
 
 ### Step 2: Select Responsive
 
 Ensure that you have selected "Responsive" from the dropdown menu.
 
-![Select responsive](select_responsive.png)
+![Select responsive](images/bootstrap_intro/select_responsive.png)
 
 ### Step 3: Web Page on Multiple Viewports
 
 Drag the edge of the inspection page to view how the page will look like in different viewports.
 
-![Responsiveness](responsiveness.gif)
+![Responsiveness](images/bootstrap_intro/responsiveness.gif)
 
 
 ## Assignment: Responsive Web Page
 
 Now that you have basic understanding of what a responsive web page is, let us put that knowledge to the test. Below, I have a sample web page built using HTML and CSS. 
 
-![Sample assignment web page](sample_assignment.png)
+![Sample assignment web page](images/bootstrap_intro/bootstrap_sample_assignment.png)
 
 These are the tasks you are required to do:
 
