@@ -2,7 +2,7 @@
 
 ![Bootstrap](images/bootstrap_intro/bootstrap.png)
 
-A template is basically an HTML file. In our previous lesson [Getting Started With Flask](03_getting_started_with_flask.md), we learnt how to display the text "Hello, world" on a browser. What if you want to add more structure to your application, like paragraphs and images? How can you do that in Flask? This is where templates come in. They allow us to achieve all the structural features we may want added to our application.
+In the modern times, mobile devices are popular among many web users. People use their smartphone to surf or look for any other solutions online. This has led to increased popularity of responsive web app that allows users to have better user experience when using different devices. With a responsive web application, you can easily meet your end user expectations regardless of how unrealistic they may be. A responsive web app works in all screen sizes, lower cost of production, eliminate the need to install software into your device and allow for better sharing of content.
 
 Throughout this tutorial, these are the reference links of the things we will be looking at. At your own convinience, you can navigate to whatever article you want to refer to:
 
