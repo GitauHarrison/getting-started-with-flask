@@ -11,6 +11,7 @@ Throughout this tutorial, these are the reference links of the things we will be
 3. [Getting Started with Flask](03_getting_started_with_flask.md)
 4. [Introduction to Bootstrap](04_bootstrap_intro.md)   (this article)
 5. [Working with Templates](05_working_with_templates.md)
+6. [Web forms](06_web_forms.md)
 
 
 
