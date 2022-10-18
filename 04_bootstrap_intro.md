@@ -188,7 +188,7 @@ In our code, the changes were effected as follows (You do not have to write this
 ```html
 <!-- index.html -->
 
-<div class="container-fuild text-center">     <!-- define your container on this outer element -->
+<div class="container-fluid text-center">     <!-- define your container on this outer element -->
     <div class="row">                         <!-- Here, you call your row -->
         <div class="col-md-3">                <!-- Here, you define your column of size 3 -->
             <p>This is a column of size 4</p>
