@@ -2,7 +2,11 @@
 
 ![Templates Hero image](images/flask_templates/template.jpg)
 
-A template is basically an HTML file. In our previous lesson [Getting Started With Flask](03_getting_started_with_flask.md), we learnt how to display the text "Hello, world" on a browser. What if you want to add more structure to your application, like paragraphs and images? How can you do that in Flask? This is where templates come in. They allow us to achieve all the structural features we may want added to our application.
+A template is basically an HTML file. In our previous lesson [Getting Started With Flask](03_getting_started_with_flask.md), we learnt how to display the text "Hello, world" on a browser. 
+
+![See flask on browser](images/getting_started_with_flask/flask_on_browser.png)
+
+What if you want to add more structure to your application, like paragraphs and images? How can you do that in Flask? This is where templates come in. They allow us to achieve all the structural features we may want added to our application.
 
 Throughout this tutorial, these are the reference links of the things we will be looking at. At your own convinience, you can navigate to whatever article you want to refer to:
 
