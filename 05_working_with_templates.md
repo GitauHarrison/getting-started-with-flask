@@ -25,6 +25,7 @@ This article will cover these topics:
 - [Getting Started With Templates](#getting-started-with-templates)
 - [Smarter Templates](#smarter-templates)
 - [Template Inheritance](#template-inheritance)
+- [Assignment: Push To GitHub](#assignment-push-to-github)
 
 
 ## Getting Started With Templates
