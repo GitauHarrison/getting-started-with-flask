@@ -173,6 +173,8 @@ Since we have moved our presentation to the `base.html` file, we need to update 
 
 ![Child index template](/images/flask_templates/child_index_template.png)
 
+At the top of the file, we have used the word `extends`. This keyword is used to inherit the base template within the index template. It is specially put within curly braces and percent signs.
+
 What we have done here is to create content that we want displayed only in the index page, that is, two columns each with a paragraph with the sentence "I am a column".
 
 ### Step 3: Check the Output on the Browser
@@ -196,7 +198,7 @@ With `about_me.html` file in place, we need to add a navigational link in our ba
 ![Update base template](/images/flask_templates/update_base_template_fixed.png)
 
 
-### Step 5: Render About Me Page
+### Step 5: Render the About Me Page
 
 We have added a link to the "About me" page, though it does not exist. To complete the process, we need to create a view function in `routes.py` to render the `about_me.html` file.
 
