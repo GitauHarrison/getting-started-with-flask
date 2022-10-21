@@ -14,6 +14,14 @@ Throughout this tutorial, these are the reference links of the things we will be
 5. [Working with Templates in Flask](05_working_with_templates.md)
 6. [Web forms](06_web_forms.md) (this article)
 7. [Database](07_database.md)
+8. [User Login](08_user_login.md)
+9. [Profile Page and Avatars](09_profile_page_and_avatars.md)
+10. [Error Handling](10_error_handling.md)
+11. [Pagination](11_pagination.md)
+12. [Working With Email](12_working_with_email.md)
+13. [Better-looking Application](13_better_looking_application.md)
+14. [Timestamp](14_timestamp.md)
+15. [Deployment on Render](15_deployment_on_render.md)
 
 
 This article will cover these topics:
@@ -58,22 +66,22 @@ To work with this extension, we need to install it in our active virtual environ
 ![Install wtf](images/web_forms/install_wtf_fixed.png)
 
 
-### Step 3: Create SECERET_KEY Configuration File
+### Step 3: Create SECRET_KEY Configuration File
 
-Flask expects certain configurations when creating an application. The first configuration that Flask expects, especially when working with web forms, is the `SECERET_KEY` configuration. To handle this new demand, let us go ahead and create a new file called `config.py` in the top-level directory.
+Flask expects certain configurations when creating an application. The first configuration that Flask expects, especially when working with web forms, is the `SECRET_KEY` configuration. To handle this new demand, let us go ahead and create a new file called `config.py` in the top-level directory.
 
 ![Create config file](images/web_forms/create_config_file_fixed.png)
 
 
 ### Step 4: Update Configuration File
 
-This file shall use a class called `Config()` to define all the configurations our application will need. The first is `SECERET_KEY`. Add the following code to your `config.py` file.
+This file shall use a class called `Config()` to define all the configurations our application will need. The first is `SECRET_KEY`. Add the following code to your `config.py` file.
 
 ![Update secret key config](images/web_forms/secret_key_config.png)
 
-Phew! Quite a lot going on there. Let us break it down. The `SECERET_KEY` configuration that we added is crucial for any Flask application. Flask-WTF uses it to protect our forms against a nasty attack called [Cross-site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery), or CSRF in short (it is pronounced as "seasurf").
+Phew! Quite a lot going on there. Let us break it down. The `SECERT_KEY` configuration that we added is crucial for any Flask application. Flask-WTF uses it to protect our forms against a nasty attack called [Cross-site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery), or CSRF in short (it is pronounced as "seasurf").
 
-As the name implies, it is supposed to be a **secret**. Only you or the maintainer of the application should know this value. What is the value? You may ask. The value of the `SECERET_KEY` is sourced from the Operating System as an environement variable. 
+As the name implies, it is supposed to be a **secret**. Only you or the maintainer of the application should know this value. What is the value? You may ask. The value of the `SECRET_KEY` is sourced from the Operating System as an environement variable. 
 
 ```python
 # config.py
