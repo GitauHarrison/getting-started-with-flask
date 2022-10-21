@@ -23,6 +23,7 @@ Throughout this tutorial, these are the reference links of the things we will be
 This article will cover these topics:
 
 - [Getting Started With Templates](#getting-started-with-templates)
+- [Separate Presentation from Business Logic](#separate-presentation-from-business-logic)
 - [Smarter Templates](#smarter-templates)
 - [Template Inheritance](#template-inheritance)
 - [Assignment: Push To GitHub](#assignment-push-to-github)
@@ -30,11 +31,11 @@ This article will cover these topics:
 
 ## Getting Started With Templates
 
-Building on our initial app, _hello flask_, let us see how we can add HTML files in Flask. First ensure you have you application ready.
+Building on our initial app, _hello flask_, let us see how we can add HTML files in Flask. First ensure you have your application ready.
 
 ### Step 1: Navigate to Your Application Directory
 
-Ensure you are working in the current project's directory
+In the terminal, change the directory to our application's.
 
 ![Current project directory](images/flask_templates/current_directory.png)
 
@@ -82,7 +83,7 @@ Notice that the `index.html` file contains Bootstrap. You learnt about Bootstrap
 
 ### Step 4: Update Route with Template
 
-The next step to display our web page will now be to udpate the `routes.py` file to point at _index.html_.
+The next step to display our web page will now be to update the `routes.py` file to render the template _index.html_.
 
 ![Render index template](/images/flask_templates/render_index_template.png)
 
@@ -111,7 +112,7 @@ Congratulations for coming this far! That is all you need to do to use templates
 
 ## Smarter Templates
 
-If you look carefully out the output of our application, you will notice that the title found on the tab head in your browser says "About Me Boostrap Demo".
+If you look carefully at the output of our application, you will notice that the title found on the tab head in your browser says "About Me Boostrap Demo".
 
 ![Static title](/images/flask_templates/static_title.png)
 
@@ -133,7 +134,7 @@ So what is going on here? To begin, notice that we are using curly braces (`{}`)
 {% endif %}
 ```
 
-The `if - else` conditional statement has been used to generate a title based on its availability. First, 
+The `if - else` conditional statement has been used to generate a title based on its availability.
 
 - If the `index()` view function in `routes.py` has the word `title`, then Flask will replace the dynamic `{{ title }}` Jinja command with the title name. In our case, the title is "Index Page". You will see this in your browser.
 ![Dynamic title](/images/flask_templates/dynamic_title.png)
@@ -146,7 +147,7 @@ That is how you can create more interesting and slightly more intelligent templa
 
 ## Template Inheritance
 
-If you have been to website such as spotify.com, you will notice that it there are some reusable element of the website.
+If you have been to a website such as [spotify.com](spotify.com), you will notice that it there are some reusable elements sprinkled throughout the website.
 
 ![Spotify](/images/flask_templates/spotify.png)
 
@@ -168,11 +169,11 @@ Of importance are:
 
 ### Step 2: Update Index Template
 
-Since we have moved our presentation to the `base.html` file, we need to update it with content specific to it.
+Since we have moved our presentation to the `base.html` file, we need to update our original `index.html` with content specific to it.
 
 ![Child index template](/images/flask_templates/child_index_template.png)
 
-What we have done here is to create content that we want displayed only in the index page. That is tow columns each with a paragraph with the sentence "I am a column".
+What we have done here is to create content that we want displayed only in the index page, that is, two columns each with a paragraph with the sentence "I am a column".
 
 ### Step 3: Check the Output on the Browser
 
@@ -183,12 +184,12 @@ Let us see how the changes look like on the browser.
 
 ### Step 4: Add Another Child Template
 
-There isn't any observable difference in our output. To clearly see inheritance at work, we will need to add another template.
+There isn't any observable difference in our output. To clearly see inheritance at work, we will need to add another template. For example, we can add a template called `about_me.html` as seen below.
 
 ![Add about me template](/images/flask_templates/about_me_template_file.png)
 
 
-### Step 5: Add link in Base Template
+### Step 5: Add Link To New Template
 
 With `about_me.html` file in place, we need to add a navigational link in our base template.
 
@@ -197,7 +198,7 @@ With `about_me.html` file in place, we need to add a navigational link in our ba
 
 ### Step 5: Render About Me Page
 
-We have added a link to the "About me" page, though it does not exist. We need to create a view function in `routes.py` to render the `about_me.html` file.
+We have added a link to the "About me" page, though it does not exist. To complete the process, we need to create a view function in `routes.py` to render the `about_me.html` file.
 
 ![Render about me page](/images/flask_templates/render_about_me_page.png)
 
