@@ -81,7 +81,7 @@ This file shall use a class called `Config()` to define all the configurations o
 
 Phew! Quite a lot going on there. Let us break it down. The `SECERT_KEY` configuration that we added is crucial for any Flask application. Flask-WTF uses it to protect our forms against a nasty attack called [Cross-site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery), or CSRF in short (it is pronounced as "seasurf").
 
-As the name implies, it is supposed to be a **secret**. Only you or the maintainer of the application should know this value. What is the value? You may ask. The value of the `SECRET_KEY` is sourced from the Operating System as an environement variable. 
+As the name implies, it is supposed to be a **secret**. Only you or the maintainer of the application should know this value. What is the value? You may ask. The value of the `SECRET_KEY` is initially sourced from the Operating System as an environment variable as seen below. 
 
 ```python
 # config.py
@@ -106,7 +106,7 @@ Once we have defined our configurations, we need to tell our application how to 
 
 ![Register configurations](/images/web_forms/register_configs.png)
 
-It might be confusing understanding what `from config import Config` means. Basically, 
+It might be confusing to understand what `from config import Config` means. Basically, 
 - The first `config`, with a small "c", is the file `config.py`. 
 - The second `Config`, with a capital "C", is the class name found inside our file `config.py`.
 
@@ -125,17 +125,17 @@ Then run the commands below:
 
 You should be able to see the value "hard-to-guess" printed in the Python prompt. If not, it means your application cannot access this value. Go back and refer to the ealier lessons to find out how you can fix it.
 
-Once you are done, type `exit()` to close the Python interpreter. Alternatively, you can press "Ctrl + Z" on your keyboard.
+Once completed, type `exit()` to close the Python interpreter. Alternatively, you can press `Ctrl + Z` on your keyboard.
 
 
 ## Create Login Form
 
-Flask-WTF uses classes to define the input fields we would like to have in our forms. 
+Flask-WTF uses classes to define the input fields we would like to have in our forms. There are a number of things we need to do to ensure that our application is properly configured.
 
 
 ### Step 1: Create a Forms Module
 
-Let us create a new file within _app_ folder called `forms.py`. 
+Let us create a new file within the _app_ folder called `forms.py`. 
 
 ![Create forms module](/images/web_forms/forms_module.png)
 
@@ -146,7 +146,7 @@ As mentioned, a class is used to define the input fields we want to have in our 
 
 ![Login form](/images/web_forms/login_form.png)
 
-Within the `forms.py` module, add the class below.
+Within the `forms.py` module, we need to tell our application that the mentioned fields are needed, and will be used. Let us add the class below.
 
 ![Login class](/images/web_forms/login_class.png)
 

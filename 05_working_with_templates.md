@@ -17,6 +17,14 @@ Throughout this tutorial, these are the reference links of the things we will be
 5. [Working with Templates in Flask](05_working_with_templates.md)   (this article)
 6. [Web forms](06_web_forms.md)
 7. [Database](07_database.md)
+8. [User Login](08_user_login.md)
+9. [Profile Page and Avatars](09_profile_page_and_avatars.md)
+10. [Error Handling](10_error_handling.md)
+11. [Pagination](11_pagination.md)
+12. [Working With Email](12_working_with_email.md)
+13. [Better-looking Application](13_better_looking_application.md)
+14. [Timestamp](14_timestamp.md)
+15. [Deployment on Render](15_deployment_on_render.md)
 
 
 
