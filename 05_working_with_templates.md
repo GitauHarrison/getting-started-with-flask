@@ -57,7 +57,7 @@ It is always important to be working in an active virtual environment. So make s
 
 ## Separate Presentation from Business Logic
 
-Presetation, as we now know, is handled by HTML files. Flask, on the other hand, has extra Python files that do not necessarily 'present' anything. They are used to do other tasks. These 'other tasks' is what we are calling 'business logic'. They are important in the running of our application.
+Presentation, as we now know, is handled by HTML files. Flask, on the other hand, has extra Python files that do not necessarily 'present' anything. They are used to do other tasks. These 'other tasks' is what we are calling 'business logic'. They are important in the running of our application.
 
 
 ### Step 1: Create a templates sub-folder
@@ -98,7 +98,7 @@ The next step to display our web page will now be to update the `routes.py` file
 This is called 'rendering'. It means to 'make'.
 
 - First, we import the function `render_template()` from `flask`
-- Then, we return it by providing its name in speech marks
+- Then, we return the template by providing its name in speech marks
 - We optionally include the `title` in the return statement
 
 ### Step 5: Run The Application
@@ -120,7 +120,7 @@ Congratulations for coming this far! That is all you need to do to use templates
 
 ## Smarter Templates
 
-If you look carefully at the output of our application, you will notice that the title found on the tab head in your browser says "About Me Boostrap Demo".
+If you look carefully at the output of our application, you will notice that the title found on the tab head in your browser says "About Me Bootstrap Demo".
 
 ![Static title](/images/flask_templates/static_title.png)
 
@@ -132,7 +132,7 @@ However, this new title is not being displayed in the final output. If we want t
 
 ![Conditional title](/images/flask_templates/conditional_title.png)
 
-So what is going on here? To begin, notice that we are using curly braces (`{}`). **Curly braces are used to allow for dynamic content**.
+So, what is going on here? To begin, notice that we are using curly braces (`{}`). **Curly braces are used to allow for dynamic content; that is, content that can change**.
 
 ```html
 {% if title %}
