@@ -2,7 +2,7 @@
 
 Now that you have learnt about [templates in Flask](05_working_with_templates.md), we are ready to build a more robust and useful application. Below is the app we shall focus on throughout the remainder of our lessons.
 
-![Simple chat app](/images/web_forms/simple_chat_app.gif)
+![Simple chat app](images/web_forms/simple_chat_app.gif)
 
 
 Throughout this tutorial, these are the reference links of the things we will be looking at. At your own convinience, you can navigate to whatever article you want to refer to:
