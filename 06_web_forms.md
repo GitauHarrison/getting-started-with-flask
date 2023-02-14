@@ -104,7 +104,7 @@ Combined, the application will begin by first looking for the OS generated value
 
 Once we have defined our configurations, we need to tell our application how to access them. This is done in `app/__init__.py`.
 
-![Register configurations](/images/web_forms/register_configs.png)
+![Register configurations](images/web_forms/register_configs.png)
 
 It might be confusing to understand what `from config import Config` means. Basically, 
 - The first `config`, with a small "c", is the file `config.py`. 
@@ -117,11 +117,11 @@ We are importing the class `Config()` from our new `config.py` file in order to 
 
 It is always a good idea to continously test every new feature we build. In this case, it is advisable to test whether our application can access the value of the `SECRET_KEY`. To do this, we need to activate the Python Interpreter.
 
-![Activate Python prompt](/images/web_forms/python_prompt.png)
+![Activate Python prompt](images/web_forms/python_prompt.png)
 
 Then run the commands below:
 
-![Access secret key](/images/web_forms/access_secret_key.png)
+![Access secret key](images/web_forms/access_secret_key.png)
 
 You should be able to see the value "hard-to-guess" printed in the Python prompt. If not, it means your application cannot access this value. Go back and refer to the ealier lessons to find out how you can fix it.
 
@@ -137,18 +137,18 @@ Flask-WTF uses classes to define the input fields we would like to have in our f
 
 Let us create a new file within the _app_ folder called `forms.py`. 
 
-![Create forms module](/images/web_forms/forms_module.png)
+![Create forms module](images/web_forms/forms_module.png)
 
 
 ### Step 2: Add a Login Class
 
 As mentioned, a class is used to define the input fields we want to have in our Login Form. If you look at our Simple Chat Application, the login form has a username field, and a password field. It also features a button that allows a user to log in to their accounts.
 
-![Login form](/images/web_forms/login_form.png)
+![Login form](images/web_forms/login_form.png)
 
 Within the `forms.py` module, we need to tell our application that the mentioned fields are needed, and will be used. Let us add the class below.
 
-![Login class](/images/web_forms/login_class.png)
+![Login class](images/web_forms/login_class.png)
 
 We begin by importing a few useful methods from Flask-WTF. We then define each field as a variable of its function. For example, the `username` variable will accept user data of type `String` hence the function `StringField`. `DataRequired()` forces a user to provide their information before pressing the `Submit` button.
 
@@ -157,11 +157,11 @@ We begin by importing a few useful methods from Flask-WTF. We then define each f
 
 The next step is to add the login form to a template so that it can be rendered to a web page. The good thing is that we do not have to worry about how the rendering will take place; the class `LoginForm()` will do that for us. Begin by creating a `login.html` file within the templates sub-folder.
 
-![Create login template](/images/web_forms/login_template.png)
+![Create login template](images/web_forms/login_template.png)
 
 Then add the following HTML code that creates a form.
 
-![Login template code](/images/web_forms/login_template_code.png)
+![Login template code](images/web_forms/login_template_code.png)
 
 What is going on in our `login.html` file?
 
@@ -175,7 +175,7 @@ What is going on in our `login.html` file?
 
 A label in a form is the text above a field that helps the user to know what information is needed in an input field. For example, a username label will contain the text "Username" so a user knows that the field requires their username.
 
-![Labels](/images/web_forms/labels.png)
+![Labels](images/web_forms/labels.png)
 
 Back to our login template:
 
@@ -196,7 +196,7 @@ As earlier discussed, rendering means to 'make available'. Below, you will learn
 
 With the template clearly defined, we can create a view function to render it. This is done in `app/routes.py` file.
 
-![Render login form](/images/web_forms/render_login_form.png)
+![Render login form](images/web_forms/render_login_form.png)
 
 - To access the `LoginForm()` class, we import it from the `forms` module.
 - We then create a new view function called `login()` which renders the form.
@@ -208,21 +208,21 @@ With the template clearly defined, we can create a view function to render it. T
 
 How can we access this login page? Obviously, we need to create a link to it. This can be done in the base template.
 
-![Add login link](/images/web_forms/add_login_link.png)
+![Add login link](images/web_forms/add_login_link.png)
 
 
 ### Step 3: See the Output
 
 Run your application by typing `flask run` in the terminal, if you haven't done so, then paste the localhost link http://127.0.0.1:5000/login in your favourite browser to see the output.
 
-![Login form in browser](/images/web_forms/login_form_in_browser.png)
+![Login form in browser](images/web_forms/login_form_in_browser.png)
 
 
 ## Receiving Form Data
 
 At this point, you might be curious and eager to start sending data using our login form. If you have tried to send data using our form as it currently is, you will most likely come across the 405 error below.
 
-![Method error](/images/web_forms/method_error.png)
+![Method error](images/web_forms/method_error.png)
 
 The reason for this error is because we have not fully completed defining our `login()` view function. This section is dedicated to making our login form partially usable.
 
@@ -231,14 +231,14 @@ The reason for this error is because we have not fully completed defining our `l
 
 The first step to overcoming this error is to explictly define both `POST` and `GET` methods in our `app.route()` methods. 
 
-![Define post and get methods](/images/web_forms/post_get_methods.png)
+![Define post and get methods](images/web_forms/post_get_methods.png)
 
 - `POST` method is used to send data through a form
 - `GET` method is used to retrieve form data
 
 Now, if you try to click on the submit button found in our Login form, you will not get the 405 error we experienced earlier.
 
-![Define post and get methods](/images/web_forms/post_get_methods.gif)
+![Define post and get methods](images/web_forms/post_get_methods.gif)
 
 Have you noticed that when we click the Submit button the form does not tell us that we need to in fill in the username and password fields? Remember we said that the constraint `DataRequired()` in our `forms.py` file is meant to force for a user's input. How come it is not working in our new form? [This is something we shall revisit in another subsection within our lesson](#step-3-flash-message).
 
@@ -247,7 +247,7 @@ Have you noticed that when we click the Submit button the form does not tell us 
 
 We can now process the data a user submits through our login form. This can be handled by the `form.validate_on_submit()` function. Update the `login()` view function as seen below.
 
-![Validate form submission](/images/web_forms/validate_form_submission_fixed.png)
+![Validate form submission](images/web_forms/validate_form_submission_fixed.png)
 
 - The `flash()` function is used to display a user-friendly message on the website saying "You are are requesting to login as [username]".
 - This function comes from flask and therefore has to be imported as seen on line #2.
@@ -256,18 +256,18 @@ We can now process the data a user submits through our login form. This can be h
 
 Let us try to fill in some user data to test how this feature works.
 
-![Login flash and redirect](/images/web_forms/login_flash_redirect.gif)
+![Login flash and redirect](images/web_forms/login_flash_redirect.gif)
 
 
 ### Step 3: Flash Message
 
 Once the submit button is pressed, I am redirected to the index template. However, the `flash` message does not show up. It does not magically appear, we have to update our code in `base.html` file to define this small but useful little feature.
 
-![Add flash message functionality](/images/web_forms/flash_message_functionality.png)
+![Add flash message functionality](images/web_forms/flash_message_functionality.png)
 
 Now, if I try to login in as "tanya", there will be a nice little flash message.
 
-![Flash message working](/images/web_forms/flash_message_working.gif)
+![Flash message working](images/web_forms/flash_message_working.gif)
 
 
 ## Improving Form Validation
@@ -278,7 +278,7 @@ With the flash message functionality now in place, we can further improve a user
 
 Let us update `login.html` file to provide user feedback.
 
-![Improve UX login form](/images/web_forms/ux_login_form.png)
+![Improve UX login form](images/web_forms/ux_login_form.png)
 
 - We have used a `for` loop from Python to loop through all possible error messages.
 - If there is an error message in the username form field, then the message will be displayed below the input field in "red" color.
@@ -289,7 +289,7 @@ Let us update `login.html` file to provide user feedback.
 
 Once again, let us test this feature. Head over to your application on the browser and try clicking the "Submit" button without filling in user information.
 
-![Form flash message](/images/web_forms/form_flash_message.gif)
+![Form flash message](images/web_forms/form_flash_message.gif)
 
 
 ## Generating Links
@@ -315,7 +315,7 @@ Throughout the base template, we have been explictly using the URL of a page to 
 
 What if later we decide to change the URL to any of these pages to something else? Say we now think that the home page should no longer be accessed using `/index` but instead the URL `/home` should be used. What happens if we try to do so in our browser?
 
-![Change URL](/images/web_forms/change_url.gif)
+![Change URL](images/web_forms/change_url.gif)
 
 Obviously, we get an error because there is no URL such as `/home` anywhere in our application. To avoid such inconviniencing situations, especially when your application become bigger, it is recommended that we use a flask function called `url_for()`. 
 
@@ -325,7 +325,7 @@ This function uses the name of the view function instead of the URL name. It is 
 
 All our links exist in the base template. So, let us head over there and change a few things.
 
-![Update base template links](/images/web_forms/update_base_template_links.png)
+![Update base template links](images/web_forms/update_base_template_links.png)
 
 
 ### Step 2: Import URL_FOR from Flask
@@ -333,18 +333,18 @@ All our links exist in the base template. So, let us head over there and change 
 
 To use this function, we need to explicitly import it from flask. This is done in `app/routes.py` file.
 
-![Import url_for](/images/web_forms/import_url_for.png)
+![Import url_for](images/web_forms/import_url_for.png)
 
 
 ### Step 3: Update URL
 
 Now, we have a bit more breathing room should we forget to change every occurrance of `/index` URL. All we need to do now is to update the `index()` view function URL to `/home` and that will apply across their entire application.
 
-![Update index url](/images/web_forms/update_index_url.png)
+![Update index url](images/web_forms/update_index_url.png)
 
 In our browser, we can see the change applied.
 
-![View function from browser](/images/web_forms/view_function_from_browser.png)
+![View function from browser](images/web_forms/view_function_from_browser.png)
 
 
 ## Assignment: Push Updated Project to GitHub
