@@ -49,6 +49,16 @@ By the end of this lesson, you should be able to:
 - [Apply Migrations](#apply-migrations)
 - [Database Relationships](#database-relationships)
 - [Playing With The Database](#playing-with-the-database)
+    - [Access Application Models](#access-application-models)
+    - [Working With A Flask Application Context](#working-with-a-flask-application-context)
+    - [Add A User To The Database](#add-a-user-to-the-database)
+    - [Query The Database For All Users](#query-the-database-for-all-users)
+    - [Query The Database For A Specific User](#query-the-database-for-a-specific-user)
+    - [Create User Posts](#create-user-posts)
+    - [Get All Posts By A Given User](#get-all-posts-by-a-given-user)
+    - [Exercise 1](#exercise-1)
+    - [Delete Users and Posts From The Database](#delete-users-and-posts-from-the-database)
+- [Flask Shell Context](#flask-shell-context)
 
 
 ## Overview
