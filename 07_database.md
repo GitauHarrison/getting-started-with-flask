@@ -25,7 +25,7 @@ Throughout this tutorial, these are the reference links of the things we will be
 15. [Deployment on Render](15_deployment_on_render.md)
 
 
-### Table of Contents
+### Lesson Objectives
 
 By the end of this lesson, you should be able to:
 
@@ -36,6 +36,18 @@ By the end of this lesson, you should be able to:
 - Create migration scripts
 - Update a database structure
 - Apply changes to a database
+
+
+### Table of Contents
+
+- [Overview](#overview)
+- [Migrations](#migrations)
+- [Flask-SQLAlchemy Configurations](#flask-sqlalchemy-configuration)
+- [Database Model](#database-model)
+- [Create Migration Repository](#create-migration-repository)
+- [First Migration](#first-migration)
+- [Apply Migrations](#apply-migrations)
+
 
 ## Overview
 
@@ -83,3 +95,107 @@ Finally, we need to create a database instance. The database configuration engin
 
 The `db` object represents the database. Additionally, we have created a migration object. To wrap up the configurations, we make sure we import `models` at the bottom of the file. This module is a database schema found in the `app` sub-directory. So ensure that you create a brand new file called `models.py`.
 
+
+## Database Model
+
+The data that will be stored in the database will be represented by a collection of classes, usually called database models. These classes will be converted to rows and columns in their respective tables. As a start, let us look at a visual representation of a `User` model. This model will store every user's information useful for account creation.
+
+![User model](images/database/user_model.png)
+
+The `id` field is usually in all models and is used as the primary key. A primary key is the column or columns that contain values that uniquely identify each row in a table.
+
+The `username`, `email` and `password_hash` fields are defined as strings (or `VARCHAR` in database jargon), and their maximum lengths can be specified so that the database can optimize space usage. `username` and `email` fields are self-explanatory, but the `password_hash` deserves some attention. It is recommended to never store a user's password in its raw form. Instead, store it as a representation of itself. This enhances the security of user data in the event the database is compromised. For example, instead of storing a user's password as "12345qwerty", you may want to store it as "shhoausygauoierhanf" which when decoded returns "12345qwerty". The sample cryptographic value "shhoausygauoierhanf" is a representation of the actual password, what we call a password hash. 
+
+Below, let us create a `User` model in `models.py`:
+
+![User table](images/database/user_table.png)
+
+The `User` class created above inherits from `db.Model`, a base class for all models from Flask-SQLAlchemy. This class defines several fields as class variables. Fields are created as instances of the `db.Column` class, which takes the field type as an argument, plus other optional arguments that, for example, allow us to indicate which fields are unique and indexed, which is important so that database searches are efficient. When we define a field as `unique`, we are telling SQLAlchemy that there should be no duplicate value. In the event there is a duplicate, the database will throw an error.
+
+The `__repr__` method tells Python how to print objects of this class, which is going to be useful for debugging. You can see the `__repr__()` method in action in the Python interpreter session (your VS Code terminal) below:
+
+```python
+>>> from app.models import User
+>>> u = User(username='susan', email='susan@example.com')
+>>> u
+User susan
+```
+
+## Create Migration Repository
+
+Above, we have only defined the structure (or schema) of the `User` model. As the application grows, we may want to update this structure in order to accommodate new needs by either adding or removing items. Instead of creating this model from scratch every time we make changes, the migration framework allows us to update the original schema to a newer version. 
+
+The migration framework creates a _migration_ directory in the project's top-level folder to store migration scripts (our new changes). Each time a change is made to the database schema, a migration script is added to the repository with the details of the change. To apply the migrations to a database, these migration scripts are executed in the sequence they were created.
+
+You have seen the command `flask run` in use before, a sub-command native to Flask. Here, and now, I would like to introduce you to another native sub-command of Flask used to handle database migrations, the `flask db` command.
+
+To create a migration repository, run the command seen below in **your project's root directory in an active virtual environment**:
+
+```python
+(venv)$ flask db init
+```
+
+![Migration directory](images/database/migration_directory.png)
+
+You will notice that a _migrations_ sub-directory will be created in the root directory of the project. Open this folder and you will see a subfolder called _versions_ that is currently empty.
+
+
+## First Migration
+
+Remember, to migrate is simply to create a version of your database schema. We have a `User` model that defines the fields we want to store a user's information. To create a migration script, or in other words to match our model's definition to the actual database we want, we will need to run the command below. This command should be run in an active virtual environment in the top-level directory.
+
+```python
+(venv)$ flask db migrate -m 'user table'
+```
+
+![Migration script](images/database/migration_script.png)
+
+The `-m` flag allows us to write a useful message that helps to define what this migration is all about. Not mandatory to give it a name, but in the likely event where you will have multiple migration scripts, the migration name will come in handy in helping you to identify one script from another.
+
+Click on the migration sub-directory and open _versions_ to see a brand new migration script called `8b48c0a83ee8_user_table.py`. You will also notice that a database file called `app.db` has been automatically created for you. 
+
+![Sample migration script](images/database/sample_migration_script.png)
+
+## Apply Migrations
+
+So far, we have only created a migration script, but the changes have not been applied yet. To complete the process, we need to apply the migration changes by running this command below in your active virtual environment in the top-level directory.
+
+```python
+(venv)$ flask db upgrade
+```
+
+![Upgrade schema](images/database/upgrade_schema.png)
+
+There is no visible change on the structure of our application after running this command. 
+
+
+## Database Relationships
+
+In [chapter 6](06_web_forms.md), we saw that our end project will allow us to not only create a user but also allow the registered user to log in and post comments.
+
+![Simple chat app](images/web_forms/simple_chat_app.gif)
+
+Every time a user posts a comment, or makes a post, this post is directly linked and related to him or her. A user can make many posts, and many posts can belong to one user. To implement this dynamic, we will need to update our models to accommodate a new `Post` model linked to our existing `User` model.
+
+![Post_user relationship](images/database/model_relationship_schema.png)
+
+Above, we have a new model schema called `Post` with four fields: `id`, `body`, `timestamp` and `user_id`. As seen when defining the `User` model, the `id` column is mandatory for every model. The `body` field will have data of type `text` to denote that the data can be longer than just a few characters. The `timestamp` is a datetime field to show when a post was made. Since every post is linked to a given user, the `user_id` column is used to create this relationship. Below, let us update our models with these suggestions:
+
+![Database relationship](images/database/db_relationship.png)
+
+The new `Post` class will represent blog posts written by users. The `timestamp` field is going to be indexed, which is useful if we want to retrieve posts in chronological order. To ensure that the timestamp is accuratly displayed in the app regardless of the timezone of any user, we will work with UTC dates and times in a server application. If a user is in the US and makes a post, and another user is in Kenya where the time is 9 hours ahead, the application will intelligently display a timestamp based on any user's timezone.
+
+The `user_id` field has been initialized as a foreign key to `user.id`, which means that it references an `id` value from the `User`'s table. In this reference the user part is the name of the database table for the model. It is an unfortunate inconsistency that in some instances such as in a `db.relationship()` call, the model is referenced by the model class, which typically starts with an uppercase character, while in other cases such as this `db.ForeignKey()` declaration, a model is given by its database table name, for which SQLAlchemy automatically uses lowercase characters and, for multi-word model names, snake case.
+
+The `posts` field in the `User` model is not an actual field, but a high-level view of the relationship between users and posts. Hence, it is not part of the database design diagram. A user may have many posts and many posts may belong to one user in a many-to-one relationship. 
+
+Because we have made changes to our models, we need to run these commands in your VS Code terminal:
+
+```python
+(venv)$ flask db migrate -m 'post table'
+(venv)$ flask db upgrade
+```
+
+![Database relationship](images/database/update_relationship_schema.png)
+
+Notice that we do not have to run `flask db init` again. As soon as the two commans above are run, you should see a new migration script called `xxxx_post_table.py` in the _versions_ subdirectory.
