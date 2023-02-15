@@ -118,9 +118,9 @@ The `__repr__` method tells Python how to print objects of this class, which is 
 
 ```python
 >>> from app.models import User
->>> u = User(username='susan', email='susan@example.com')
+>>> u = User(username='muthoni', email='muthoni@example.com')
 >>> u
-User susan
+User muthoni
 ```
 
 ## Create Migration Repository
@@ -200,7 +200,7 @@ Because we have made changes to our models, we need to run these commands in you
 
 ![Database relationship](images/database/update_relationship_schema.png)
 
-Notice that we do not have to run `flask db init` again. As soon as the two commans above are run, you should see a new migration script called `xxxx_post_table.py` in the _versions_ subdirectory.
+Notice that we do not have to run `flask db init` again. As soon as the two commands above are run, you should see a new migration script called `xxxx_post_table.py` in the _versions_ subdirectory.
 
 
 ## Playing With The Database
@@ -308,5 +308,36 @@ The last bit to learn about managing a database is the concept of deletion. How 
 
 ![Delete db data](images/database/delete_db_data.png)
 
-We begin by looping through all the data found in the `User` and `Post` models. We then use the `db.session.delete()` function to delete individual data from their respective tables. To ensure tha the changes are applied, we call `db.session.commit()`.
+We begin by looping through all the data found in the `User` and `Post` models. We then use the `db.session.delete()` function to delete individual data from their respective tables. To ensure that the changes are applied, we call `db.session.commit()`.
 
+## Flask Shell Context
+
+When we began playing with the database, we started an interactive Python prompt during which we did the following:
+
+```python
+>>> from app import app, db
+>>> from app.models import User, Post
+>>> app.app_context().push()
+```
+
+If you recall, we mentioned that the above commands create a Flask context such that we do not have to worry about passing the variable `app` every time we call functions in Flask. However, every time we want to interact with the database, we will be forced to repeat these commands -- making the process tedious. It would be much easier if there was a way for us to run this process once and never have to worry about importing every stuff we need. 
+
+Thankfully, Flask provides a few more useful commands under the `flask` umbrella of commands. Besides `flask run` (which we have used multiple times before), another core Flask command is `flask shelll`. The purpose of this command is to start a Python interpreter in the context of the application. What does that actually mean? Let us look at the example below:
+
+![Shell context error](images/database/shell_context_error.png)
+
+Notice that `app` is undefined when we try to use it directly in the Python prompt. However, when we try running `flask shell` as seen below, we do not get an error.
+
+![Flask shell](images/database/flask_shell.png)
+
+The Python interpreter has been started in the context of the application, and therefore, we do not have to worry about importing the Flask instance as `app`. 
+
+It is also possible to start the Flask shell in the context of the application and add our database instance and models into the session. To do this, we will need to modify `main.py` file and set a `shell_context_processor` as seen below:
+
+![Shell context processor](images/database/shell_context_processor.png)
+
+We begin by importing the variable `db` from our application instance, then import our `User` and `Post` models in the `main.py` file. Using the `@app.shell_context_processor` decorator, we register the function `make_shell_context()` as a shell context function. Now, when the `flask shell` command runs, it will invoke this function and return it in the shell session, making a available `db`, `User` and `Post` models. In our terminal, we can try to access these as follows:
+
+![Functional shell](images/database/functional_shell.png)
+
+If you try the above and get `NameError` exceptions when you try to access `db`, `User` and `Post`, then the `make_shell_context()` function is not being registered with Flask. The most likely cause of this is that you have not set `FLASK_APP=main.py` in the environment within `.flaskenv` file.
