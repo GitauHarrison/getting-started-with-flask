@@ -6,7 +6,7 @@
 
 Data within the most common types of databases in operation today is typically modeled in rows and columns in a series of tables to make processing and data querying efficient. The data can then be easily accessed, managed, modified, updated, controlled, and organized. Most databases use structured query language (SQL) for writing and querying data.
 
-Throughout this tutorial, these are the reference links of the things we will be looking at. At your own convinience, you can navigate to whatever article you want to refer to:
+Throughout this tutorial, these are the reference links for the things we will be looking at. At your convenience, you can navigate to whatever article you want to refer to:
 
 1. [Getting Started with HTML and CSS](01_getting_started_with_HTML_and_CSS.md)
 2. [Git and GitHub](02_git_and_github.md)
@@ -31,7 +31,7 @@ By the end of this lesson, you should be able to:
 
 - Understand what a database is
 - Know what language is used to write and query a database
-- Create datababase configurations
+- Create database configurations
 - Define a database model
 - Create migration scripts
 - Update a database structure
@@ -55,11 +55,11 @@ By the end of this lesson, you should be able to:
 
 Flask does not support databases natively. This is in line with its philosophy of remaining lean and extensible. As developers, we have the freedom to choose what database we want to use instead of being forced to adapt to one.
 
-Databases are categorized into two large groups (1) relational database and (2) Non-relational databases. Databases are written and read using  the popular relational query language [SQL(Structured Query Language)](https://en.wikipedia.org/wiki/SQL). Throughout our lesson, we shall focus on using a relational database model since it is so much easier to use when you have structured data such as blog posts or even a list of users.
+Databases are categorized into two large groups (1) relational databases and (2) Non-relational databases. Databases are written and read using the popular relational query language [SQL(Structured Query Language)](https://en.wikipedia.org/wiki/SQL). Throughout our lesson, we shall focus on using a relational database model since it is so much easier to use when you have structured data such as blog posts or even a list of users.
 
-In [chapter 3](03_getting_started_with_flask.md), you learnt how to install a Flask extension. During this chapter, you will install a few more extensions to help us work with a database. The first extension you will install is called [Flask-SQLAlchemy](http://packages.python.org/Flask-SQLAlchemy). It provides a Flask-friendly wrapper around the popular [SQLAlchemy](http://www.sqlalchemy.org/) package. What SQLAlchemy does is that it converts high-level classes, objects and methods into tables and SQL.
+In [chapter 3](03_getting_started_with_flask.md), you learned how to install a Flask extension. During this chapter, you will install a few more extensions to help us work with a database. The first extension you will install is called [Flask-SQLAlchemy](http://packages.python.org/Flask-SQLAlchemy). It provides a Flask-friendly wrapper around the popular [SQLAlchemy](http://www.sqlalchemy.org/) package. What SQLAlchemy does is that it converts high-level classes, objects, and methods into tables and SQL.
 
-We have different types of databases such as [PostgreSQL](https://www.postgresql.org/), [MySQL](https://www.mysql.com/) and [SQLite](https://www.sqlite.org/). They are all very powerful. **We shall use the SQLite database for our project**. It is not only very convinient for small applications, but it can also be extended to handle large applications.
+We have different types of databases such as [PostgreSQL](https://www.postgresql.org/), [MySQL](https://www.mysql.com/), and [SQLite](https://www.sqlite.org/). They are all very powerful. **We shall use the SQLite database for our project**. It is not only very convenient for small applications but it can also be extended to handle large applications.
 
 In your terminal, you can install this application as follows (remember to activate your virtual environment):
 
@@ -71,7 +71,7 @@ In your terminal, you can install this application as follows (remember to activ
 
 ## Migrations
 
-The other extension we shall be using is [Flask-Migrate](https://github.com/miguelgrinberg/flask-migrate). Migrations involve making updates to a model. For example, if we have a model that stores user information such as username and password, then at some point we decide to add an email field, this update changes the structure of our database model. What we then need to do is to update this model to our new structure (also know as schema). This update will create a new version of the model. The process of updating a model to another is what we refer to as **migration**. We are migrating our model from _versionA_ to _versionB_.
+The other extension we shall be using is [Flask-Migrate](https://github.com/miguelgrinberg/flask-migrate). Migrations involve making updates to a model. For example, if we have a model that stores user information such as username and password, then at some point we decide to add an email field, this update changes the structure of our database model. What we then need to do is to update this model to our new structure (also known as schema). This update will create a new version of the model. The process of updating a model to another is what we refer to as **migration**. We are migrating our model from _versionA_ to _versionB_.
 
 Install this extension in your active virtual environment as follows:
 
@@ -83,13 +83,13 @@ Install this extension in your active virtual environment as follows:
 
 ## Flask-sqlalchemy Configuration
 
-As mentioned earlier, we are going to use SQLite database. This database will be stored as a single file ond disk, typically found in the top-level directory. The advantage of using SQLite is that its setup process does not require a server like MySQL or PostgreSQL. In your `config.py` file, let us do the following:
+As mentioned earlier, we are going to use an SQLite database. This database will be stored as a single file on disk, typically found in the top-level directory. The advantage of using SQLite is that its setup process does not require a server like MySQL or PostgreSQL. In your `config.py` file, let us do the following:
 
 ![Database configuration](images/database/db_configurations.png)
 
-The location of our database is found from `SQLALCHEMY_DATABASE_URI` variable. We begin by sourcing its location from the environment variable called `DATABASE_URL`. If this value does not exist, then we configure a database called `app.db` in the top-level directory of the application. You can call this database anything you want, such as `database.db`. How do we know it is located in the top-level directory? We have set up a `basedir` that defines this folder.
+The location of our database is found in `SQLALCHEMY_DATABASE_URI` variable. We begin by sourcing its location from the environment variable called `DATABASE_URL`. If this value does not exist, then we configure a database called `app.db` in the top-level directory of the application. You can call this database anything you want, such as `database.db`. How do we know it is located in the top-level directory? We have set up a `basedir` that defines this folder.
 
-`SQLALCHEMY_TRACK_MODIFICATIONS` is set to `False` so that it does not keep sending signals to the application everytime we make changes to the database. 
+`SQLALCHEMY_TRACK_MODIFICATIONS` is set to `False` so that it does not keep sending signals to the application every time we make changes to the database. 
 
 Finally, we need to create a database instance. The database configuration engine will also have an instance. These objects are to be created in `app/__init__.py` as follows:
 
@@ -106,13 +106,13 @@ The data that will be stored in the database will be represented by a collection
 
 The `id` field is usually in all models and is used as the primary key. A primary key is the column or columns that contain values that uniquely identify each row in a table.
 
-The `username`, `email` and `password_hash` fields are defined as strings (or `VARCHAR` in database jargon), and their maximum lengths can be specified so that the database can optimize space usage. `username` and `email` fields are self-explanatory, but the `password_hash` deserves some attention. It is recommended to never store a user's password in its raw form. Instead, store it as a representation of itself. This enhances the security of user data in the event the database is compromised. For example, instead of storing a user's password as "12345qwerty", you may want to store it as "shhoausygauoierhanf" which when decoded returns "12345qwerty". The sample cryptographic value "shhoausygauoierhanf" is a representation of the actual password, what we call a password hash. 
+The `username`, `email`, and `password_hash` fields are defined as strings (or `VARCHAR` in database jargon), and their maximum lengths can be specified so that the database can optimize space usage. `username` and `email` fields are self-explanatory, but the `password_hash` deserves some attention. It is recommended to never store a user's password in its raw form. Instead, store it as a representation of itself. This enhances the security of user data in the event the database is compromised. For example, instead of storing a user's password as "12345qwerty", you may want to store it as "shhoausygauoierhanf" which when decoded returns "12345qwerty". The sample cryptographic value "shhoausygauoierhanf" is a representation of the actual password, what we call a password hash. 
 
 Below, let us create a `User` model in `models.py`:
 
 ![User table](images/database/user_table.png)
 
-The `User` class created above inherits from `db.Model`, a base class for all models from Flask-SQLAlchemy. This class defines several fields as class variables. Fields are created as instances of the `db.Column` class, which takes the field type as an argument, plus other optional arguments that, for example, allow us to indicate which fields are unique and indexed, which is important so that database searches are efficient. When we define a field as `unique`, we are telling SQLAlchemy that there should be no duplicate value. In the event there is a duplicate, the database will throw an error.
+The `User` class created above inherits from `db.Model`, a base class for all models from Flask-SQLAlchemy. This class defines several fields as class variables. Fields are created as instances of the `db.Column` class, which takes the field type as an argument, plus other optional arguments that, for example, allow us to indicate which fields are unique and indexed, which is important so that the database searches are efficient. When we define a field as `unique`, we are telling SQLAlchemy that there should be no duplicate value. In the event there is a duplicate, the database will throw an error.
 
 The `__repr__` method tells Python how to print objects of this class, which is going to be useful for debugging. You can see the `__repr__()` method in action in the Python interpreter session (your VS Code terminal) below:
 
@@ -125,7 +125,7 @@ User muthoni
 
 ## Create Migration Repository
 
-Above, we have only defined the structure (or schema) of the `User` model. As the application grows, we may want to update this structure in order to accommodate new needs by either adding or removing items. Instead of creating this model from scratch every time we make changes, the migration framework allows us to update the original schema to a newer version. 
+Above, we have only defined the structure (or schema) of the `User` model. As the application grows, we may want to update this structure to accommodate new needs by either adding or removing items. Instead of creating this model from scratch every time we make changes, the migration framework allows us to update the original schema to a newer version. 
 
 The migration framework creates a _migration_ directory in the project's top-level folder to store migration scripts (our new changes). Each time a change is made to the database schema, a migration script is added to the repository with the details of the change. To apply the migrations to a database, these migration scripts are executed in the sequence they were created.
 
@@ -144,7 +144,7 @@ You will notice that a _migrations_ sub-directory will be created in the root di
 
 ## First Migration
 
-Remember, to migrate is simply to create a version of your database schema. We have a `User` model that defines the fields we want to store a user's information. To create a migration script, or in other words to match our model's definition to the actual database we want, we will need to run the command below. This command should be run in an active virtual environment in the top-level directory.
+Remember, to migrate is simply to create a version of your database schema. We have a `User` model that defines the fields we want to store a user's information. To create a migration script, or in other words, to match our model's definition to the actual database we want, we will need to run the command below. This command should be run in an active virtual environment in the top-level directory.
 
 ```python
 (venv)$ flask db migrate -m 'user table'
@@ -152,7 +152,7 @@ Remember, to migrate is simply to create a version of your database schema. We h
 
 ![Migration script](images/database/migration_script.png)
 
-The `-m` flag allows us to write a useful message that helps to define what this migration is all about. Not mandatory to give it a name, but in the likely event where you will have multiple migration scripts, the migration name will come in handy in helping you to identify one script from another.
+The `-m` flag allows us to write a useful message that helps to define what this migration is all about. Not mandatory to give it a name, but in the likely event that you will have multiple migration scripts, the migration name will come in handy in helping you to identify one script from another.
 
 Click on the migration sub-directory and open _versions_ to see a brand new migration script called `8b48c0a83ee8_user_table.py`. You will also notice that a database file called `app.db` has been automatically created for you. 
 
@@ -168,7 +168,7 @@ So far, we have only created a migration script, but the changes have not been a
 
 ![Upgrade schema](images/database/upgrade_schema.png)
 
-There is no visible change on the structure of our application after running this command. 
+There is no visible change in the structure of our application after running this command. 
 
 
 ## Database Relationships
@@ -177,17 +177,17 @@ In [chapter 6](06_web_forms.md), we saw that our end project will allow us to no
 
 ![Simple chat app](images/web_forms/simple_chat_app.gif)
 
-Every time a user posts a comment, or makes a post, this post is directly linked and related to him or her. A user can make many posts, and many posts can belong to one user. To implement this dynamic, we will need to update our models to accommodate a new `Post` model linked to our existing `User` model.
+Every time a user posts a comment or makes a post, this post is directly linked and related to him or her. A user can make many posts, and many posts can belong to one user. To implement this dynamic, we will need to update our models to accommodate a new `Post` model linked to our existing `User` model.
 
 ![Post_user relationship](images/database/model_relationship_schema.png)
 
-Above, we have a new model schema called `Post` with four fields: `id`, `body`, `timestamp` and `user_id`. As seen when defining the `User` model, the `id` column is mandatory for every model. The `body` field will have data of type `text` to denote that the data can be longer than just a few characters. The `timestamp` is a datetime field to show when a post was made. Since every post is linked to a given user, the `user_id` column is used to create this relationship. Below, let us update our models with these suggestions:
+Above, we have a new model schema called `Post` with four fields: `id`, `body`, `timestamp`, and `user_id`. As seen when defining the `User` model, the `id` column is mandatory for every model. The `body` field will have data of type `text` to denote that the data can be longer than just a few characters. The `timestamp` is a datetime field to show when a post was made. Since every post is linked to a given user, the `user_id` column is used to create this relationship. Below, let us update our models with these suggestions:
 
 ![Database relationship](images/database/db_relationship.png)
 
-The new `Post` class will represent blog posts written by users. The `timestamp` field is going to be indexed, which is useful if we want to retrieve posts in chronological order. To ensure that the timestamp is accuratly displayed in the app regardless of the timezone of any user, we will work with UTC dates and times in a server application. If a user is in the US and makes a post, and another user is in Kenya where the time is 9 hours ahead, the application will intelligently display a timestamp based on any user's timezone.
+The new `Post` class will represent blog posts written by users. The `timestamp` field is going to be indexed, which is useful if we want to retrieve posts in chronological order. To ensure that the timestamp is accurately displayed in the app regardless of the timezone of any user, we will work with UTC dates and times in a server application. If a user is in the US and makes a post, and another user is in Kenya where the time is 9 hours ahead, the application will intelligently display a timestamp based on any user's timezone.
 
-The `user_id` field has been initialized as a foreign key to `user.id`, which means that it references an `id` value from the `User`'s table. In this reference the user part is the name of the database table for the model. It is an unfortunate inconsistency that in some instances such as in a `db.relationship()` call, the model is referenced by the model class, which typically starts with an uppercase character, while in other cases such as this `db.ForeignKey()` declaration, a model is given by its database table name, for which SQLAlchemy automatically uses lowercase characters and, for multi-word model names, snake case.
+The `user_id` field has been initialized as a foreign key to `user.id`, which means that it references an `id` value from the `User`'s table. In this reference, the user part is the name of the database table for the model. It is an unfortunate inconsistency that in some instances such as in a `db.relationship()` call, the model is referenced by the model class, which typically starts with an uppercase character, while in other cases such as this `db.ForeignKey()` declaration, a model is given by its database table name, for which SQLAlchemy automatically uses lowercase characters and, for multi-word model names, snake case.
 
 The `posts` field in the `User` model is not an actual field, but a high-level view of the relationship between users and posts. Hence, it is not part of the database design diagram. A user may have many posts and many posts may belong to one user in a many-to-one relationship. 
 
@@ -205,11 +205,11 @@ Notice that we do not have to run `flask db init` again. As soon as the two comm
 
 ## Playing With The Database
 
-Now that the database setup process is complete, we can play around with it. We shall utilize the our VS Code terminal to do this. Let us begin by activating an interactive Python prompt as seen below.
+Now that the database setup process is complete, we can play around with it. We shall utilize our VS Code terminal to do this. Let us begin by activating an interactive Python prompt as seen below.
 
 ![Interactive Python shell](images/database/interactive_shell.png)
 
-As soon as you run `python3` on your terminal, you will enter an interactive Python shell where you can issue commands as you go along. An interactive Python prompt is denoted by tripple greater-than signs (`>>>`). 
+As soon as you run `python3` on your terminal, you will enter an interactive Python shell where you can issue commands as you go along. An interactive Python prompt is denoted by triple greater-than signs (`>>>`). 
 
 
 ### Access Application Models
@@ -230,7 +230,7 @@ Because we shall need to use the `app` variable multiple times, we can simplify 
 
 ### Add A User To The Database
 
-A database's main purpose is to store data. Let us learn how we can add a user into the database from the terminal.
+A database's main purpose is to store data. Let us learn how we can add a user to the database from the terminal.
 
 ![Add user](images/database/add_user.png)
 
@@ -249,12 +249,12 @@ Naturally, we know that we have added two users to the database. But, what if we
 
 ![Add user](images/database/all_users.png)
 
-Another term used to describe "search" in database jargon is to "query". Above, we have queried the `User` model to find ALL users currently in it. We then use a `for` loop to access individual users by passing their username and email to the variable `u`.
+Another term used to describe "search" in database jargon is "query". Above, we have queried the `User` model to find ALL users currently in it. We then use a `for` loop to access individual users by passing their username and email to the variable `u`.
 
 
 ### Query The Database For A Specific User
 
-If we would like to retrieve an individual user from the database, we can use their `id` since it is unique to them. Below, notice how each user has their own unique ID.
+If we would like to retrieve an individual user from the database, we can use their `id` since it is unique to them. Below, notice how each user has their unique ID.
 
 ![Users id](images/database/users_id.png)
 
@@ -265,7 +265,7 @@ To get user `muthoni` whose `id` is 1, we can do the following:
 
 ### Create User Posts
 
-Now, we can have `muthoni` make posts into the databas as follows: 
+Now, we can have `muthoni` make posts into the database as follows: 
 
 ![User post](images/database/user_post.png)
 
@@ -292,11 +292,11 @@ class Post(db.Model):
 
 ### Get All Posts By A Given User
 
-Earlier we mentioned that a user may have many posts associated with them. We can we list all posts made by a given user? (Say the user `muthoni`)?
+Earlier we mentioned that a user may have many posts associated with them. How can we list all posts made by a given user? (Say the user `muthoni`)?
 
 ![Individual user posts](images/database/individual_user_posts.png)
 
-We begin by using `muthoni`, who is identified by the variable `u`. Using the `posts` field in the `User` model (this field is used to define the relationship between the `User` and `Post` models), we are able to list all posts by this user. At the moment, `muthoni` has only one post that says "This is a test post".
+We begin by using `muthoni`, who is identified by the variable `u`. Using the `posts` field in the `User` model (this field is used to define the relationship between the `User` and `Post` models), we can list all posts by this user. At the moment, `muthoni` has only one post that says "This is a test post".
 
 ### Exercise 1
 
@@ -320,9 +320,9 @@ When we began playing with the database, we started an interactive Python prompt
 >>> app.app_context().push()
 ```
 
-If you recall, we mentioned that the above commands create a Flask context such that we do not have to worry about passing the variable `app` every time we call functions in Flask. However, every time we want to interact with the database, we will be forced to repeat these commands -- making the process tedious. It would be much easier if there was a way for us to run this process once and never have to worry about importing every stuff we need. 
+If you recall, we mentioned that the above commands create a Flask context such that we do not have to worry about passing the variable `app` every time we call functions in Flask. However, every time we want to interact with the database, we will be forced to repeat these commands -- making the process tedious. It would be much easier if there was a way for us to run this process once and never have to worry about importing every piece of stuff we need. 
 
-Thankfully, Flask provides a few more useful commands under the `flask` umbrella of commands. Besides `flask run` (which we have used multiple times before), another core Flask command is `flask shelll`. The purpose of this command is to start a Python interpreter in the context of the application. What does that actually mean? Let us look at the example below:
+Thankfully, Flask provides a few more useful commands under the `flask` umbrella of commands. Besides `flask run` (which we have used multiple times before), another core Flask command is `flask shell. The purpose of this command is to start a Python interpreter in the context of the application. What does that mean? Let us look at the example below:
 
 ![Shell context error](images/database/shell_context_error.png)
 
@@ -336,8 +336,8 @@ It is also possible to start the Flask shell in the context of the application a
 
 ![Shell context processor](images/database/shell_context_processor.png)
 
-We begin by importing the variable `db` from our application instance, then import our `User` and `Post` models in the `main.py` file. Using the `@app.shell_context_processor` decorator, we register the function `make_shell_context()` as a shell context function. Now, when the `flask shell` command runs, it will invoke this function and return it in the shell session, making a available `db`, `User` and `Post` models. In our terminal, we can try to access these as follows:
+We begin by importing the variable `db` from our application instance, then import our `User` and `Post` models in the `main.py` file. Using the `@app.shell_context_processor` decorator, we register the function `make_shell_context()` as a shell context function. Now, when the `flask shell` command runs, it will invoke this function and return it in the shell session, making available `db`, `User` and `Post` models. In our terminal, we can try to access these as follows:
 
 ![Functional shell](images/database/functional_shell.png)
 
-If you try the above and get `NameError` exceptions when you try to access `db`, `User` and `Post`, then the `make_shell_context()` function is not being registered with Flask. The most likely cause of this is that you have not set `FLASK_APP=main.py` in the environment within `.flaskenv` file.
+If you try the above and get `NameError` exceptions when you try to access `db`, `User`, and `Post`, then the `make_shell_context()` function is not being registered with Flask. The most likely cause of this is that you have not set `FLASK_APP=main.py` in the environment within `.flaskenv` file.
