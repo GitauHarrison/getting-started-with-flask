@@ -47,6 +47,8 @@ By the end of this lesson, you should be able to:
 - [Create Migration Repository](#create-migration-repository)
 - [First Migration](#first-migration)
 - [Apply Migrations](#apply-migrations)
+- [Database Relationships](#database-relationships)
+- [Playing With The Database](#playing-with-the-database)
 
 
 ## Overview
@@ -199,3 +201,68 @@ Because we have made changes to our models, we need to run these commands in you
 ![Database relationship](images/database/update_relationship_schema.png)
 
 Notice that we do not have to run `flask db init` again. As soon as the two commans above are run, you should see a new migration script called `xxxx_post_table.py` in the _versions_ subdirectory.
+
+
+## Playing With The Database
+
+Now that the database setup process is complete, we can play around with it. We shall utilize the our VS Code terminal to do this. Let us begin by activating an interactive Python prompt as seen below.
+
+![Interactive Python shell](images/database/interactive_shell.png)
+
+As soon as you run `python3` on your terminal, you will enter an interactive Python shell where you can issue commands as you go along. An interactive Python prompt is denoted by tripple greater-than signs (`>>>`). 
+
+
+### Access Application Models
+
+To access our new database models, we need to run these:
+
+![Access models](images/database/access_models2.png)
+
+We begin by importing the `app` variable from the `app` subdirectory of our application. This variable is an instance of Flask, therefore, we are creating a Flask instance. Since the `User` and `Post` models are found in the `models.py` file, we ensure that we get the tables from this module as `from app.models import User, Post`. If you encounter an error, chances are your database setup is faulty. Ensure you review the steps covered above to fix your errors.
+
+
+### Working With A Flask Application Context
+
+Because we shall need to use the `app` variable multiple times, we can simplify our work by creating a Flask application context and push it so we do not pass `app` into every function as an argument. Run this command into the Python prompt:
+
+![Application context](images/database/app_context2.png)
+
+
+### Add A User To The Database
+
+A database's main purpose is to store data. Let us learn how we can add a user into the database from the terminal.
+
+![Add user](images/database/add_user.png)
+
+Changes to a database are made in the context of a database session, accessible through `db.session`. We can accumulate multiple changes (say add multiple users) and once all changes have been registered we can issue a single `db.session.commit()` to write our changes. 
+
+What happens when, in the process of making changes to a database, we make a mistake and cannot move forward? A call to `db.session.rollback()`will abort the changes and remove any changes stored in it. ***Remember that changes are only written when we call `db.session.commit()`**.
+
+Let us add another user to the database:
+
+![Add user](images/database/add_another_user.png)
+
+
+### Query The Database For All Users
+
+Naturally, we know that we have added two users to the database. But, what if we were given another database and asked to find out the number of users in it? How can we do that?
+
+![Add user](images/database/all_users.png)
+
+Another term used to describe "search" in database jargon is to "query". Above, we have queried the `User` model to find ALL users currently in it. We then use a `for` loop to access individual users by passing their username and email to the variable `u`.
+
+
+### Query The Database For A Specific User
+
+If we would like to retrieve an individual user from the database, we can use their `id` since it is unique to them. Below, notice how each user has their own unique ID.
+
+![Users id](images/database/users_id.png)
+
+To get user `muthoni` whose `id` is 1, we can do the following:
+
+![Individual user](images/database/single_user.png)
+
+
+### Create User Posts
+
+Now, we can have `muthoni` make posts into the databas as follows: 
