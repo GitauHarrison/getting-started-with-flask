@@ -59,6 +59,8 @@ By the end of this lesson, you should be able to:
     - [Exercise 1](#exercise-1)
     - [Delete Users and Posts From The Database](#delete-users-and-posts-from-the-database)
 - [Flask Shell Context](#flask-shell-context)
+- [Assessment Project](#assessment-project)
+- [Quiz](#quiz)
 
 
 ## Overview
@@ -351,3 +353,63 @@ We begin by importing the variable `db` from our application instance, then impo
 ![Functional shell](images/database/functional_shell.png)
 
 If you try the above and get `NameError` exceptions when you try to access `db`, `User`, and `Post`, then the `make_shell_context()` function is not being registered with Flask. The most likely cause of this is that you have not set `FLASK_APP=main.py` in the environment within `.flaskenv` file.
+
+
+## Assessment Project
+
+Below is [chapter 7: Web Forms](06_web_forms.md) project that you have probably completed. You are required to update it to include a database as described below.
+
+![Chapter 7 Assessment project](images/database/chapter7.gif)
+
+Notice the project has a registration form that highlights the need to store a new user information. Additionally, the "Add Product" page has a form that tells us we need to add a new product. 
+
+- Install the needed database extensions
+- Instantiate a database object in the `__init__.py`
+- Update your application configurations to include database configurations
+- On a piece of paper, design your database structure
+- Define a class called `User` that will store a new user information
+- Define a class called `Product` that will store a new product information
+- Create a many-to-one relationship between the `User` and the `Product` models.
+- Apply the changes
+- Update your README file to note the changes you have made to your database
+- Push your changes to GitHub
+- Share the link to your project below with your teacher for review
+
+
+## Quiz
+
+
+1. Which among these Flask packages is used to create a database?
+
+- [ ] flask-migrate
+- [ ] flask
+- [ ] flask-wtf
+- [ ] flask-bootstrap
+
+2. What is a database migration?
+
+- [ ] Changes to an application structure
+- [ ] The updates made to a database
+- [ ] The movement of files from one place to another
+- [ ] How a database object is instantiated
+
+3. Why do we store a password as a representation of itself instead of the raw data?
+
+- [ ] To optimize the space occupied by data
+- [ ] To avoid data loss
+- [ ] To protect a user's data when the database is compromised
+- [ ] To reduce the time used to load a user from the database
+
+4. What is a Foreign Key used for?
+
+- [ ] To design an effective database structure
+- [ ] To avoid database errors during migration
+- [ ] To define a new field in a database model
+- [ ] To link one model to another
+
+5. Which command is used to apply the changes made to a database?
+
+- [ ] flask shell
+- [ ] db.session.commit()
+- [ ] flask run
+- [ ] db.session.add()
