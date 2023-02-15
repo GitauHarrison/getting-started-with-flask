@@ -266,3 +266,47 @@ To get user `muthoni` whose `id` is 1, we can do the following:
 ### Create User Posts
 
 Now, we can have `muthoni` make posts into the databas as follows: 
+
+![User post](images/database/user_post.png)
+
+We have used `muthoni`'s `id` to add her as an `author` of the post whose body says "This is a test post". If you are wondering where `author` is coming from, remember that when we were creating the relationship between `User` and `Post` models, we identified the user as an `author`.
+
+```python
+# app/models.py
+
+class User(db.Model):
+    # ...
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+```
+
+We did not need to set a value for `timestamp` because the field has a default.
+
+```python
+# app/models.py
+
+class Post(db.Model):
+    # ...
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    # ...
+```
+
+### Get All Posts By A Given User
+
+Earlier we mentioned that a user may have many posts associated with them. We can we list all posts made by a given user? (Say the user `muthoni`)?
+
+![Individual user posts](images/database/individual_user_posts.png)
+
+We begin by using `muthoni`, who is identified by the variable `u`. Using the `posts` field in the `User` model (this field is used to define the relationship between the `User` and `Post` models), we are able to list all posts by this user. At the moment, `muthoni` has only one post that says "This is a test post".
+
+### Exercise 1
+
+Can you try to list all the posts made by the second user in our database?
+
+### Delete Users and Posts From The Database
+
+The last bit to learn about managing a database is the concept of deletion. How can we delete a user from a database? How can we delete a post from the database?
+
+![Delete db data](images/database/delete_db_data.png)
+
+We begin by looping through all the data found in the `User` and `Post` models. We then use the `db.session.delete()` function to delete individual data from their respective tables. To ensure tha the changes are applied, we call `db.session.commit()`.
+
