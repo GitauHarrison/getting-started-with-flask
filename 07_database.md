@@ -373,7 +373,7 @@ Notice the project has a registration form that highlights the need to store a n
 - Apply the changes
 - Update your README file to note the changes you have made to your database
 - Push your changes to GitHub
-- Share the link to your project below with your teacher for review
+- Share the link to your project with your teacher for review below
 
 
 ## Quiz
