@@ -40,3 +40,12 @@ By the end of this lesson, you should be able to:
 ## Table of Contents
 
 
+## Password Hashing
+
+In the last chapter on [database](07_database.md), we saw that one of the fields we may choose to add to a model is the _password_hash_. This field, we mentioned, stores a user's password not in its raw form but as a represention of itself. This process of converting a user's password into a hash is a complicated concept, but thankfully, there are simpler ways to implement it. 
+
+The [Werkzeug](http://werkzeug.pocoo.org/) package is installed when we install `flask`, and it is one of the core dependancies. Below, let us see how it works. Ensure you have activated your virtual environment and are working in a flask shell:
+
+![Password hash](images/user_login/password_hash.png)
+
+Above, I begin by importing `generate_password_hash` from `werkzeug.security`. As mentioned, simple functions such as this one allow us to easily interact and implement the complex concept of passworh hashing. We then pass our password, `muthoni` to this function and save it in a variable called `hash`. When we run `hash`, we see an strange long cryptographic value which represents our earlier password `muthoni'.
