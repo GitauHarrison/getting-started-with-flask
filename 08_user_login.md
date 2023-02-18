@@ -180,5 +180,18 @@ If the user is accurately identified from our database, and the password given i
 ![User logout](images/user_login/user_logout.png)
 
 
+## Update The Base Template
+
+Notice that with the authentication working properly, there is an aspect of incomplete user experience when logging into an account (see the image below). There is no visible link to logout. Additionally, if the user has already logged in, it does not make sense to have the _login_ link persist. It should either change to _logout_ or not be there at all. I think that having it change to _logout_ is a much better approach.
+
+![No logout link](images/user_login/no_logout_link.gif)
+
+It is possible to make the application display the correct state of a user. Since we would want a _logout_ link to be present across all templates once a user has logged in, the changes below are to be done in the `base.html` template.
+
+![Display logout link](images/user_login/display_logout_link2.png)
+
+Above, we have used the Njinja2 templating engine syntax to add a condition that checks if the current user has been authenticated. If this user has been authenticated, then the _logout_ link will be displayed. However, if this user has not logged into their account, then they will see the _login_ link.
+
+![Display logout link](images/user_login/display_logout_link2.gif)
 
 
