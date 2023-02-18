@@ -84,3 +84,19 @@ The verificatin process begins by importing an additional function from `werkzeu
 
 If the hash does not match the password to verify, in our case above the password to verify is `gitau`, then it returns `False`. However, if the password to verify is similiar to what has been hashed, then we get `True` as the returned value. Genius, right?
 
+## Implement Password Hashing In the Application
+
+Now that we know how protect a user's account using password hashing, how can we implement this in our application? Remember, the `password_hash` field exists in the `User` model in `app/models.py`. This is the best place to do this.
+
+![Implement password hash](images/user_login/implement_password_hash.png)
+
+We begin by importing `generate_password_hash` and `check_password_hash` from `werkzeug.security`. Right under the `User` model, we add two functions:
+
+- `set_password()`: This function takes a `password` as an argument and uses it to generate a hash. The returned value is then stored in the `password_hash` field of the `User` model.
+- `check_password()`: This function also takes a `password` argument, compares its value against what is already stored in the `password_hash` field and returns the result. 
+
+With that, we are all set. Let us test this new feature (it is always good practice to test every new feature we add to the application):
+
+![Test app password hashing](images/user_login/test_app_password_hashing.png)
+
+From the terminal, we enter into a Flask shell context (ensure you have your virtual environment create and activate). We add a brand new user called `muthoni`. We give her a new password using the `set_password()` function. We then verify if sample passwords match her original password. As a result, the sample password `gitau` fails while the second sample password `muthoni` passes. This means that our two new functions work as expected.
