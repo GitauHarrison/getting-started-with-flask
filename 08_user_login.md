@@ -49,7 +49,7 @@ By the end of this lesson, you should be able to:
 - [Log A User Out](#log-a-user-out)
 - [Display The Logout Link Dynamically](#display-the-logout-link-dynamically)
 - [Require Users To Login](#require-users-to-login)
-
+- [Display Logged In User In Templates](#display-logged-in-user-in-templates)
 
 
 ## Password Hashing
@@ -217,3 +217,15 @@ Now, if a user clicks on either _Home_ or _About Me_ pages, he or she will be re
 
 When we check the URL bar, we can see that page restriction and page redirection is adequately displayed. For example, if the restricted _Home_ page is clicked, the URL bar will display something such as `http://127.0.0.1:5000/login?next=%2Fhome`. This says that once logged in, the next page will be the _Home_ page.
 
+
+## Display Logged In User In Templates
+
+Wouldn't it be nice that besides the flash message we can show who has logged in? For instance, when "Muthoni" logs into her account, she gets to see some text such as "Username: Muthoni". The problem with a flash message is that once you refresh a page, it disappears. The session handling the flash message is cleared and there is no more flash message to show. Therefore, having something more permanent on the page provides for a better user experience.
+
+![Display current user](images/user_login/current_user.gif)
+
+Within the `index.html` template, we can make adjustment as seen below:
+
+![Update index template](images/user_login/update_index_template.png)
+
+Double curly braces is Jinja2 syntax used to display variables whose data is likely to change. We define this variable as dynamic. If another user other than "Muthoni" logs in, then the username will change accordingly.
