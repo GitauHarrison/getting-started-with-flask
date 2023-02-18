@@ -50,6 +50,8 @@ By the end of this lesson, you should be able to:
 - [Display The Logout Link Dynamically](#display-the-logout-link-dynamically)
 - [Require Users To Login](#require-users-to-login)
 - [Display Logged In User In Templates](#display-logged-in-user-in-templates)
+- [Assessment Project](#assessment-project)
+- [Quiz](#quiz)
 
 
 ## Password Hashing
@@ -229,3 +231,64 @@ Within the `index.html` template, we can make adjustment as seen below:
 ![Update index template](images/user_login/update_index_template.png)
 
 Double curly braces is Jinja2 syntax used to display variables whose data is likely to change. We define this variable as dynamic. If another user other than "Muthoni" logs in, then the username will change accordingly.
+
+## Assessment Project
+
+Below is a sample project with a basic user authentication system. The system allows a user to register for an account, and log in to access certain pages. You are required to recreate it with the same features.
+
+![Chapter 8 Assessment project](images/user_login/chapter8_assessment_project.gif)
+
+
+- Create a new project folder in your desktop called **chapter8_user_authentication**
+- Add a link to the Login page
+- Add a link to the Register page as seen in the image above
+- Add a database that stores user data
+- Add the logic used to register a user to the database
+- Add the logic used to log in a user to their account
+- Restrict access to the **Home** page
+- Display a logged in user's username in the home page
+- Add a README file in your project
+- Update your README file with content explaining the changes you have made
+- Create a new gitHub repository called **sample user auth assessment project**
+- Push your work to GitHub
+- Share the link to the completed GitHub project with your teacher below
+
+Your teacher will review your work and give you a score based on the key points mentioned above.
+
+## Quiz
+
+1. Which of the following packages is used to manage the state of a user in a Flask application?
+
+- Flask 
+- Flask-migrate
+- Flask-login
+- Pip
+
+2. Which of the following items is not associated with `UserMixin` from the package `flask-login`?
+
+- Database
+- `current_user`
+- `is_authenticated`
+- `is_anonymous`
+- `get_id()`
+
+3. Which function is used to restrict an anonymous user from accessing certain pages in a Flask app?
+
+- `login_user`
+- `logout_user`
+- `login_required`
+- `flask-login`
+
+4. What is used by `flask-login` to identify a user in a Flask app?
+
+- `username`
+- `password hash`
+- `timestamp`
+- `id`
+
+5. What is a view function?
+
+- The template used to display a logged in user
+- The method that handles a certain logic for a page
+- The restriction items of a page
+- The form used to convert a user's password into a hash
