@@ -47,6 +47,8 @@ By the end of this lesson, you should be able to:
 - [Register A User](#register-a-user)
 - [Log A User In](#log-a-user-in)
 - [Log A User Out](#log-a-user-out)
+- [Display The Logout Link Dynamically](#display-the-logout-link-dynamically)
+- [Require Users To Login](#require-users-to-login)
 
 
 
@@ -180,7 +182,7 @@ If the user is accurately identified from our database, and the password given i
 ![User logout](images/user_login/user_logout.png)
 
 
-## Update The Base Template
+## Display The Logout Link Dynamically
 
 Notice that with the authentication working properly, there is an aspect of incomplete user experience when logging into an account (see the image below). There is no visible link to logout. Additionally, if the user has already logged in, it does not make sense to have the _login_ link persist. It should either change to _logout_ or not be there at all. I think that having it change to _logout_ is a much better approach.
 
@@ -190,8 +192,28 @@ It is possible to make the application display the correct state of a user. Sinc
 
 ![Display logout link](images/user_login/display_logout_link2.png)
 
-Above, we have used the Njinja2 templating engine syntax to add a condition that checks if the current user has been authenticated. If this user has been authenticated, then the _logout_ link will be displayed. However, if this user has not logged into their account, then they will see the _login_ link.
+Above, we have used the Njinja2 templating engine syntax to add a condition that checks if the current user has been authenticated. If this user has been authenticated, then the _Logout_ link will be displayed. However, if this user has not logged into their account, then they will see the _Login_ link.
 
 ![Display logout link](images/user_login/display_logout_link2.gif)
 
+
+## Require Users To Login
+
+The _Home_ page and the _About Me_ page of our sample web app can be accessed by anyone, thereby defeating the reason to have an authentication system. We can restrict access to a page in Flask. Let us see how we can force a user to log in before accessing the _Home_ and the _about Me_ pages.
+
+![Login required](images/user_login/login_required.png)
+
+The `login_required` decorator comes from `flask-login`. We use it in all the view functions that we want to restrict access to. This decorator is carefully placed after the `@app.route()` decorator and the view function name. 
+
+To enforce restriction, we will need to explicitly tell the app that a user needs to first visit the _Login_ page first before continuing to the restricted pages. 
+
+![Enforce login required](images/user_login/enforce_login_required.png)
+
+Above, we instruct `flask-login` (which handles user login and state management) that the view function to be used on pages with restriction be the `login()` view function.
+
+Now, if a user clicks on either _Home_ or _About Me_ pages, he or she will be redirected to the _Login_ page first. Here, they will need to identify themselves after which they will be redirected to the relevant pages. If it was the _Home_ page that was clicked, then, once logged in, the user will be redirected to the _Home_ page.
+
+![Enforce login required](images/user_login/enforce_login_required.gif)
+
+When we check the URL bar, we can see that page restriction and page redirection is adequately displayed. For example, if the restricted _Home_ page is clicked, the URL bar will display something such as `http://127.0.0.1:5000/login?next=%2Fhome`. This says that once logged in, the next page will be the _Home_ page.
 
