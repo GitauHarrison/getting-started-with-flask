@@ -37,7 +37,9 @@ By the end of this lesson, you should be able to:
 - Render relevant web templates
 
 
-## Table of Contents
+### Table of Contents
+
+- [Password Hashing](#password-hashing)
 
 
 ## Password Hashing
@@ -48,4 +50,37 @@ The [Werkzeug](http://werkzeug.pocoo.org/) package is installed when we install 
 
 ![Password hash](images/user_login/password_hash.png)
 
-Above, I begin by importing `generate_password_hash` from `werkzeug.security`. As mentioned, simple functions such as this one allow us to easily interact and implement the complex concept of passworh hashing. We then pass our password, `muthoni` to this function and save it in a variable called `hash`. When we run `hash`, we see an strange long cryptographic value which represents our earlier password `muthoni'.
+Above, I begin by importing `generate_password_hash` from `werkzeug.security`. As mentioned, simple functions such as this one allow us to easily interact and implement the complex concept of password hashing. We then pass our password `muthoni` to this function and save it in a variable called `hash`. When we run `hash`, we see a strange long cryptographic value which represents our earlier password `muthoni`.
+
+An interesting thing about password hashing is that if we hash `muthoni` (or any other password) several times, you will notice that the cryptographic value is different all the time.
+
+```python
+# Enter into an active Python prompt in the context of the application
+(venv)$ flask shell
+
+>>> from werkzeug.security import generate_password_hash
+>>> hash = generate_password_hash('muthoni')
+>>> hash
+'pbkdf2:sha256:260000$fM1sRBhYNpnGaLOS$572d7229a3ddfcd35bcc331ec48e01261b2dee6f22fd23369753ea1b8d80a3a1'
+>>>
+
+# Another attempt at hashing `muthoni`
+hash = generate_password_hash('muthoni')
+>>> hash
+'pbkdf2:sha256:260000$MJRTU6EQWaijRZT9$05ee4858c9e768354095ffaa00489cde2507f6c9a07465c50a6000520fbbd311'
+>>> 
+```
+
+This makes it difficult to identify two users with the same password, therefore, adding an extra layer of security on access to user data.
+
+As interesting as this is, it does not confirm if the strange cryptographic value is actually a representation of the password `muthoni`. To confirm that indeed this value is `muthoni`, we can do the following:
+
+![Decode password hash](images/user_login/decode_password_hash.png)
+
+The verificatin process begins by importing an additional function from `werkzeug.security` called `check_password_hash`. We do not have to worry at all about what this function does under the hood at this point. We generate a password hash for `muthoni` then use `check_password_hash()` function to confirm if indeed the hash represents the password. This new function takes two parameters:
+
+- `hash` and
+- the password to verify.
+
+If the hash does not match the password to verify, in our case above the password to verify is `gitau`, then it returns `False`. However, if the password to verify is similiar to what has been hashed, then we get `True` as the returned value. Genius, right?
+
