@@ -44,6 +44,10 @@ By the end of this lesson, you should be able to:
 - [Welcome To Flask Login](#welcome-to-flask-login)
 - [Prepare The `User` Model](#prepare-the-user-model)
 - [Load A User From The Database](#load-a-user-from-the-database)
+- [Register A User](#register-a-user)
+- [Log A User In](#log-a-user-in)
+- [Log A User Out](#log-a-user-out)
+
 
 
 ## Password Hashing
@@ -142,4 +146,39 @@ Flask login magically keeps track of every user who logs into the application us
 ![Load user](images/user_login/load_user.png)
 
 In `app/models.py` where we have the `User` model, we import the `login` instance and use it as a decorator to load a user using their unique ID. This is done by passing in an ID argument into the function `load_user()` and returning the result of querying the `User`model using this ID. Notice that we ensure this ID is an integer by forcefully converting it to one using the `int()` method from Python.
+
+
+## Register A User
+
+Now that the `User` model is fully prepared to handle a user, we are ready to implement some logic to handle user registration. To register a user means to add them to the database. In the chapter on [database](07_database.md), we saw how to add a user from the terminal. It worked, but that method is obviously not ideal as far as user experience goes. Below, we shall see how we can use the frontend to register a user.
+
+![User registration](images/user_login/user_registration.png)
+
+We already had a minimum `register()` view function that has been used to return the User Registration Form. A view function is a normal Python function that is used to return a view of some logic. This function, though, did not do much at the time other than display a false flash message and redirected the user to the login page.
+
+In the update, we have created a new variable called `user` which stores a `User` object whose data is received from the Registration Form. The variable `username` is the username field as seen in the `User` model. This field has been used to store a user's username as `form.username.data`.
+
+Since we do not intend to store a user's password in its raw form, we use the function `set_password()` from the `User` model to generate a password hash using the data received from the `password` field of the Registration Form. We then add this `user` to a database session and commit him or her to store the changes.
+
+
+## Log A User In
+
+User login will handled by the `login()` view function within `app/routes.py` file.
+
+![User login](images/user_login/user_login.png)
+
+Once the form is validated and submitted, we begin by querying the database to filter this `user` from the rest and find if truly he exists using the supplied credentials of the Login Form. We search for the first instance of this user using the `.first()` method. If the user does not exist, or the user's password does not match what we have in the database, then we deny him or her entry while providing a useful feedback that they have shared an "Invalid username or password". To give the user another chance to login, we redirect them to the login page using the `login()` view function. We can be more thorough by helping the user know if it is the username or if it is the password that is incorrect, but for illustration purposes, I have kept it simple by flashing a blanket message showing why access has been denied.
+
+If the user is accurately identified from our database, and the password given is correct, this user is logged into their account and redirected to the `index` page. User login is made simple using the `login_user()` function from the `flask-login` package. Besides logging in this user, we ensure that his session is remembered by checking the _remember_me_ field of the Login Form. This field will return `True` if the checkbox is marked or `False` if it is left empty.
+
+
+## Log A User Out
+
+`flask-login` provides the `logout_user()` function to ensure that user's account are protected. Once this logout link is clicked, the application will know that it needs to remove the current user from the flask session.
+
+
+![User logout](images/user_login/user_logout.png)
+
+
+
 
