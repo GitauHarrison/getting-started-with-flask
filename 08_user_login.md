@@ -40,6 +40,10 @@ By the end of this lesson, you should be able to:
 ### Table of Contents
 
 - [Password Hashing](#password-hashing)
+- [Implement Password Hashing In the Application](#implement-password-hashing-in-the-application)
+- [Welcome To Flask Login](#welcome-to-flask-login)
+- [Prepare The `User` Model](#prepare-the-user-model)
+- [Load A User From The Database](#load-a-user-from-the-database)
 
 
 ## Password Hashing
@@ -100,3 +104,42 @@ With that, we are all set. Let us test this new feature (it is always good pract
 ![Test app password hashing](images/user_login/test_app_password_hashing.png)
 
 From the terminal, we enter into a Flask shell context (ensure you have your virtual environment create and activate). We add a brand new user called `muthoni`. We give her a new password using the `set_password()` function. We then verify if sample passwords match her original password. As a result, the sample password `gitau` fails while the second sample password `muthoni` passes. This means that our two new functions work as expected.
+
+
+## Welcome To Flask Login
+
+[Flask-login](https://flask-login.readthedocs.io/) is an additional package that we shall utilize to help us develop a simple user authentications system. It can be used to log a user into their application, and 'remembers them' across all pages they visit. As we have done before, let us install this new package in our active virtual environment:
+
+```python
+(venv)$ pip3 install flask-login
+```
+
+![Install flask login](images/user_login/install_flask_login.png)
+
+As we have done with other packages before, `flask-login` needs to be created and initialized in the application's instance, the `app/__init__.py` file.
+
+![Initialize flask login](images/user_login/initialize_flask_login.png)
+
+
+## Prepare The `User` Model
+
+The `flask-login` packages works well with the `User` model. It expects certain properties and methods to be implemented in it. As long as these properties and methods are in place, this package handles everything else for us. `flask-login` provides us with these for items:
+
+- `is_authenticated`: It checks if a user's credentials are valid by returning either `True` or `False`.
+- `is_anonymous`: Used if a user has not been verified (opposite to `is_authenticated`).
+- `is_active`: It returns `True` if a user's account is active, but `False` if it is not.
+- `get_id()`: this method is used to return a unique identifier for a user (using their ID, which is unique for every user of an application)
+
+Flask-login makes it so simple to add these four items to an application. All we need to do to begin using them is to add a generic class called `UserMixin` to the `User` model. 
+
+![User mixin](images/user_login/user_mixin.png)
+
+
+## Load A User From The Database
+
+Flask login magically keeps track of every user who logs into the application using their unique identifier. Each time this logged in user navigates to a new page, flask-login retrieves thier unique indentifier from what we call a flask session, and loads him or her into memory. But because `flask-login` knows nothing about the database, we need to help it identify a user using their unique ID.
+
+![Load user](images/user_login/load_user.png)
+
+In `app/models.py` where we have the `User` model, we import the `login` instance and use it as a decorator to load a user using their unique ID. This is done by passing in an ID argument into the function `load_user()` and returning the result of querying the `User`model using this ID. Notice that we ensure this ID is an integer by forcefully converting it to one using the `int()` method from Python.
+
