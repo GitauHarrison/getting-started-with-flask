@@ -259,36 +259,36 @@ Your teacher will review your work and give you a score based on the key points 
 
 1. Which of the following packages is used to manage the state of a user in a Flask application?
 
-- Flask 
-- Flask-migrate
-- Flask-login
-- Pip
+- [ ] Flask 
+- [ ] Flask-migrate
+- [ ] Flask-login
+- [ ] Pip
 
 2. Which of the following items is not associated with `UserMixin` from the package `flask-login`?
 
-- Database
-- `current_user`
-- `is_authenticated`
-- `is_anonymous`
-- `get_id()`
+- [ ] Database
+- [ ] `current_user`
+- [ ] `is_authenticated`
+- [ ] `is_anonymous`
+- [ ] `get_id()`
 
 3. Which function is used to restrict an anonymous user from accessing certain pages in a Flask app?
 
-- `login_user`
-- `logout_user`
-- `login_required`
-- `flask_login`
+- [ ] `login_user`
+- [ ] `logout_user`
+- [ ] `login_required`
+- [ ] `flask_login`
 
 4. What is used by `flask-login` to identify a user in a Flask app?
 
-- `username`
-- `password hash`
-- `timestamp`
-- `id`
+- [ ] `username`
+- [ ] `password hash`
+- [ ] `timestamp`
+- [ ] `id`
 
 5. What is a view function?
 
-- The template used to display a logged-in user
-- The method that handles a certain logic for a page
-- The restriction items of a page
-- The form used to convert a user's password into a hash
+- [ ] The template used to display a logged-in user
+- [ ] The method that handles a certain logic for a page
+- [ ] The restriction items of a page
+- [ ] The form used to convert a user's password into a hash
