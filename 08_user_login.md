@@ -277,7 +277,7 @@ Your teacher will review your work and give you a score based on the key points 
 - `login_user`
 - `logout_user`
 - `login_required`
-- `flask-login`
+- `flask_login`
 
 4. What is used by `flask-login` to identify a user in a Flask app?
 

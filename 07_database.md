@@ -195,7 +195,7 @@ Every time a user posts a comment or makes a post, this post is directly linked 
 
 Above, we have a new model schema called `Post` with four fields: `id`, `body`, `timestamp`, and `user_id`. As seen when defining the `User` model, the `id` column is mandatory for every model. The `body` field will have data of type `text` to denote that the data can be longer than just a few characters. The `timestamp` is a datetime field to show when a post was made. Since every post is linked to a given user, the `user_id` column is used to create this relationship. Below, let us update our models with these suggestions:
 
-![Database relationship](images/database/db_relationship.png)
+![Database relationship](images/database/db_relationship2.png)
 
 The new `Post` class will represent blog posts written by users. The `timestamp` field is going to be indexed, which is useful if we want to retrieve posts in chronological order. To ensure that the timestamp is accurately displayed in the app regardless of the timezone of any user, we will work with UTC dates and times in a server application. If a user is in the US and makes a post, and another user is in Kenya where the time is 9 hours ahead, the application will intelligently display a timestamp based on any user's timezone.
 
