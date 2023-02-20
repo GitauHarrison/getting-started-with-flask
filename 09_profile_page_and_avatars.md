@@ -1,5 +1,9 @@
 # Adding User Profile Page and Avatar
 
+During this lesson, we are going to learn how to update the application's user interface to make have a POST form in the home page, and add a profile page for the user.
+
+![Chapter 9 final app](images/profile_page_avatars/final_app.gif)
+
 Throughout this tutorial, these are the reference links of the things we will be looking at. At your own convinience, you can navigate to whatever article you want to refer to:
 
 1. [Getting Started with HTML and CSS](01_getting_started_with_HTML_and_CSS.md)
@@ -19,4 +23,22 @@ Throughout this tutorial, these are the reference links of the things we will be
 15. [Deployment on Render](15_deployment_on_render.md)
 
 
-This article will cover these topics:
+### Lesson Objectives
+
+By the end of this lesson, you should be able to:
+
+- Add a comment form in the home page
+- Create a new page for a user's profile
+- Update your models to ensure that a user's post is saved in the database
+- Display user's information in the database
+- Extend the database to include additional useful fields
+- Add an avatar for a user
+
+### Table of Contents
+
+- 
+
+
+## Overview
+
+
