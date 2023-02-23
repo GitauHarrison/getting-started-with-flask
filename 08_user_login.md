@@ -1,8 +1,8 @@
 # Handling User Logins
 
-In [chapter 6](06_web_forms.md), you learned how to create web forms. You saw how to create a Login form as well as a registration form. In this chapter, you will learn how to combine these concepts to create a simple user login system.
+In [chapter 6](06_web_forms.md), you learned how to create web forms. You saw how to create a Login form as well as a Registration form. In this chapter, you will learn how to combine these concepts to create a simple user login system.
 
-![Chapter 7 Assessment project](images/user_login/user_login.gif)
+![Display current user](images/user_login/current_user.gif)
 
 Throughout this tutorial, these are the reference links for the things we will be looking at. At your convinience, you can navigate to whatever article you want to refer to:
 
