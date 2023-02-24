@@ -51,7 +51,10 @@ By the end of this lesson, you should be able to:
     - [The Profile Editor](#the-profile-editor)
     - [Understanding `GET` and `POST` methods](#understanding-get-and-post-methods)
     - [Display Edit Profile Form](#display-edit-profile-form)
-
+- [User Posts](#user-posts)
+    - [Display All Users' Posts In The Home Page](#display-all-users-posts-in-the-home-page)
+    - [Display All The Posts Of The Current User](#display-all-the-posts-of-the-current-user)
+    - 
 
 
 ## Overview
@@ -353,4 +356,82 @@ Save your work, reload your Profile page, click on the **Edit profile** link and
 ![Edit profile form](images/profile_page_avatars/edit_profile_form.png)
 
 
+## User Posts
 
+Our home page will primarily focus on allowing users to make posts. These posts will be publicly visible to all users of the application. To ensure that a user is able to make a post, we will need to provide a POST Form. This form will be used to update the `POST` model in our database. Let us begin by defining a POST Form in our `forms` module:
+
+![Post form](images/profile_page_avatars/post_form.png)
+
+This form will have only the `body` field and a `submit` button. Next, let us modify our `index.html` file to display this form:
+
+![Post form in home page](images/profile_page_avatars/post_form_in_home_page.png)
+
+Finally, to render this form in our home page, we will update our `index()` view function as follows:
+
+![Updated home view function](images/profile_page_avatars/updated_home_view_function.png)
+
+This function utilizes the `PostForm` from the `forms` module to create  `form` variable  that is used to store a user's post in the database. To ensure that indeed a post is saved, we pass in the `body` and `author` data to the `Post` model before adding and committing it to a database session. To tie a post to a user, we ensure that we have `author=current_user`, otherwise, posts will lack their sources.
+
+![Display form in home page](images/profile_page_avatars/display_form_in_home_page.png)
+
+
+### Display All Users' Posts In The Home Page
+
+Now, a logged in user has the ability to make a post in the home page. The next step as a developer of this application will be to display all the posts made in the application. We shall utilize the home page to do this.
+
+In the preceding section, you saw us highlight the following:
+
+
+```python
+def index():
+    # ...
+    posts = Post.query.all()
+    return render_template(..., posts=posts)
+```
+
+The variable `posts` has been used to store the result of querying the `Post` model to GET/retrieve all the user posts in the application. Flask allows us to pass the result to the Jinja2 templating engine by adding `posts=posts` to the `render_tempate()` function. 
+
+To see all the posts made by the application's users, we will modify our `index.html` file to loop through all the `posts` received from the `Post` model.
+
+![Display users posts](images/profile_page_avatars/display_users_posts2.png)
+
+We have used a `for` loop to get individual posts by each user. The `{% if post %}` condition checks if their exists any post in the `posts` variable. If there is none, then nothing will be displayed. If there is some content, then we use a simple table display all the data we want to see. In the example shown above, we are interested in seeing an author's avatar, their username and what they posted.
+
+Now, we can create multiple users of the application, and have each one of them post something. All their posts should be visible in the home page.
+
+![Display users posts](images/profile_page_avatars/display_users_posts3.png)
+
+
+
+### Display All The Posts Of The Current User
+
+The idea behind a profile page is to allow a user to see his or her activites besides interacting with personal data. In this section, we are going to learn how to display only the posts of the current user in their profile page. 
+
+![Display current user posts](images/profile_page_avatars/display_current_user_posts.png)
+
+The home page was characterized by all users' posts. The profile page will limit posts to only the logged-in user. Its implementation is actually quite simple. In the `profile()` view function, let us make the following changes:
+
+![Modify profile page to list user posts](images/profile_page_avatars/list_current_user_posts.png)
+
+
+Just like we did in the `index()` view function, we query the database containing the posts of the current user before storing the result in a `posts` variable. Intentionally, we use `current_user` to limit the query to only the current user. The `posts` in `current_user.posts` us the relationship field in the `User` model.
+
+```python
+# app/models.py
+
+class User(UserMixin, db.Model):
+    # ...
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+```
+
+This variable is used to create a relationship between the two models. Using it is similar to calling the `Post` model.
+
+The `.all()` returns all the posts related to the current user. Here is where an `author` becomes really important. Remember that in the `index()` view function, we were saving the data found in the `body` of the `Post` form together with the `author`. Hadn't we done so, we would not be able to retrieve the posts of belonging to specific users because none is associated with them.
+
+Update the `profile.html` file to display the current user's posts in the form of a table, just like we did in the home page.
+
+![Display profile page posts](images/profile_page_avatars/display_profile_page_posts.png)
+
+Now, if we click on the **Profile** page, we will see only the posts belonging to the logged-in user.
+
+![Profile page posts](images/profile_page_avatars/profile_page_posts.png)
