@@ -44,6 +44,8 @@ By the end of this lesson, you should be able to:
 - [Add User Email Field In The Database](#add-user-email-field-in-the-database)
 - [Update User Registration Form](#update-user-registration-form)
 - [Store User Email Address In The Database](#store-user-email-address-in-the-database)
+- [Avatars](#avatars)
+- [Display User Information In The Profile Page](#display-user-information-in-the-profile-page)
 
 
 ## Overview
@@ -187,3 +189,41 @@ The registration form now allows a user to add their email address. To ensure th
 ![Save email in db](images/profile_page_avatars/save_email_in_db.png)
 
 With that, every registration will update our database to include a user's email address.
+
+
+## Avatars
+
+An avatar is an icon or a figure representing a particula person. Given that we are building a chat application, wouldn't it be nice if each user post had an avatar of the author of a post? Besides, being able to see one's own avatar in the **Profile** page makes the page a lot more attractive, and less boring. Look at the image below; it shows each post having an avatar of the author.
+
+![User](images/profile_page_avatars/user_avatar.png)
+
+We shall take a shortcut here. Instead of allowing users to upload their own avatars and, in the process, strain the application with handling large collections of uploaded images, I would like to introduce you to the [Gravatar](http://gravatar.com/) service. We shall use this service to provide images for all users.
+
+To request an image for a given user, a URL with the format `https://www.gravatat.com/avatar/<hash>`, where `<hash>` is the MD5 hash of the user's email address. Remember above where we mentioned that we shall use a user's email address to generate an avatar for them? Below is how it can be achieved. Enter into an active Python prompt in your terminal and run the commands below:
+
+![Avatar link](images/profile_page_avatars/avatar_link.png)
+
+The result is a link that points to a user's avatar (an image). If you would like to see one of your teacher's avatar, you can paste the link https://www.gravatar.com/avatar/aa4d7225b5276efcfbbf556ff1b5676f in a browser.
+
+The default size of an avatar is 80 by 80 pixels. We are not limited to this size. If we would like a different size, we can request it by adding `s` argument to the URL query string. For example, to obtain your teacher's avatar as a 160 by 160 pixel image, the URL will be https://www.gravatar.com/avatar/aa4d7225b5276efcfbbf556ff1b5676f?s=160. **Add `?s=<size>` to the end of the query string.**
+
+The teacher's link above is an actual image because he has uploaded an actual image as his gravatar. Besides an actual image, we instruct the Gravatar service to choose for us an image of its choice. Gravatar has several options to choose from. A favourite for many is the `identicon`. To use it, just like the `size` argument, we pass the `d` query string. Every email address will have its unique avatar. If you are wondering what other options Gravatar has, refer to this [Gravatar documentation](http://en.gravatar.com/site/implement/images/). You will see `404`, `monsteroid` among others.
+
+Because avatars are tied to a user's email address, it, therefore, makes sense to tie it to the `User` model. This model is associated with users. Add the following logic in the `User` class.
+
+![Avatar logic](images/profile_page_avatars/avatar_logic.png)
+
+The new `avatar()` method of the `User` class returns a URL of the user's avatar image, scaled to the requested size in pixels. For users without an avatar registered, and "identicon" image will be generated for them. To generate the MD5 hash, we begin by converting a user's email address to lower case (using the `.lower()` method). This is required by the Gravatar service. Since md5 in Python works on bytes and not on strings, we encode the string as bytes before passing it to the hash function.
+
+
+## Display User Information In The Profile Page
+
+As soon as a user is registered and logged in, they will have access to the **Profile** link in the navigation bar. Once this link is clicked, let us display a user's personal information in their profile page.
+
+![Update profile template](images/profile_page_avatars/update_profile_template.png)
+
+The first column (`col-md-5`) has an `<img>` tag with a dynamic link to a user's avatar. We use the double curly braces (`{{  }}` ) to indicate that the data here can change. In this case, the data to change is dependant on what `user` has logged in. We call the `avatar()` method on each user to apply an avatar.
+
+The second column (`col-md-7`) has been used to display the logged-in user's username and email address. Once again, the double curly braces indicate that the values presented here can change, it it does, automatically. At the end, our profile page will now look like this:
+
+![Profile page 1](images/profile_page_avatars/profile_page1.png)
