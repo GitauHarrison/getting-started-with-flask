@@ -31,7 +31,7 @@ By the end of this lesson, you should be able to:
 - Create a new page for a user's profile
 - Update your models to ensure that a user's post is saved in the database
 - Display a user's information found in the database
-- Extend the database to include additional useful fields such as _timestamp_ and _about_me_
+- Extend the database to include additional useful fields such as _last_seen_ and _about_me_
 - Add an avatar for a user
 - Display all users' comments in the home page
 - Display all the comments by a user in their profile page
@@ -46,6 +46,12 @@ By the end of this lesson, you should be able to:
 - [Store User Email Address In The Database](#store-user-email-address-in-the-database)
 - [Avatars](#avatars)
 - [Display User Information In The Profile Page](#display-user-information-in-the-profile-page)
+- [More Interesting Profile](#more-interesting-profile)
+    - [The Last Seen Field](#the-last-seen-field)
+    - [The Profile Editor](#the-profile-editor)
+    - [Understanding `GET` and `POST` methods](#understanding-get-and-post-methods)
+    - [Display Edit Profile Form](#display-edit-profile-form)
+
 
 
 ## Overview
@@ -227,3 +233,124 @@ The first column (`col-md-5`) has an `<img>` tag with a dynamic link to a user's
 The second column (`col-md-7`) has been used to display the logged-in user's username and email address. Once again, the double curly braces indicate that the values presented here can change, it it does, automatically. At the end, our profile page will now look like this:
 
 ![Profile page 1](images/profile_page_avatars/profile_page1.png)
+
+
+## More Interesting Profile
+
+As wonderful as the profile page now looks, we can add a few more tweaks and quacks to spice it up and make it a lot more appealing. Given that this is a chat application, we can think of adding a **last_seen** data to show when a user was last seen in the app. We can also add a **bio** field to allow a user to brag about themselves.
+
+![Appealing profile Page](images/profile_page_avatars/appealing_profile_page.png)
+
+
+Since these two changes are related to a user, the obvious location to modify is the `User` model.
+
+![Last seen and bio fields](images/profile_page_avatars/last_seen_bio_fields.png)
+
+The two new fields alter the structure of our `User` model, and, therefore, we need to run some migrations and apply the changes. Run these two commands in your terminal (activate you virtual environment, and ensure you are at the root directory of the project)
+
+![Last seen and bio fields migrations](images/profile_page_avatars/last_seen_bio_fields_migrations.png)
+
+You will see a new migration script in _migrations > versins_ subdirectory referencing this migration. We can then display the changes in our `profile.html` template as seen below:
+
+![Display last seen and bio fields](images/profile_page_avatars/display_last_seen_bio_fields.png)
+
+We begin by first checking if there actually are the `last_seen` and the `about_me` data from the user. How do we know that the application is checking for a user's data? We are are using conditional statements! If there is data, then we display them. Once again, we are using the dynamic curly braces for this.
+
+
+### The Last Seen Field
+
+You may have figured out that the `last_seen` is a timestamp. What it does is it records the last time a user was using the application. Usage, in this context, is when a user last clicked on any page. 
+
+![Profile timestamp](images/profile_page_avatars/profile_timestamp.png)
+
+Let us think about it for a second; it is obviously impractical to update this field on each page load. A more convinient approach would be to implement a generic method where we make a request to the application to dispatch a timestamp update before a view function is called. In your `routes.py`, add the following solution:
+
+![Update last seen](images/profile_page_avatars/update_last_seen.png)
+
+The `@before_request` decorator from Flask is executed right before the view function. It allows us to execute code just before any view function is called. We begin by checking if the current user has been authenticated. If they have, then we update his or her `last_seen` field with the actual datetime (date and time) when a view function was called. The last step is to commit the changes to a database session. Since the user is already authenticated, no wonder we are using `current_user`, we do not need to call `db.session.add()`. We can go ahead and update our database directly using `db.session.commit()`. 
+
+
+### The Profile Editor
+
+In our `profile` template above, you saw us add a link to **Edit profile**. See what has been enabled for a user:
+
+![Edit user profile](images/profile_page_avatars/edit_user_profile.gif)
+
+This link will direct a user to a form which will allow him or her to change (1) their username and (2) their bio data. At the moment, we do not have this form. So, let us define a new **Edit Profile Form**.
+
+![Define edit profile form](images/profile_page_avatars/define_edit_profile_form.png)
+
+This form has the `about_me` field that takes `TextAreaField` from `Flask-wtf`. What this field does is it allows a user to write more content when compared to the `StringField`. Therefore, a user can add a little more text for their bio.
+
+
+Then, we need to add a view function called `edit_profile()` that will handle any changes to a user's profile data.
+
+![View function edit profile](images/profile_page_avatars/view_function_edit_profile.png)
+
+Because we are going to be using the **Edit Profile** form, the first and most logical step to take is to import it from the `forms` module. We then create a form object that we use to validate the data to be submitted through the form. Unlike before, here, we are modifying already existing data. For example, to modify the username of the current user, we do the following:
+
+```python
+# routes.py
+
+
+current_user.username = form.username.data
+```
+
+This will update the username of the current user based on what what was received from the **Edit Profile Form**. The same applies to the `about_me` data in the database. Here, we also directly commit our changes to the database session since the user is already loaded and identified by the application. We ensure that we redirect the user to a relevant page after the data has been posted. Above, we are redirecting the user to their **Profile** page after making changes to their personal information.
+
+
+### Understanding `GET` and `POST` methods
+
+When working with servers (Flask) and clients (your PC browser), there are common methods that are used to send and retrieve data. If you are sending data to a server (for storage), we call the method responsible for this action a `POST` method. We are POSTing data to the server. This is usually done through forms. In forms, we POST data to the server. On the other hand, if we are asking a server to provide us with data by either clicking a link or navigating to a particular page, the method used to do this is the `GET` method. We ar GETing data from the server.
+
+In our `edit_profile()` view function above, we have an `If - elif` conditional statement that determines what method we want to use. As metioned above, the posting of data is done through the `POST` method. Changes to a user's informatin is handled through the `POST` method as seen in the function's decorator:
+
+```python
+@app.route('/edit-profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    # ...
+
+# Notice that we have two methods above: GET and POST
+# The application will appropriately choose what method to use
+```
+
+In the event a user clicks on the **Edit Profile** link in their profile page, this action is telling the Flask server that the user wants to GET their personal information. As a result, we are using the `GET` method to retrieve a user's data:
+
+```python
+@app.route('/edit-profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    if ...:
+        # ...
+    elif request.method == 'GET':
+        # Get user data
+```
+
+What information do we want from the database related to the current user? Their username and their bio data. We then pass these data to the form fields as follows:
+
+```python
+elif request.method == 'GET':
+    form.username.data = current_user.username
+    form.about_me.data = current_user.about_me
+```
+
+The `GET` method used here allows a user to know what data he or she needs to alter. It is more of a good user experience rather than having him or her figure out what needs to be changed and from what field.
+
+
+### Display Edit Profile Form
+
+Our brand new view function, the `edit_profile()`, returns the template `edit_profile.html`. This template does not exist yet. We need to create it.
+
+![Create edit profile template](images/profile_page_avatars/create_edit_user_profile_template.png)
+
+Once that is created, let us update it is as seen below:
+
+![Update Edit user profile](images/profile_page_avatars/update_edit_user_profile_template.png)
+
+Save your work, reload your Profile page, click on the **Edit profile** link and you should see this (working) form.
+
+![Edit profile form](images/profile_page_avatars/edit_profile_form.png)
+
+
+
