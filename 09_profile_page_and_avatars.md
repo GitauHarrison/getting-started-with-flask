@@ -82,18 +82,18 @@ In this lesson, we are going to make several modifications to our existing appli
 - We shall display all users' comments on the home page
 - We shall display the current user's posts (who is logged in) on their profile page
 - We shall update a user's profile page to include a timestamp of when they were last seen
-- We shall also include an ** About me** field in the user's profile page
+- We shall also include an **About me** field in the user's profile page
 
 
 ## User Profile Page
 
-Let us begin by updating our current view function `about_me()`  by renaming it to `profile()`. This view function is found in the `routes.py` file. We shall also add a few more functions to it as seen in the image below.
+Let us begin by updating our current view function `about_me()`  by renaming it to `profile()`. This view function is found in the `routes.py` file. The reason why we are renaming this function to `profile()` is so that it remains consistent with what we are trying to achieve. As a tradition in Python, it is recommended that we provide very descriptive names for methods, functions and variables.
 
 ![Profile page view function](images/profile_page_avatars/profile_view_function.png)
 
-Because the **Profile** page is specific to a user, it would be best to have it display the name of the current user. This is achieved by passing in `<username>` in the `@app.route()` decorator. Notice that this variable is also passed as an argument to the view function as `def profile(username)`. 
+Because the **Profile** page is specific to a user, it would be best to have it display the name of the current user. This is achieved by passing in `<username>` in the `@app.route()` decorator as seen in the example above. Notice that this variable is also passed as an argument to the view function as `def profile(username)`. 
 
-When a user such as `muthoni` logs into her account, the URL will change to `http://127.0.0.1/muthoni/profile`. If another user called `gitau` logs into his account, then the URL will change to `http://127.0.0.1/gitau/profile`. This is made possible by our query below:
+When a user such as `muthoni` logs into her account, the URL will change to `http://127.0.0.1/muthoni/profile`. If another user called `gitau` logs into his account, then the URL will change to `http://127.0.0.1/gitau/profile`. This is made possible by our query below (it is the same query you can see in the image above):
 
 ```python
 # app/routes.py
@@ -134,7 +134,7 @@ def profile(username):
     
 ```
 
-This allows us to interact with the `user` object as retrieved from the database. For example, if we want to get the user's username, we will do `user.username`. But before we can display this user in our application, we need to rename the `about_me.html` file to `profile.html` file.
+This allows us to interact with the `user` object as retrieved from the database. For example, if we want to get a user's username, we will do `user.username`. But before we can display this user in our application, we need to rename the `about_me.html` file to `profile.html` file. Once again, we do our best to remain consistent in our naming convention.
 
 ![Rename profile template](images/profile_page_avatars/rename_profile_template.png)
 
@@ -149,7 +149,7 @@ With the view function in place, we can now update our `base.html` file to show 
 
 ![Profile page link](images/profile_page_avatars/profile_page_link.png)
 
-The column sizes have been modified to `col-md-4`. A new link called **Profile** has been added to the list of links once a user has been authenticated. Unlike all other links, the **Profile** page link is slightly different. It includes an additional section ` {{ (..., username=current_user.username) }}`. This is so because we are passing the current user's username into the URL. Every time we have a view function that requires a variable in the URL, we shall always be adding this section to it.
+The column sizes have been modified to `col-md-4`. A new link called **Profile** has been added to the list of links visible to a user has been authenticated. Unlike all other links, the **Profile** page link is slightly different. It includes an additional section ` {{ (..., username=current_user.username) }}`. This is so because we are passing the current user's username into the URL. Every time we have a view function that requires a variable in the URL, we shall always be adding this section to it.
 
 ![Profile page](images/profile_page_avatars/profile_page.gif)
 
@@ -160,7 +160,7 @@ In [chapter 7](07_database.md), you learned how to store a user's information in
 
 ![Email field in user model](images/profile_page_avatars/email_field_user_model2.png)
 
-Since this addition causes a change in the structure of our `User` model, we need to run our migrations to apply the changes. In your terminal, run the commands below (ensure you are in the root folder of the project and your virtual environment is activated):
+Since this addition causes a change in the structure of our `User` model, we need to run our migrations and apply the changes. In your terminal, run the commands below (ensure you are in the root folder of the project and your virtual environment is activated):
 
 ```python
 (venv)$ flask db migrate -m 'email field'
@@ -174,11 +174,11 @@ As soon as you run those, you should see a new migration script in the _migratio
 
 ## Update User Registration Form
 
-With the new email field in place, we need to provide a means for the user to fill in their email address during registration. First, let us update our `RegisterForm()` to include an `email` field.
+With the new email field in the `User` model in place, we need to provide a means for the user to fill in their email address during registration. First, let us update our `RegisterForm()` to include an `email` field.
 
 ![Email form field](images/profile_page_avatars/email_form_field.png)
 
-This new `email` field is not so different from the `username` field. It only adds the `Email()` validator from `flask-wtf` which is used to check if the data keyed in by a user has an email format (it does not verify if the email is real or not). To ensure that this `Email()` validator works, we need to install the `email-validator` extension in our virtual environment as seen below:
+This new `email` field in the form is not so different from the `username` field. It only adds the `Email()` validator from `flask-wtf` which is used to check if the data keyed in by a user has an email format (it does not verify if the email is real or not). To ensure that this `Email()` validator works, we need to install the `email-validator` extension in our virtual environment as seen below:
 
 ![Email validator extension](images/profile_page_avatars/email_validator_extension.png)
 
@@ -186,7 +186,7 @@ Now, we can modify our `register.html` template to add an `email` field as follo
 
 ![Email field in template](images/profile_page_avatars/email_field_in_template.png)
 
-You should see an email field being displayed on your **Register** page.
+Save your work. Re-run your URL link on the browser. You should see an email field being displayed on your **Register** page.
 
 ![Email](images/profile_page_avatars/email.png)
 
@@ -208,17 +208,17 @@ An avatar is an icon or a figure representing a particular person. Given that we
 
 We shall take a shortcut here. Instead of allowing users to upload their avatars and, in the process, strain the application with handling large collections of uploaded images, I would like to introduce you to the [Gravatar](http://gravatar.com/) service. We shall use this service to provide images for all users.
 
-To request an image for a given user, a URL with the format `https://www.gravatat.com/avatar/<hash>`, where `<hash>` is the MD5 hash of the user's email address. Remember above where we mentioned that we shall use a user's email address to generate an avatar for them? Below is how it can be achieved. Enter an active Python prompt in your terminal and run the commands below:
+To request an image for a given user, a URL with the format `https://www.gravatat.com/avatar/<hash>`, where `<hash>` is the MD5 hash of the user's email address, is used. Remember above where we mentioned that we shall use a user's email address to generate an avatar for them? Below is how it can be achieved. Enter an active Python prompt in your terminal and run the commands below:
 
 ![Avatar link](images/profile_page_avatars/avatar_link.png)
 
-The result is a link that points to a user's avatar (an image). If you would like to see one of your teacher's avatars, you can paste the link https://www.gravatar.com/avatar/aa4d7225b5276efcfbbf556ff1b5676f in a browser.
+The result is a link that points to a user's avatar (an image). If you would like to see one of your teacher's avatars, you can click on this link https://www.gravatar.com/avatar/aa4d7225b5276efcfbbf556ff1b5676f or paste it on a new tab in a browser window.
 
 The default size of an avatar is 80 by 80 pixels. We are not limited to this size. If we would like a different size, we can request it by adding `s` argument to the URL query string. For example, to obtain your teacher's avatar as a 160 by 160 pixel image, the URL will be https://www.gravatar.com/avatar/aa4d7225b5276efcfbbf556ff1b5676f?s=160. **Add `?s=<size>` to the end of the query string.**
 
-The teacher's link above is an actual image because he has uploaded an actual image as his gravatar. Besides an actual image, we instruct the Gravatar service to choose for us an image of its choice. Gravatar has several options to choose from. A favorite for many is the `identicon`. To use it, just like the `size` argument, we pass the `d` query string. Every email address will have its unique avatar. If you are wondering what other options Gravatar has, refer to this [Gravatar documentation](http://en.gravatar.com/site/implement/images/). You will see `404`, `monsteroid` among others.
+The teacher's link above is an actual image because he has uploaded an actual image as his gravatar. Besides an actual image, we can instruct the Gravatar service to choose for us an image of its choice. Gravatar has several options to choose from. A favorite for many is the `identicon`. To use it, just like the `size` argument, we pass the `d` query string. Every email address will have its unique avatar. If you are wondering what other options Gravatar has, refer to this [Gravatar documentation](http://en.gravatar.com/site/implement/images/). You will see `404`, `monsteroid` among others.
 
-Because avatars are tied to a user's email address, it, therefore, makes sense to tie it to the `User` model. This model is associated with users. Add the following logic in the `User` class.
+Because avatars are defined by a user's email address, it, therefore, makes sense to tie it to the `User` model. This model is associated with users. Add the following logic in the `User` class.
 
 ![Avatar logic](images/profile_page_avatars/avatar_logic.png)
 
@@ -227,7 +227,7 @@ The new `avatar()` method of the `User` class returns a URL of the user's avatar
 
 ## Display User Information In The Profile Page
 
-As soon as a user is registered and logged in, they will have access to the **Profile** link in the navigation bar. Once this link is clicked, let us display a user's personal information on their profile page.
+As soon as a user is registered and logged in, they will have access to the **Profile** link in the navigation bar. Once this link is clicked, the application will display a user's personal information on their profile page.
 
 ![Update profile template](images/profile_page_avatars/update_profile_template.png)
 
@@ -240,7 +240,7 @@ The second column (`col-md-7`) has been used to display the logged-in user's use
 
 ## More Interesting Profile
 
-As wonderful as the profile page now looks, we can add a few more tweaks and quacks to spice it up and make it a lot more appealing. Given that this is a chat application, we can think of adding a **last_seen** data to show when a user was last seen in the app. We can also add a **bio** field to allow a user to brag about themselves.
+As wonderful as the profile page now looks, we can add a few more tweaks and quacks to spice it up and make it a lot more appealing. Given that this is a chat application, we can think of adding **last_seen** data to show when a user was last seen in the app. We can also add a **bio** field to allow a user to brag about themselves.
 
 ![Appealing profile Page](images/profile_page_avatars/appealing_profile_page.png)
 
@@ -253,7 +253,7 @@ The two new fields alter the structure of our `User` model, and, therefore, we n
 
 ![Last seen and bio fields migrations](images/profile_page_avatars/last_seen_bio_fields_migrations.png)
 
-You will see a new migration script in _migrations > versins_ subdirectory referencing this migration. We can then display the changes in our `profile.html` template as seen below:
+You will see a new migration script in _migrations > versions_ subdirectory referencing this migration. We can then display the changes in our `profile.html` template as seen below:
 
 ![Display last seen and bio fields](images/profile_page_avatars/display_last_seen_bio_fields.png)
 
@@ -407,7 +407,7 @@ Now, we can create multiple users of the application, and have each one of them 
 
 The idea behind a profile page is to allow a user to see his or her activities besides interacting with personal data. In this section, we are going to learn how to display only the posts of the current user on their profile page. 
 
-![Display current user posts](images/profile_page_avatars/display_current_user_posts.png)
+![Profile page posts](images/profile_page_avatars/profile_page_posts.png)
 
 The home page was characterized by all users' posts. The profile page will limit posts to only the logged-in user. Its implementation is quite simple. In the `profile()` view function, let us make the following changes:
 
