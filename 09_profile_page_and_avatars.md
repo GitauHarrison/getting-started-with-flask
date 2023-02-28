@@ -103,7 +103,7 @@ When a user such as `muthoni` logs into her account, the URL will change to `htt
 @login_required
 def profile(username):
     # ...
-    user = User.query.filter_by(username=username).first_or_404
+    user = User.query.filter_by(username=username).first_or_404()
     # ...
 ```
 
@@ -435,3 +435,72 @@ Update the `profile.html` file to display the current user's posts in the form o
 Now, if we click on the **Profile** page, we will see only the posts belonging to the logged-in user.
 
 ![Profile page posts](images/profile_page_avatars/profile_page_posts.png)
+
+
+## Assessment Project
+
+Below is a sample project with a basic user authentication system. The system allows a user to register for an account, and log in to access certain pages. You are required to recreate it with the same features.
+
+![Chapter 8 Assessment project](images/profile_page_avatars/chapter9_assessment_project.gif)
+
+
+- Create a new project folder on your desktop called **chapter9_profile_page**
+- Create a simple flask project structure.
+- Add a navigation bar with **Home**, **Login**, **Profile** and **Logout** links.
+- Define a database called **User** and another called **Comments**.
+- Run your migrations to create these two models.
+- Save user details in the database during registration.
+- Save user comments in the database during posting.
+- Add a simple user authentication system to tell if a user is logged in or not.
+- Display **Home** and **Login** link when a user has not logged in.
+- Display **Home**, **Profile** and **Logout** links when a user has logged in.
+- Display all comments in the **Home** page.
+- If a user HAS NOT logged in, DISPLAY a link to **login to post a comment** at the bottom of the table seen in the **Home** page.
+- If a user HAS logged in, HIDE the link to **login to post a comment** at the bottom of the table seen in the **Home** page.
+- Display the **Comment Form** in the **Profile** page.
+- When the **Logout** link is clicked, log the user out of their account
+- Add a README file to your project
+- Update your README file with content explaining the changes you have made
+- Create a new GitHub repository called **sample user auth assessment project**
+- Push your work to GitHub
+- Share the link to the completed GitHub project with your teacher below
+
+Your teacher will review your work and give you a score based on the key points mentioned above.
+
+## Quiz
+
+1. Which of the following is used to retrieve a specific user from the database?
+
+- [ ] User.username
+- [ ] User.query.all()
+- [x] User.query.filter_by(username=username).first()
+- [ ] User.retrieve.username
+
+2. Which command is used to create versions of a database?
+
+- [x] `flask db migrate`
+- [ ] `flask db versions`
+- [ ] `flask db upgrade`
+- [ ] `flask db init`
+- [ ] `flask shell`
+
+3. What does the decorator "@before_request" do in a Flask application?
+
+- [ ] Decorate a view function
+- [ ] Restrict access to a page
+- [ ] Diplays a timestamp on a page
+- [x] Execute code before any view function is invoked
+
+4. Which of the following can be used to display all the posts of a logged-in user?
+
+- [ ] `Post.query.all()`
+- [ ] `posts.current_user`
+- [x] `current_user.posts.all()`
+- [ ] `User.post.filter_by(current_user=current_user).all()`
+
+5. How would you display a dynamic user's avatar in a template?
+
+- [x] `<img src="{{ current_user.avatar(36) }}">`
+- [ ] `{{ current_user.avatar(36) }}`
+- [ ] `<img src="{{ avatar(36) }}">`
+- [ ] `{{ avatar(36) }}`
