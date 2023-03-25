@@ -39,6 +39,21 @@ By the end of this lesson, you should be able to:
 
 ### Table of Contents
 
+- [What Happens When There Is A Bug?](#what-happens-when-there-is-a-bug)
+    - [Sample Error](#sample-error)
+    - [Learn How To Read A Stack Trace](#learn-how-to-read-a-stack-trace)
+- [The Debug Mode](#the-debug-mode)
+    - [Enable Debug Mode](#enable-debug-mode)
+    - [Interactive Debugger](#interactive-debugger)
+    - [Caution When Using Debug Mode](#caution-when-using-debug-mode)
+    - [Reloader](#reloader)
+- [Custom Error Pages](#custom-error-pages)
+    - [Understand HTTP Status Messages](#understand-http-status-messages)
+    - [Custom Error Handlers](#custom-error-handlers)
+    - [Custom Error Templates](#custom-error-templates)
+    - [Register Error Handlers With The Application](#register-error-handlers-with-the-application)
+- [Sending Errors By Email](#sending-errors-by-email)
+
 
 
 ## What Happens When There Is A Bug?
@@ -55,6 +70,9 @@ Let us think about it for a moment. What happens when an error occurs in our Fla
 
 What do you encounter? Is it something familiar? How do you get out of it? Is there even a way to get out of it? Imagine a regular user of your application coming across such an error. It will scare them for sure.
 
+
+### Sample Error
+
 When I made the changes mentioned above, my application returned the following error.
 
 ![Internal server error](images/handling_errors/internal_server_error.png)
@@ -62,6 +80,9 @@ When I made the changes mentioned above, my application returned the following e
 Since we are the developers of our application, we should not panic. Instead, we should learn what this error is about, then try to fix it. If we look at our terminal window where our application is running, you will see a [stack trace](https://en.wikipedia.org/wiki/Stack_trace) of the error. The jargon "stack trace", also known as a traceback, is basically a report of our program at a certain point in time during execution. Stack traces are extremely helpful in debugging errors, because they not only show the sequence of the call in that stack, but they also show the exact line that produced the error.
 
 ![Terminal stack trace](images/handling_errors/terminal_stack_trace.png)
+
+
+### Learn How To Read A Stack Trace
 
 In the illustration above, the error points to a failure of SQLAlchemy not validating our changes. Notice that the error says `sqlite3.IntegrityError: UNIQUE constraint failed: user.username`. The issue stems of the `username` column of the `User` model. If we go back to the `models.py` file, we can see that we set the `username` column to `unique=True`.
 
@@ -168,7 +189,7 @@ You may be curious to know why we did not return any HTTP status code with previ
 The error handler for the 500 errors could be invoked after a database error, which was actually the case with the username duplicate seen earlier in the chapter. To ensure that any failed database sessions did not interfere with any database accesses triggered by the template, we issue a session rollback using the command `db.session.rollback()`. This command rolls the topmost transaction back immediately before propagating the exception outward. In Python, this is most fundamentally expressed using a `try: / except: / else: ` block. 
 
 
-### Custom Error Pages
+### Custom Error Templates
 
 At this point, if you followed the direction above, you should have two new templates. The first is the `404.html` file. Update this template with the following:
 
@@ -203,5 +224,65 @@ Also, if we try to access a page that does not exist, say updating the route fro
 ![Sample custom 404 page](images/handling_errors/sample_404_error_page.gif)
 
 
+## Sending Errors By Email
+
+The biggest problem with the default error handling provided by Flask is that there are no notifications. Instead, stack trace for errors are printed on the terminal which means that the output of the server process needs to be constantly monitored to discover errors. During development, this is okay, but on production, we've got to find a robust solution and put it in place.
+
+As an administrator of an application that is live, it would be best if we can be notified immediately an error occurs. We can utilize a real email service to help with this. The first step to implementing this solution is to set up email server details to our existing configuration file.
+
+![Email configurations](images/handling_errors/email_configurations.png)
+
+An email server requires the name of ther server, its port number, whether the connection should be encrypted and optional username and password. All these values are sourced from environment variables because we do not want to expose sensitive data about our application. Remember, the `config.py` file is pushed to version control and can be seen by anyone. 
 
 
+### Secret Configuration Values
+
+A safe approach would be to use a `.env` file. This file is added to `.gitignore` which instructs `git` to ignore this file from version control. As a result, any data in the `.env` file will remain a secret. Create a new file in the root directory of the project called `.env`.
+
+![Env file](images/handling_errors/env_file.png)
+
+
+This file is a text file. Let us update this new file with the following pieces of information:
+
+![Email values](images/handling_errors/secret_email_values.png)
+
+- The email server we have used is GMAIL. 
+- We have set its port to 587. If this value does not exist as an environment variable, then the application will default to port 25 as seen in `config.py` file. 
+- We have also enabled ecrypted connection. 
+- The value for `MAIL_USERNAME` is your personal email address. So be sure to substitue the placeholder data "user@email.com" with your actual email address. By the way, you can create another GMAIL address if you are concerned about the security of your primary account.
+- The `ADMINS` configuration variable is a list of the email addresses that will receive error reports, so your own email address should be in that list.
+- The `MAIL_PASSWORD` is specially set given the [latest security updates from Google regarding App Passwords](https://support.google.com/accounts/answer/185833?hl=en&visit_id=638152967033191399-217831286&p=app_passwords_sa&rd=1).
+    - To use the App Password feature, which gives less secure apps access to your account, you will need to first enable [2-step verification](https://support.google.com/accounts/answer/185839)
+    - Go to the [Security section of your Google Account](https://myaccount.google.com/security).
+    - Under "How to sign in to Google", click on "2-step verification"
+    ![2-step verification](images/handling_errors/2-step_verification.png)
+    - Click teh blue button "Get started".
+    ![Start 2-step verification](images/handling_errors/start_2_step_verification.png)
+    - You will be asked to provide your GMAIL password before continuing. 
+    ![Sign in to start 2-step verification](images/handling_errors/sign_in_to_start_2_step_verification.png)
+    - Add a phone number (you should have access to this number because a text messag will be sent to it) then press "Next".
+    ![Add phone number](images/handling_errors/add_phone_number.png)
+    - Verify the token received by keying it in the field seen below.
+    ![Verify token received](images/handling_errors/verify_token_received.png)
+    - Turn on 2-step verification by pressing the "TURN ON" button.
+    - [Turn on 2-step verification](images/handling_errors/turn_on_2_step_verification.png)
+    - Once again, select "2-Step Verification"
+    ![2-step verification again](images/handling_errors/2_step_again.png)
+    - Scroll to the bottom to locate the "App passwords" section.
+    ![App passwords section](images/handling_errors/find_app_password_section.png)
+    - From the two dropdown menus select the appropriate entries. In the case above, "Mail" has been selected in the first menu. You can choose an option from the second dropdown menu. Alternatively, you can create a custom name. Then, click "GENERATE".
+    ![Create app](images/handling_errors/generate_password.png)
+    - You will see your app password (see image below). Ensure that you have copied this 16-character password to your clipboard. This can be done by highlighting the password using your mouse and pressing "Ctrl + C" on your keyboard.
+    ![App password](images/handling_errors/app_password.png)
+    - Press "Done". You will see your new app listed in the "App passwords page.
+    ![List of apps in gmail](images/handling_errors/list_of_apps.png)
+- Update the value of `MAIL_PASSWORD` in `.env` with the password copied from GMAIL. You will have something such as `MAIL_PASSWORD=paste-your-password-here`.
+
+
+### Email logs
+
+Logs are the output of our error message. Flask uses Python's `logging` package to write its logs, and this package already has the ability to send logs by email. All we need to do to get emails sent out is to add a [SMTPHandler](https://docs.python.org/3.6/library/logging.handlers.html#smtphandler) instance to the Flask logger object, which is `app.logger`. In our `app/__init__.py` file, let us add the following:
+
+![Email logs](images/handling_errors/email_logs.png)
+
+We choose to enable the email logger only when the app's debug mode is not on. Additionally, we only enable the email logger when a mail server has been set. Without these conditions, no logs will be sent out via email. We begin by getting the username and password of the mail which will be used to authenticate the process. We also ensure that the connection is secure through encryption before creating an SMTPHandler instance. This instance defines the email server, from whom the email has come from (in our case above, we have set the sender as `no-reply`), the recipients of the email (who are the admins of the app), a subject of the email and passing in security credentials. We define and set this kind of log as an error before passing the instance to Flask's logger, the `app.logger`.
