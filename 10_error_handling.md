@@ -53,6 +53,10 @@ By the end of this lesson, you should be able to:
     - [Custom Error Templates](#custom-error-templates)
     - [Register Error Handlers With The Application](#register-error-handlers-with-the-application)
 - [Sending Errors By Email](#sending-errors-by-email)
+    - [Secret Configuration Values](#secret-configuration-values)
+    - [Email logs](#email-logs)
+- [Logging Errors To A File](#logging-errors-to-a-file)
+    - [Understand String Formatting](#understand-string-formatting)
 
 
 
@@ -132,7 +136,7 @@ We can also open a Python prompt on any of the frames and execute any valid Pyth
 
 ### Caution When Using Debug Mode
 
-**It is extremely important to NEVER run a Flask application in debug mode in a production server** (a production server is accessible to an end user via a network such as the internet). The debugger allows the user to remotely execute code in the server, so this can be nice unexpected gift to a malicious attacker who may be interested in infiltrating your server. Safety first, the debugger typically starts and runs in the browser locked, and on first use, it will ask for a PIN number which we can see from our terminal output after running `flask run` command.
+**It is extremely important to NEVER run a Flask application in debug mode in a production server** (a production server is accessible to an end user via a network such as the internet). The debugger allows the user to remotely execute code in the server, so this can be a nice and an unexpected gift to a malicious attacker who may be interested in infiltrating your server. Safety first, the debugger typically starts and runs in the browser locked, and on first use, it will ask for a PIN number which we can see from our terminal output after running `flask run` command.
 
 
 ### Reloader
@@ -237,7 +241,7 @@ An email server requires the name of ther server, its port number, whether the c
 
 ### Secret Configuration Values
 
-A safe approach would be to use a `.env` file. This file is added to `.gitignore` which instructs `git` to ignore this file from version control. As a result, any data in the `.env` file will remain a secret. Create a new file in the root directory of the project called `.env`.
+A safe approach would be to use a `.env` file. This file should added to `.gitignore` which instructs `git` to ignore this file from version control. As a result, any data in the `.env` file will remain a secret. Create a new file in the root directory of the project called `.env`.
 
 ![Env file](images/handling_errors/env_file.png)
 
@@ -252,28 +256,29 @@ This file is a text file. Let us update this new file with the following pieces 
 - The value for `MAIL_USERNAME` is your personal email address. So be sure to substitue the placeholder data "user@email.com" with your actual email address. By the way, you can create another GMAIL address if you are concerned about the security of your primary account.
 - The `ADMINS` configuration variable is a list of the email addresses that will receive error reports, so your own email address should be in that list.
 - The `MAIL_PASSWORD` is specially set given the [latest security updates from Google regarding App Passwords](https://support.google.com/accounts/answer/185833?hl=en&visit_id=638152967033191399-217831286&p=app_passwords_sa&rd=1).
-    - To use the App Password feature, which gives less secure apps access to your account, you will need to first enable [2-step verification](https://support.google.com/accounts/answer/185839)
+    - To use the App Password feature, which gives less secure apps access to your account, you will need to first enable [2-step verification](https://support.google.com/accounts/answer/185839).
     - Go to the [Security section of your Google Account](https://myaccount.google.com/security).
     - Under "How to sign in to Google", click on "2-step verification"
     ![2-step verification](images/handling_errors/2-step_verification.png)
-    - Click teh blue button "Get started".
+    - Click the blue button "Get started".
     ![Start 2-step verification](images/handling_errors/start_2_step_verification.png)
     - You will be asked to provide your GMAIL password before continuing. 
     ![Sign in to start 2-step verification](images/handling_errors/sign_in_to_start_2_step_verification.png)
-    - Add a phone number (you should have access to this number because a text messag will be sent to it) then press "Next".
+    - Add a phone number (you should have access to this number because a text message will be sent to it) then press "Next".
     ![Add phone number](images/handling_errors/add_phone_number.png)
     - Verify the token received by keying it in the field seen below.
     ![Verify token received](images/handling_errors/verify_token_received.png)
     - Turn on 2-step verification by pressing the "TURN ON" button.
-    - [Turn on 2-step verification](images/handling_errors/turn_on_2_step_verification.png)
+    ![Turn on 2-step verification](images/handling_errors/turn_on_2_step_verification.png)
     - Once again, select "2-Step Verification"
     ![2-step verification again](images/handling_errors/2_step_again.png)
     - Scroll to the bottom to locate the "App passwords" section.
     ![App passwords section](images/handling_errors/find_app_password_section.png)
-    - From the two dropdown menus select the appropriate entries. In the case above, "Mail" has been selected in the first menu. You can choose an option from the second dropdown menu. Alternatively, you can create a custom name. Then, click "GENERATE".
+    - From the two dropdown menus select the appropriate entries. In the case shown above, "Mail" has been selected in the first menu. You can choose an option from the second dropdown menu. Alternatively, you can create a custom name. Then, click "GENERATE".
     ![Create app](images/handling_errors/generate_password.png)
     - You will see your app password (see image below). Ensure that you have copied this 16-character password to your clipboard. This can be done by highlighting the password using your mouse and pressing "Ctrl + C" on your keyboard.
     ![App password](images/handling_errors/app_password.png)
+    - Above, I am showing you the app password, though this should NEVER be done. The app password should remain a secret. At the end of this lesson, I will discard the password shown above and create a new one.
     - Press "Done". You will see your new app listed in the "App passwords page.
     ![List of apps in gmail](images/handling_errors/list_of_apps.png)
 - Update the value of `MAIL_PASSWORD` in `.env` with the password copied from GMAIL. You will have something such as `MAIL_PASSWORD=paste-your-password-here`.
@@ -290,3 +295,58 @@ We choose to enable the email logger only when the app's debug mode is not on. A
 Test the username duplicate error again. Note that the app takes a bit of time to process the error. If you check your email addresses, as listed in the `ADMINS` list in your `.env` file, you should be able to see an email containing the error log.
 
 ![Error log received via email](images/handling_errors/error_log_received_via_email.png)
+
+
+## Logging Errors To A File
+
+The timeliness of receiving error logs notification via email is so good, but sometimes it is not enough. There are some failure conditions that do not end up as Python exceptions and are not a major problem, but may still be interesting enough to save for debugging purposes. For this reason, we may consider saving them on a file and maintaining that file.
+
+To enable a file-based log handler, we are going to use the [RotatingFileHandler](https://docs.python.org/3.6/library/logging.handlers.html#rotatingfilehandler) in a similar way we did with the email handler.
+
+![Import RotatingFileHandler](images/handling_errors/import_rotating_file_handler.png)
+
+The informational error logs will be stored as files in our project. Therefore, we begin by importing the necessary packages that will help us generate these logs. These are **RotatingFileHandler** and the **os** package.
+
+![Generate logs](images/handling_errors/generate_logs.png)
+
+I would like to point out that I have replaced our previous email logger code with the keyword `pass` to help create room for you to see the full code. You should not change your code by replacing it with `pass`. Keep it as it was. Intentionally, the logging of errors to a file should be properly aligned with the `if` statement from the email logger.
+
+First, we check if we have a folder called **logs** in our project structure. We passively mentioned earlier that to "log" is to "record". This folder is appropriately called logs because it will hold all the error records. If no such folder exists, maybe the application is running for the first time or the folder was deleted, we use the `os.mkdir()` function to create a new folder. `mkdir` means "make (mk) directory (dir)".
+
+The `RotatingFileHandler()` class takes in the name of the file we want to save, in our case an log file will be called "tinker_app.log", the maximum size of each log file, and the maximum number of files the **logs** directory will hold. We have set the maximum number of log files in the logs directory to be 10. You can change this to any convinient number you want. I prefer to limit the number to 10 because I do not want these files to become an unnecessary load in the project.
+
+The nice thing about the `RotatingFileHandler()` class is that it rotates the logs, ensuring that the logs do not grow too large when the application runs for a long time. Each file is set to be 10KB large (1024 bytes is equivalent to 1KB). If the size of a file is about to be exceeded, the file is closed and a new one is silently opened for output. Rollover occurs when the current log file is nearly `maxBytes` in length, but if either the `maxBytes` or `backupCount` is zero, rollover never occurs.
+
+During rollover, the system appends (adds to the end of the filename) incremental numbers. Let us say for a backupCount of 3 and a base filename of `app.log`, we will get `app.log`, `app.log.1`, `app.log.2`, and `app.log.3`. The file being written is always `app.log` (or whatever you called it). When `app.log` is filled, it is closed and a newly renamed `app.log.1` file is opened.
+
+The `logging.Formatter()` class provides custom formatting for the logs messages. Since we intend to save these messages to a file, it is best we get as much information about the log as possible. So, we use the format that includes a **timestamp** (`asctime`, in the form `Sat Mar 25 15.51 2023`), the **logging level**, the **message** and the **source file** and **line number** from where the log entry originated.
+
+
+### Understand String Formatting
+
+In Python both `%s` and `%d` are placeholders for a **string** and a **number** respectively. `%s` will return the string and `%d` will return number, the values are passed using `%` operator. The `s` at the end of the string indicates that the value to be concatenated/added should be a string. Notice that in our file-based log we also have `%d`. This denotes the addition of a number. Let us look at an example:
+
+```python
+>>> name = input('Who are you? ')
+>>> print('Hello, %s' %(name))
+
+# Output
+Who are you? (user says "Njeri")
+Hello Njeri
+```
+
+The String formatting method shown above is the old school method. It works, but there is a new update in Python6.6+ on how we can format strings. Let us look at the example below:
+
+```python
+>>> name = "Njeri"
+>>> age = 5
+>>> print(f"Hello {name}. You are {age}.")
+
+# Output
+Hello Njeri. You are 5.
+```
+
+This method of formatting Strings is called the `f-Strings` (formatted string literals). You place the `f` at the beginning of a string and curly braces containing the expressions what will be replaced with their values. The expressionsa are evaluated at runtime and then formatted using the `__format__` protocol. Given this update, can you update the file logger format to use the f-strings? &#128512; (Try but it is not mandatory).
+
+To make the logging more useful, we lower the logging level to the `INFO` category. The other categories include `DEBUG`, `INFO`, `WARNING`, `ERROR` and `CRITICAL` in increasing order of severity.
+
