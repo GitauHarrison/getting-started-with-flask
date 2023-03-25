@@ -244,7 +244,7 @@ A safe approach would be to use a `.env` file. This file is added to `.gitignore
 
 This file is a text file. Let us update this new file with the following pieces of information:
 
-![Email values](images/handling_errors/secret_email_values.png)
+![Email values](images/handling_errors/secret_email_values2.png)
 
 - The email server we have used is GMAIL. 
 - We have set its port to 587. If this value does not exist as an environment variable, then the application will default to port 25 as seen in `config.py` file. 
@@ -286,3 +286,7 @@ Logs are the output of our error message. Flask uses Python's `logging` package 
 ![Email logs](images/handling_errors/email_logs.png)
 
 We choose to enable the email logger only when the app's debug mode is not on. Additionally, we only enable the email logger when a mail server has been set. Without these conditions, no logs will be sent out via email. We begin by getting the username and password of the mail which will be used to authenticate the process. We also ensure that the connection is secure through encryption before creating an SMTPHandler instance. This instance defines the email server, from whom the email has come from (in our case above, we have set the sender as `no-reply`), the recipients of the email (who are the admins of the app), a subject of the email and passing in security credentials. We define and set this kind of log as an error before passing the instance to Flask's logger, the `app.logger`.
+
+Test the username duplicate error again. Note that the app takes a bit of time to process the error. If you check your email addresses, as listed in the `ADMINS` list in your `.env` file, you should be able to see an email containing the error log.
+
+![Error log received via email](images/handling_errors/error_log_received_via_email.png)
