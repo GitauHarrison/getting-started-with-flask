@@ -383,4 +383,40 @@ Also, try creating anther user whose username already exists. Your application s
 ## Assessment Project
 
 
+
 ## Quiz
+
+1. What does the UNIQUE database constraint do in a backend application?
+
+- [ ] Makes the project the one and only out there
+- [ ] Makes the project stand out from the rest
+- [x] Enforces non-duplicate entries in a database
+- [ ] Creats another column in a database table
+
+2. Which of the following classes is used to provide a user with relevant feedback of an error?
+
+- [x] ValidationError()
+- [ ] EqualTo()
+- [ ] RaiseError()
+- [ ] EmailValidator()
+
+3. Which of the following is used to retrieve the first occurance of a user's email from the database?
+
+- [ ] User.query()
+- [ ] User.filter_by(username=username)
+- [ ] User.query.filter_by(usename).first()
+- [ ] User.query.filter_by(usename=username).first()
+
+4. Which of the following loggers is used to send an admin a log report via email?
+
+- [x] SMTPHandler()
+- [ ] RotatingFileHandler()
+- [ ] EmailRotatingHandler()
+- [ ] TimedRotatingFileHandler()
+
+5. Which of the following will successfully print an output on the console?
+
+- [ ] print("Hello, {name}")
+- [ ] print("Hello %s" name)
+- [x] print(f"Hello {name}")
+- [ ] print("Hello, %s name")
