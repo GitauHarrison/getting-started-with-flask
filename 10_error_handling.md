@@ -382,7 +382,19 @@ Also, try creating anther user whose username already exists. Your application s
 
 ## Assessment Project
 
+Below is a sample user registration project. The goal of the assessment project is to help guide a user from registering as an existing user.
 
+![Chapter11 Assessment quiz](images/handling_errors/chapter11_assessment_quiz.gif)
+
+- Create a new projet and update its Flask structure
+- Add a **home** route and a **registration** route
+- Create a simple `User` database with necessary column fields
+- Catch possible errors that may arise as a result of user registration bugs
+- Display a relevant message to the user informing them of what the error is and how to go about it.
+- Add a README file to your project
+- Push your project to GitHub
+
+Your teacher will assess your project and give you a score based the key points highlighted above.
 
 ## Quiz
 
