@@ -57,6 +57,9 @@ By the end of this lesson, you should be able to:
     - [Email logs](#email-logs)
 - [Logging Errors To A File](#logging-errors-to-a-file)
     - [Understand String Formatting](#understand-string-formatting)
+- [Fix The Duplicate Username Bug](#fix-the-duplicate-username-bug)
+- [Assessment Project](#assessment-project)
+- [Quiz](#quiz)
 
 
 
@@ -350,3 +353,34 @@ This method of formatting Strings is called the `f-Strings` (formatted string li
 
 To make the logging more useful, we lower the logging level to the `INFO` category. The other categories include `DEBUG`, `INFO`, `WARNING`, `ERROR` and `CRITICAL` in increasing order of severity.
 
+
+## Fix The Duplicate Username Bug
+
+The first update we will make will be on our `forms.py` module. This module defines both the `RegisterForm()` and the `EditProfileForm()`. We have selected these two forms because they are the ones responsible for the update of our database. During registration, we want to make sure that a new user does not use an existing username or email in our database. 
+
+![Validate registration data](images/handling_errors/validate_registation_data.png)
+
+We begin by querying our database to find out if the username and email address supplied by a user through our registration form already exists in our database. The query will try to find the first occurance of the username or email. If there is such data already in the database, denoted by `if user is not None`, we raise a Validation Error and provide a relevant message to the user telling them why their entry was rejected. This validation should also be replicated on the profile editor.
+
+![Validate profile data](images/handling_errors/validate_profile_data.png)
+
+The validation mehtod used above accepts the `original_username` as an argument. Our `EditProfileForm` shall be modified to accept the current user's username as the original username (Below we will add an argument to our `EditProfileForm()` in the `edit_profile()` view function.)
+
+Using the original name data, we make a logical comparison with the data passed in the `username` field of the profile editor. If the username in the username field is the same as the original username, then there is really no reason to check the database for duplicates. But, if the information passed to the profile editor is not the same as the original name, we query our database to find the first occurance of such a username. Should the username already exist, then we raise a validation error and notify the user of the what they need to do.
+
+To ensure that our custom validation above works, we will need to make changes to the `edit_proile()` view functions as seen below:
+
+![Add original username](images/handling_errors/add_original_username.png)
+
+You will notice that after the `edit_profile()` view function has an error the first time you check it. This is because, it now expects the original username as an argument. As soon as we pass the current user's username, this class conforms to the validation changes we want implemented.
+
+Now, we can try the duplicate username bug one more time.
+
+![Fixed duplicate username bug](images/handling_errors/fix_duplicate_username_bug.gif)
+
+Also, try creating anther user whose username already exists. Your application should be intelligent enough to know that the username already exists, and it should not crash.
+
+## Assessment Project
+
+
+## Quiz
