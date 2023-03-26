@@ -179,7 +179,7 @@ The display of posts is similar to before, but we have improved the structure an
 
 At the moment, the number of posts being displayed on both the "Home" and "Profile" pages are minimal, but sooner rather than later, this number is going to increase. What happens if the application has thousands of user posts? Can you imagine handling such a list?
 
-### Introduction to Pagination
+## Introduction to Pagination
 
 To address this ticking timebomb, we are going to **paginate** the post list. What this means is that we are initially going to show a limited number of posts at a time, and then include links to navigate through the entire list of posts. Flask has the query method `paginate()` that natively (built-in) supports pagination. For example, if we want the first 3 posts in the database, we can do the following:
 
@@ -198,7 +198,7 @@ The `paginate()` method can query any Flask-SQLAlchemy object. It takes three ar
 What is returned from `paginate()` is a `Pagination` object. The `items` attribute of this object contains the list of items in the requested page.
 
 
-### Pagination Configuration
+## Pagination Configuration
 
 The essence of maintaining a configuration module in our application is two-fold: (1) To have all application-wide configurations in one place (imagine if they were in individual pages; it would have been hectic making changes), and (2) to hide sensitive data about our application. Since the number of items to be displayed in a page is going to be a characteristic of our application, we can choose to hide this piece of information as an environment variable, and only access it through the configuration file. Below, let us update our `config.py` file:
 
@@ -210,9 +210,9 @@ Then, in the `.env` file, we can provide the number of posts we would like displ
 
 In the pagination configuration, we convert the value of `POSTS_PER_PAGE` into an integer using the function `int()`. The `page` variable takes an integer value and is, therefore,  necessary to convert the string values of the `.env` file.
 
-For testing purposes, I have used 3, but in the final application, it is best to have a higher number.
+For testing purposes, I have used 3, but in the final application, it is best to have a higher number. Stop the Flask server by pressing "Ctrl + C" then restart it by running `flask run` to use the new change.
 
-### Implementing Pagination
+## Implementing Pagination
 
 Next, we need to decide how the page numbers is going to be incorporated into the application URLs (A URL is the link in the address bar such as http://127.0.0.1:5000/home). A common way is to use a **query string** argument to specify an optional page number, defaulting to page 1 if it is not given. 
 
@@ -241,3 +241,40 @@ Now, let us add a few more posts from our **Home** page. Then we will update our
 
 You will notice that only three posts are displayed in a page. When you add the query string `?page=2` at the end of the URL, you will see the other posts made earlier.
 
+
+## Page Navigation
+
+You can admit the appending the query string `?page=2` on the URL is cumbersome and unfriendly. In this section, we are going to learn how to add links at the  bottom of the blog posts to allow a user to access next and/or previous pages.
+
+[Earlier](#introduction-to-pagination) in our lesson, we came across the attribute `items`. We said that this attribute contains the list of items in the request page. The `Pagination` object has far more attributes, such as:
+
+- `has_next`: True if ther is at least one more page after the current one
+- `has_prev`: True if there is at least one more page before the current one
+- `next_num`: page number for the next page
+- `prev_num`: page number for the previous page
+
+With these four extra attributes, we can generate next and previous page links and pass them down to the templates for rendering. Let us make the following update to `index()` view function.
+
+![Next and prev links on home page](images/pagination/next_prev_links_home_page.png)
+
+We also need to and the "next" and "prev" links in the `profile` view function.
+
+![Next and prev links on profile page](images/pagination/add_navigation_links_profile3.png)
+
+We have used the `url_for()` function to convert the `next_url` and `prev_url` into links. Remember that `url_for()` is a dynamic way to create links. Instead of something such as `/index`, we can use `url_for('index')` to get the URL for the `index()` view function. As such, even if we change the URL from `/index` to something else, say, `/home`, we do not have to worry about going into each template to update each link (from `<a href="/index">Home</a>` to `<a href="/home">Home</a>`). The application will automatically update the URL for us.
+
+Back to page navigation. We set `next_url` to a link only if there is a page in that direction. If the current page is at the end of a collection of posts, then `has_next` and `has_prev` attributes will be `False`, and in that case, the link in that direction will be set to `None`.
+
+Now, below each collection of posts, we can add the navigation links as follows:
+
+![Add navigation links to home page](images/pagination/add_navigation_links_home.png)
+
+We also need to do the same in the **Profile** page.
+
+![Add navigation links to profile page](images/pagination/add_navigation_links_profile.png)
+
+The first link is labels "Newer posts" and it points to  the previous page because we sorted our list to display posts from the latest to the oldest. The second link is labeled "Older posts" and it points to next page of posts. If any of the page is `None`, meaning there is no more posts to show, then it is omitted from the page through a conditional statement.
+
+![Page navs](images/pagination/page_navs.gif)
+
+You will need to restart your Flask server to see the changes (we had disabled the debug mode with its reloader feature). After you are done with the experimenting the pagination feature, you can set `POSTS_PER_PAGE` to a more reasonable value, say 25.

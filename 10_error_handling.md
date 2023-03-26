@@ -417,7 +417,7 @@ Your teacher will assess your project and give you a score based on the key poin
 - [ ] User.query()
 - [ ] User.filter_by(username=username)
 - [ ] User.query.filter_by(usename).first()
-- [ ] User.query.filter_by(usename=username).first()
+- [x] User.query.filter_by(usename=username).first()
 
 4. Which of the following loggers is used to send an admin a log report via email?
 
