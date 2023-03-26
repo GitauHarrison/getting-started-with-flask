@@ -30,13 +30,22 @@ By the end of this lesson, you should be able to:
 - Understand what pagination is
 - Display a list of user posts
 - Display a certain amount of user posts in a page
-- Add pages to show more user posts
+- Understand query strings in a URL
+- Add navigational links to other post pages
 
 ### Table of Contents
 
+- [Overview of How To Handle Posts](#overview-of-how-to-handle-posts)
+- [Template Inclusion](#template-inclusion)
+- [Introduction to Pagination](#introduction-to-pagination)
+- [Pagination Configuration](#pagination-configuration)
+- [Implementing Pagination](#implementing-pagination)
+- [Page Navigation](#page-navigation)
+- [Assessment](#ass)
+- [Quiz](#quiz)
 
 
-## Overview of How We Handle Posts
+## Overview of How To Handle Posts
 
 So far, our application allows a logged-in user to make posts through the `PostForm()` in the "Home" page. 
 
@@ -175,11 +184,9 @@ At this stage, we can try the application once again so as to experience these l
 The display of posts is similar to before, but we have improved the structure and build process of our application by getting rid of situations that may warrant duplicates.
 
 
-## Pagination of Blog Posts
+## Introduction to Pagination
 
 At the moment, the number of posts being displayed on both the "Home" and "Profile" pages are minimal, but sooner rather than later, this number is going to increase. What happens if the application has thousands of user posts? Can you imagine handling such a list?
-
-## Introduction to Pagination
 
 To address this ticking timebomb, we are going to **paginate** the post list. What this means is that we are initially going to show a limited number of posts at a time, and then include links to navigate through the entire list of posts. Flask has the query method `paginate()` that natively (built-in) supports pagination. For example, if we want the first 3 posts in the database, we can do the following:
 
@@ -278,3 +285,9 @@ The first link is labels "Newer posts" and it points to  the previous page becau
 ![Page navs](images/pagination/page_navs.gif)
 
 You will need to restart your Flask server to see the changes (we had disabled the debug mode with its reloader feature). After you are done with the experimenting the pagination feature, you can set `POSTS_PER_PAGE` to a more reasonable value, say 25.
+
+## Assessment
+
+
+## Quiz
+
