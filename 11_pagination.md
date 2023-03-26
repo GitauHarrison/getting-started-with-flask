@@ -289,5 +289,40 @@ You will need to restart your Flask server to see the changes (we had disabled t
 ## Assessment
 
 
+
 ## Quiz
 
+1. What does the query Post.query.order_by(Post.timestamp.asc()).all() do?
+
+- [x] It orders a list of posts based on the time they were posted in an ascending order
+- [ ] It returns all the posts without any form of sorting
+- [ ] It orders a list of posts based on the time they were posted in a descending order
+- [ ] It adds pages to a template
+
+2. What is a for loop used for when displaying a collection of posts?
+
+- [ ] It is used to POST data to a database
+- [x] It is used retrieve all the posts that may be in a database table
+- [ ] It is used to create a URL for each post
+- [ ] It is used to return a collection of posts from a database
+
+3. Which of the following attributes is not associated with a Pagination object?
+
+- [ ] items
+- [ ] has_prev
+- [x] order_by
+- [ ] next_num
+
+4. Which of the following commands can you use to include a subtemplate in another template?
+
+- [ ] {{ include '_post.html'}}
+- [ ] {% include _post.html %}
+- [ ] "{{ _post.html }}"
+- [x] {% include '_post.html' %}
+
+5. If you would like to pass each item as a Pagination object to a template, which variable would you use from below?
+
+- [x] posts=posts.items
+- [ ] posts=posts
+- [ ] posts=posts.next_num
+- [ ] posts=post.item
