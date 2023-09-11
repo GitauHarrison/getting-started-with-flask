@@ -8,21 +8,22 @@ Data within the most common types of databases in operation today is typically m
 
 Throughout this tutorial, these are the reference links for the things we will be looking at. At your convenience, you can navigate to whatever article you want to refer to:
 
-1. [Getting Started with HTML and CSS](01_getting_started_with_HTML_and_CSS.md)
-2. [Git and GitHub](02_git_and_github.md)
-3. [Getting Started with Flask](03_getting_started_with_flask.md)
-4. [Introduction to Bootstrap](04_bootstrap_intro.md)
-5. [Working with Templates in Flask](05_working_with_templates.md)
-6. [Web forms](06_web_forms.md)
-7. [Database](07_database.md) (this article)
-8. [User Login](08_user_login.md)
-9. [Profile Page and Avatars](09_profile_page_and_avatars.md)
-10. [Error Handling](10_error_handling.md)
-11. [Pagination](11_pagination.md)
-12. [Working With Email](12_working_with_email.md)
-13. [Better-looking Application](13_better_looking_application.md)
-14. [Timestamp](14_timestamp.md)
-15. [Deployment on Render](15_deployment_on_render.md)
+2. [Getting Started with HTML and CSS](02_getting_started_with_HTML_and_CSS.md)
+3. [Git and GitHub](03_git_and_github.md)
+4. [Collaboration Using GitHub](04_collaboration_using_github.md)
+5. [Introduction to Bootstrap](05_bootstrap_intro.md)
+6. [Getting Started with Flask](06_getting_started_with_flask.md)
+7. [Working with Templates](07_working_with_templates.md)
+8. [Web forms](08_web_forms.md)
+9. [Database](09_database.md) (this article)
+10. [User Login](10_user_login.md)
+11. [Profile Page and Avatars](11_profile_page_and_avatars.md)
+12. [Error Handling](12_error_handling.md)
+13. [Pagination](13_pagination.md)
+14. [Working With Email](14_working_with_email.md)
+15. [Better-looking Application](15_better_looking_application.md)
+16. [Timestamp](16_timestamp.md)
+17. [Deployment on Render](17_deployment_on_render.md)
 
 
 ### Lesson Objectives
@@ -69,7 +70,7 @@ Flask does not support databases natively. This is in line with its philosophy o
 
 Databases are categorized into two large groups (1) relational databases and (2) Non-relational databases. Databases are written and read using the popular relational query language [SQL(Structured Query Language)](https://en.wikipedia.org/wiki/SQL). Throughout our lesson, we shall focus on using a relational database model since it is so much easier to use when you have structured data such as blog posts or even a list of users.
 
-In [chapter 3](03_getting_started_with_flask.md), you learned how to install a Flask extension. During this chapter, you will install a few more extensions to help us work with a database. The first extension you will install is called [Flask-SQLAlchemy](http://packages.python.org/Flask-SQLAlchemy). It provides a Flask-friendly wrapper around the popular [SQLAlchemy](http://www.sqlalchemy.org/) package. What SQLAlchemy does is that it converts high-level classes, objects, and methods into tables and SQL.
+In [chapter 6](06_getting_started_with_flask.md), you learned how to install a Flask extension. During this chapter, you will install a few more extensions to help us work with a database. The first extension you will install is called [Flask-SQLAlchemy](http://packages.python.org/Flask-SQLAlchemy). It provides a Flask-friendly wrapper around the popular [SQLAlchemy](http://www.sqlalchemy.org/) package. What SQLAlchemy does is that it converts high-level classes, objects, and methods into tables and SQL.
 
 We have different types of databases such as [PostgreSQL](https://www.postgresql.org/), [MySQL](https://www.mysql.com/), and [SQLite](https://www.sqlite.org/). They are all very powerful. **We shall use the SQLite database for our project**. It is not only very convenient for small applications but it can also be extended to handle large applications.
 
