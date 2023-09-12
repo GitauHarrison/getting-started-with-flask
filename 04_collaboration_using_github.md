@@ -2,7 +2,7 @@
 
 ![Collaboration Using GitHub](/images/collaboration_github/github_collaboration.jpg)
 
-Now that we have learnt what GitHub is and how to push our code to the platform in [chapter 3](03_git_and_github.md), let us learn how two developers can work together on the same project even while they are physically apart. As a distributed work system, GitHub allows multiple developers to work on one project.
+Now that we have learned what GitHub is and how to push our code to the platform in [chapter 3](03_git_and_github.md), let us learn how two or more developers can work together on the same project even while they are physically apart. As a distributed work system, GitHub allows multiple developers to work on one project.
 
 ![Distributed Version Control System](images/git_and_github/distributed_version_control.png)
 
@@ -10,7 +10,7 @@ Now that we have learnt what GitHub is and how to push our code to the platform 
 >
 >What does this mean? The kind of work, or projects, you will be doing as you grow older will require the collaboration of multiple people even though you may be physically apart. This is the time for you to get comfortable with this technology.
 
-Throughout this tutorial, these are the reference links of the things we will be looking at. At your own convinience, you can navigate to whatever article you want to refer to:
+Throughout this tutorial, these are the reference links for the things we will be looking at. At your convenience, you can navigate to whatever article you want to refer to:
 
 
 2. [Getting Started with HTML and CSS](02_getting_started_with_HTML_and_CSS.md)
@@ -35,9 +35,9 @@ Throughout this tutorial, these are the reference links of the things we will be
 
 By the end of this lesson, you should be able to:
 
-- Create a team of three developers (you are no longer studets, you are developers)
+- Create a team of three developers (you are no longer students, you are developers)
 - Assign each other roles
-- Create the base project (done by the project owner) and push to GitHub
+- Create the base project (done by the project owner) and push it to GitHub
 - Fork the base project to your own GitHub account
 - Clone your fork (done in your GitHub Account)
 - Make changes locally
@@ -83,7 +83,7 @@ So, how do you start to collaborate? First, there needs to be an idea for a proj
 
 ![Solstice Sunglasses](/images/collaboration_github/solstice_sunglasses.png)
 
-The person with the idea can become the project owner (Developer A), where he/she creates the base file (for example, the landing page). This person then seeks help with the [login page](https://solsticesunglasses.com/account/login?return_url=%2Faccount) and assign the task to Developer B. To finalize the sunglasses website, the project owner (Developer A) further seeks the help of Developer C to build the [new arrivals](https://solsticesunglasses.com/collections/new-arrivals) page.
+The person with the idea can become the project owner (Developer A), where he/she creates the base file (for example, the landing page). This person then seeks help with the [login page](https://solsticesunglasses.com/account/login?return_url=%2Faccount) and assigns the task to Developer B. To finalize the sunglasses website, the project owner (Developer A) further seeks the help of Developer C to build the [new arrivals](https://solsticesunglasses.com/collections/new-arrivals) page.
 
 At this point, we not only have a project in mind, but we also have developers ready to contribute to the project. The sunglasses website is nice, but quite an overkill for us. We will not be making a clone of it during this lesson. Instead, we will focus on a much simpler project.
 
@@ -92,12 +92,12 @@ At this point, we not only have a project in mind, but we also have developers r
 
 ![Inter-student collaboration project](/images/collaboration_github/inter_student_collaboration_project.gif)
 
-Our focus project seen on the image above, and accessible on [this link](https://collab-project-1-using-flask.onrender.com/) (click here), features three distinct pages:
+Our focus project seen in the image above, and accessible on [this link](https://collab-project-1-using-flask.onrender.com/) (click here), features three distinct pages:
 
 - The landing page:
     - Has a heading called "Inter-student Collaboration"
-    - Has some text and a blue "Register" button to the left side
-    - Has an image to the right side
+    - Has some text and a blue "Register" button on the left side
+    - Has an image on the right side
 - The Login page:
     - Has a title called "Login"
     - Has a simple login form
@@ -110,7 +110,7 @@ Our focus project seen on the image above, and accessible on [this link](https:/
 
 ### Roles
 
-This illustration will act as a basis of our project idea. With the project idea out of the way, it is time to assign ourselves some roles. Among yourselves, pick on the these roles:
+The image shown above will act as a basis for our project idea. With the project idea out of the way, it is time to assign ourselves some roles. Among yourselves, pick one of these roles:
 
 - Developer A (Project owner):
     - You will create the landing page
@@ -258,7 +258,7 @@ That is how you can utilize the Bootstrap documentation to quickly put together 
 
 #### How The Body Was Updated
 
-Within our `<body> ... </body>` tags, we have used the concept of grids to properly design our landing page. For example, the title, identified by the `<h1>...</h1>` element, is wrapped in a class called `row` which has a medium class column of size 12 as `col-md-12`.
+Within our `<body> ... </body>` tags in **login.html**, we have used the concept of grids to properly design our landing page. For example, the title, identified by the `<h1>...</h1>` element, is wrapped in a class called `row` which has a medium class column of size 12 as `col-md-12`.
 
 ```html
 <!-- 
@@ -340,11 +340,11 @@ At this stage, as a project owner, you are ready to create a new repository on y
 ![Name new repo](/images/collaboration_github/name_new_repo.png)
 
 
-Call the new repository **chapter4_inter_student_collaboration**, provide a simple description and then click on the green "Create repository" button.
+Call the new repository **chapter4_inter_student_collaboration**, provide a simple description, and then click on the green "Create repository" button.
 
 ![Create new repo](/images/collaboration_github/create_new_repo.png)
 
-You will see more terminal commands that we can use to push our code to GitHub. First, ensure that you have clicked on the SSH button (not HTTPS).
+You will see more terminal commands that you can use to push your code to GitHub. First, ensure that you have clicked on the SSH button (not HTTPS).
 
 ![Click on ssh](/images/collaboration_github/click_on_ssh.png)
 
@@ -365,7 +365,7 @@ Now, if you go to the new repository and refresh the page, you should see your l
 
 ### Developer B And Developer C
 
-- Developer B: Your role may be to create the login page of our illustrated project. 
+- Developer B: Your role may be to create the login page for our illustrated project. 
 - Developer C: Your role may be to create the register page of our illustrated project. 
 
 Both of you, head over to your GitHub accounts (I will use Developer B to illustrate this. Developer C should also do the same). As Developer B, open the link shared by the project owner from your account.
@@ -373,7 +373,7 @@ Both of you, head over to your GitHub accounts (I will use Developer B to illust
 
 #### Fork The Repo
 
-To "fork" means to copy a repository belonging to another account into your account. This gives you the full copy of the project owner's work. To fork the repo you have just opened (using the link shared by the project owner), click on the "Fork" icon.
+To "fork" means to copy a repository belonging to another account into your account. This gives you a full copy of the project owner's work. To fork the repo you have just opened (using the link shared by the project owner), click on the "Fork" icon.
 
 ![Fork repo](/images/collaboration_github/fork_repo.png)
 
@@ -385,7 +385,7 @@ Give it a few seconds to do some background work for you. Thereafter, you will n
 
 ![Fork in your repo list](/images/collaboration_github/fork_in_your_repo_list.png)
 
-This is the simplicity of GitHub. Can you believe that you literally have someone else's full work?
+This is the simplicity of GitHub. Can you believe that you have someone else's full work?
 
 
 #### Making Changes Locally As Another Developer
@@ -517,7 +517,7 @@ Paste this code in you __login.html__ file:
 </html>
 ```
 
-We have a title from line #48 - #54 of our **login.html**. Right below line #54, we have defined the login form from lines #66 - #72. 
+We have a title from lines #48 - #54 of our **login.html**. Right below line #54, we have defined the login form from lines #66 - #72. 
 
 
 Alternatively, if you would like to quickly come up with a form, you can head over to the [Bootstrap documentation](https://getbootstrap.com/)(click here). 
@@ -538,7 +538,7 @@ Create a folder called **images** in your project:
 
 ![Login image folder](/images/collaboration_github/login_image_folder.png)
 
-Download an image from the internet (see [undraw](https://undraw.co/illustrations) for samples). Move your downloaded image to the new **images** subfolder. In the code above, I have included is an image (see line #60 in your VS Code). You will need to replace this image called **login.svg** with one that you have downloaded. 
+Download an image from the internet (see [undraw](https://undraw.co/illustrations) for samples). Move your downloaded image to the new **images** subfolder. In the code above, I have included an image (see line #60 in your VS Code). You will need to replace this image called **login.svg** with the one that you have downloaded. 
 
 
 #### Developer C
@@ -644,11 +644,11 @@ Copy and paste this code in your new **register.html** file:
 </html>
 ```
 
-This form can also be found through a simple search in the bootstrap documentation. You will also need to create a subfolder called **images**:
+This form can also be found through a simple search in the Bootstrap documentation. You will also need to create a subfolder called **images**:
 
 ![Login image folder](/images/collaboration_github/login_image_folder.png)
 
-Download an image from the internet (see [undraw](https://undraw.co/illustrations) for samples). In the code above, I have included is an image (see line #60 in your VS Code). You will need to replace this image called **login.svg** with one that you have downloaded. Move your downloaded image to the new **images** subfolder. 
+Download an image from the internet (see [undraw](https://undraw.co/illustrations) for samples). In the code above, I have included an image (see line #60 in your VS Code). You will need to replace this image called **login.svg** with the one that you have downloaded. Move your downloaded image to the new **images** subfolder. 
 
 
 #### Developer B And C: Push Your Work To GitHub
@@ -661,7 +661,7 @@ Check the status of your changes:
 
 ![Dev b check status](images/collaboration_github/dev_b_check_status.png)
 
-You should see "red" files and folders highlighting the changes you have made. There after, add these files to version control:
+You should see "red" files and folders highlighting the changes you have made. Thereafter, add these files to version control:
 
 ![Dev b add to vc](images/collaboration_github/dev_b_add_to_vc.png)
 
@@ -684,7 +684,7 @@ Head over to your GitHub account, and refresh the repository to see your new cha
 
 #### Developer B And C: Make A Pull Request
 
-The next step is to share the changes you have made with the owner of the project. We call this request a "Pull Request" (abbreviated as **PR**). This is so because we want the owner to pull our request and merge them with his/hers. To commence the process of making a pull request, we need to be in our forks on our individual GitHub accounts. Click on "Pull Request":
+The next step is to share the changes you have made with the owner of the project. We call this request a "Pull Request" (abbreviated as **PR**). This is so because we want the owner to pull our requests and merge them with his/hers. To commence the process of making a pull request, we need to be in our forks on our individual GitHub accounts. Click on "Pull Request":
 
 ![Dev b and c pr link](images/collaboration_github/dev_bc_pr_link.png)
 
@@ -704,7 +704,7 @@ The title is usually pre-filled for you from your commit message. It is advisabl
 
 ![Dev b and c pr sent to owner](images/collaboration_github/dev_bc_pr_sent_to_owner.png)
 
-As soon as the green button "Create pull request" at the bottom is clicked on, you will be redirected to the repository of the owner. This repository, seen above, is not yours, but the owner's (see the name). The Pull Request link now has an integer badge showing how many pull requests have been made to the repository. In our case, there is only one PR made, and it belongs to Developer B. Developer C is also expected to do the same thing, and the badge number will be automatically updated. An email has been conviniently sent with each pull request notifying the project owner of these requests.
+As soon as the green button "Create pull request" at the bottom is clicked on, you will be redirected to the repository of the owner. This repository, seen above, is not yours, but the owner's (see the name). The Pull Request link now has an integer badge showing how many pull requests have been made to the repository. In our case, there is only one PR made, and it belongs to Developer B. Developer C is also expected to do the same thing, and the badge number will be automatically updated. An email has been conveniently sent with each pull request notifying the project owner of these requests.
 
 
 ### Project owner (Developer A): Merge Changes
@@ -721,7 +721,7 @@ Click on the PR to see the changes made:
 
 ![See pr by developer B](images/collaboration_github/see_pr_by_dev_b.png)
 
-If all the checks pass, and everything is green, it means that you are able to merge the changes made by Developer B. What you need to do is click on the green button "Merge pull request". You will be asked once again to confirm the merge.
+If all the checks pass, and everything is green, it means that you can merge the changes made by Developer B. What you need to do is click on the green button "Merge pull request". You will be asked once again to confirm the merge.
 
 ![Confirm merge](images/collaboration_github/confirm_merge.png)
 
@@ -757,9 +757,9 @@ Below is an image of the sample project you are required to collaborate on. If y
     - What will Developer B do?
     - What will Developer C do?
 - The project owner should create the first template locally and push the changes to his/her GitHub account.
-- The project owner should share the link to the project's repository with Developer B and Developer c.
+- The project owner should share the link to the project's repository with Developer B and Developer C.
 - Developer B and Developer C need to fork the project owner's repository into their accounts
-- Developer B and Developer C should clone their own forks into their local machines
+- Developer B and Developer C should clone their forks into their local machines
 - Both Developer B and Developer C should implement the update assigned to them locally
 - Once the updates have been completed, Developer B and Developer C should push their work to their forks
 - On their forks, Developer B and Developer C need to make a pull request (PR) to the project's repository
@@ -780,7 +780,7 @@ Below is an image of the sample project you are required to collaborate on. If y
 2. What does GitHub excel at?
 
 - Notifying a project owner of a pending pull request
-- Allowing multiple developers to work together in one project
+- Allowing multiple developers to work together on one project
 - Using advanced technologies to merge pull requests
 - Making life easier for developers
 
