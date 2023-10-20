@@ -339,7 +339,7 @@ Who are you? (user says "Njeri")
 Hello Njeri
 ```
 
-The String formatting method shown above is the old-school method. It works, but there is a new update in Python6.6+ on how we can format strings. Let us look at the example below:
+The String formatting method shown above is the old-school method. It works, but there is a new update in Python3.6+ on how we can format strings. Let us look at the example below:
 
 ```python
 >>> name = "Njeri"

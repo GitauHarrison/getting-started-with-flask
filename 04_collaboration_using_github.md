@@ -793,7 +793,7 @@ Below is an image of the sample project you are required to collaborate on. If y
 
 4. Who is a project owner?
 
-- The person who is notified of changes in their repositories
+- The person who owns a repository
 - The person who owns a project to which others contribute
 - A normal developer
 - A supervisor who waits for others to finish their work
