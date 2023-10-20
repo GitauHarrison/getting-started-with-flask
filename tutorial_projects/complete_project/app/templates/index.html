@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                Hi {{ current_user.username }}, say something:
+            </p>
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.body.label }} <br>
+                    {{ form.body(cols=100, rows=4) }}<br>
+                    {% for error in form.body.errors %}
+                        <span style="color: red;">
+                            {{ error }}
+                        </span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.submit() }}
+                </p>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            {% for post in posts %}
+                {% if post %}
+                    {% include '_post.html' %}
+                {% endif %}
+            {% endfor %}
+
+            <!-- Pagination -->
+            {% if prev_url %}
+                <a href=" {{ prev_url }} ">Newer posts</a>
+            {% endif %}
+            {% if next_url %}
+                <a href=" {{ next_url }} ">Older posts</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
