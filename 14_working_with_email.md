@@ -289,4 +289,38 @@ The `send_async_email` function now runs in the background as a thread, invoked 
 
 ## Quiz
 
+1. Which of the following packages is used to work emails in Flask?
 
+- [ ] Flask-migrate
+- [ ] Flask-wtf
+- [ ] Email-validator
+- [x] Flask-mail
+
+2. What helps to protect a password reset link sent to a user's inbox?
+
+- [x] Token
+- [ ] Password
+- [ ] Secret key
+- [ ] Username
+
+3. Which technique below can you use to speed up the processing of emails in your application?
+
+- [ ] Use the argument _external=True in the URL
+- [x] Threads
+- [ ] Defining the email framework using a subject, sender and recipients
+- [ ] Use of tokens to validate an reset password link
+
+
+4. Which among the following is not needed in an email framework?
+
+- [ ] Subject
+- [x] URL
+- [ ] Text body
+- [ ] HTML body
+
+5. Which package below can be used to encrypt a user token?
+
+- [ ] Flask
+- [ ] Python-dotenv
+- [ ] Token encryptor
+- [x] JWT
