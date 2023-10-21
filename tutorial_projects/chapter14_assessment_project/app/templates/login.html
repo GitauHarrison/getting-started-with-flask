@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <h1 class="text-center">{{ title }}</h1>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form role="form" action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="row">
+
+                <div class="col-lg-12 mb-2">
+                    <div class="form-group position-relative">
+                        {{ form.username.label }} <span class="text-danger">*</span> <br>
+                        {{ form.username(class_='form-control') }}
+                        {% for error in form.username.errors %}
+                            <span style="color: red;">{{error}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-lg-12 mb-2">
+                    <div class="form-group position-relative">
+                        {{ form.password.label }} <span class="text-danger">*</span> <br>
+                        {{ form.password(class_='form-control', id_='password') }}
+                        {% for error in form.password.errors %}
+                            <span style="color: red;">{{error}}</span>
+                        {% endfor %}
+                        <br>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 mb-2">                                                
+                    <div class="form-group">
+                        <div class="custom-control m-0 form-check form-switch">
+                            {{ form.remember_me(class_='custom-control-input, form-check-input') }} {{ form.remember_me.label(class_='custom-control-label, form-check-label') }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 mb-2">
+                    {{ form.submit(class_='btn bg-primary w-100') }}
+                </div>
+                <div class="col-lg-12 mb-0">
+                    <p class="float-right forgot-pass">Forgot password? <a href="{{ url_for('request_password_reset') }}" class="text-primary font-weight-bold">Reset</a></p>
+                </div>
+                <div class="col-lg-12 mb-0">
+                    <p class="float-right forgot-pass">New here? <a href="{{ url_for('register') }}" class="text-primary font-weight-bold">Register Now</a></p>
+                </div>
+            </div>                                   
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+{% endblock %}
