@@ -285,6 +285,18 @@ The `send_async_email` function now runs in the background as a thread, invoked 
 
 ## Assessment
 
+The application below shows a simple authentication system. A user can register and sign in before being taken to the home page. There is also a password reset link to allow them to change their password.
+
+![Chapter 14 Assessment Project](images/email_support/chapter14_assessment_project.gif)
+
+- Create a new project folder called **chapter14_email_support**
+- Use Flask to complete the project:
+    - Create a Flask project structure
+    - Update the templates
+    - You can use Bootstrap
+- Add password reset feature
+- Add a `README.md` file
+- Push your work to GitHub
 
 
 ## Quiz
