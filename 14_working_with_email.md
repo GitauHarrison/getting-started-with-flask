@@ -38,8 +38,16 @@ By the end of this lesson, you should be able to:
 
 ### Table of Contents
 
-- 
-- [Assessment](#ass)
+- [Getting Started With Flask-Mail](#getting-started-with-flask-mail)
+- [Configure Flask-Mail](#configure-flask-mail)
+- [Testing Flask-Mail Usage](#testing-flask-mail-usage)
+- [Request For A Password Reset](#request-for-a-password-reset)
+- [Password Reset Tokens](#password-reset-tokens)
+- [Sending A Password Reset Email](#sending-a-password-reset-email)
+- [Resetting A User's Password](#resetting-a-users-password)
+- [Try](#try)
+- [Speed Up Performance](#speed-up-performance)
+- [Assessment](#assessment)
 - [Quiz](#quiz)
 
 
@@ -51,6 +59,8 @@ By the end of this lesson, you should be able to:
 (venv)$ pip3 install flask-mail
 ```
 
+![Install flask mail](images/email_support/install_flask_mail.png)
+
 As mentioned earlier, the email feature we are going to implement is limited to password resets. Whenever a user has forgotten their password, they can click a "Forgot password" link on our application, and the application will send them an email should they be found in our database (the condition here is that they need to exist in our database). The email sent will contain a link they can click to begin the process of reseting their passwords. 
 
 One thing we may not have paid attention to is that this password reset link can expire. Once the expected duration to reset a password has elapsed, this link becomes invalid, and cannot be used again. They user will be forced to request for another link. This expiration aspect of the password reset link is a necessary security feature to ensure the integrity of our users' accounts. This integrity is normally achieved using tokens that are assigned to a password reset link. To generate these tokens, we shall use [JSON web tokens](https://jwt.io/):
@@ -58,6 +68,8 @@ One thing we may not have paid attention to is that this password reset link can
 ```python
 (venv)$ pip3 install pyjwt
 ```
+
+![Install jwt](images/email_support/install_jwt.png)
 
 ## Configure Flask-Mail
 
@@ -78,7 +90,9 @@ We will enter the Python shell symbolized by `>>>`. Once there, let us run the f
 
 ![Send email via terminal](images/email_support/send_email_via_terminal.png)
 
-First, ensure you have provided a real email for `MAIL_USERNAME` and its associated `MAIL_PASSWORD`. If you cannot remember how to get the value for `MAIL_PASSWORD`, consider checking the section [Secret Configuration Values in Chapter 11: Error Handling](/12_error_handling.md#secret-configuration-values).
+The sending of emails is actually very simple. Notice that we use the class `Message` from flask-mail to define the `subject`, the `sender` and the `recipient` of the email. In addition, we write the content of our email in both `msg.body` and `msg.html`.
+
+To make it work, ensure you have provided a real email for `MAIL_USERNAME` and its associated `MAIL_PASSWORD`. If you cannot remember how to get the value for `MAIL_PASSWORD`, consider checking the section [Secret Configuration Values in Chapter 11: Error Handling](/12_error_handling.md#secret-configuration-values).
 
 The `ADMINS` variable is a Python list containing email addresses you would like to act as admins. In the illustration above, I have only one email address. This email is valid and usable. When it comes to Python `lists`, the items in a `list` can be accessed using their **index** (their position). Let us look at this example below to understand how `list`s works:
 
@@ -127,13 +141,13 @@ reply: b'250 2.1.0 OK k12-20020a5d518c000000b0031f82743e25sm2182367wrv.67 - gsmt
 reply: retcode (250); Msg: b'2.1.0 OK k12-20020a5d518c000000b0031f82743e25sm2182367wrv.67 - gsmtp'
 ```
 
-This means that the email was sent successfully. If I check my recepient email inbox (my recipient email used above is "bloodyrealme@gmail.com"), I can see that there is a new email.
+This means that the email was sent successfully. If I check my recipient email inbox (my recipient email used above is "bloodyrealme@gmail.com"), I can see that there is a new email.
 
 ![Terminal email in inbox](images/email_support/terminal_eamil_in_inbox.png)
 
 I have had to visit my **Spam** folder to access it since it was not in my inbox. GMAIL has nice filters to ensure non-legitimate emails are flagged automatically. Just to point out, the sender of the email is "harrison@tinkeredu.net" (as seen in the variable `MAIL_USERNAME`).
 
-Email servers typically expect a plain text body and an HTML body when sending emails. In the event we have no HTML content provided, then the email will default to using the plain text value. That is why we have specifically instatiated `msg.body` for text content and `msg.html` for HTML content.
+Email servers typically expect a plain text body and an HTML body when sending emails. In the event we have no HTML content provided, then the email will default to using the plain text value. That is why we have specifically instantiated `msg.body` for text content and `msg.html` for HTML content.
 
 
 ## Request For A Password Reset
@@ -173,7 +187,7 @@ Earlier in the [Getting Started With Flask-Mail](#getting-started-with-flask-mai
 
 To generate a token from `jwt`, we provide a payload (the most important part of the task) as a Python dictionary such as `{"password": "muthoni123"}`. JWT expects a secret text such as `secret` in order to process the payload using its internal algorithms. Later, we will replace the word `secret` with a more secret one found in `SECRET_KEY`. 
 
-As you can see, the token generated looks fairly complex, having been derived from a simple payload whose value is `muthoni123`. Feels safe to use it, right? I mean, who can guess such a key? The truth of the matter is that the key is not entirely safe and can be easily decoded by anyone. Don't believe me? Paste the token you have generated in the [JWT Debugger]() and see the results yourself.
+As you can see, the token generated looks fairly complex, having been derived from a simple payload whose value is `muthoni123`. Feels safe to use it, right? I mean, who can guess such a key? The truth of the matter is that the key is not entirely safe and can be easily decoded by anyone. Don't believe me? Paste the token you have generated in the [JWT Debugger (click here)](https://jwt.io/#debugger-io) and see the results yourself.
 
 ![JWT Debugger](images/email_support/jwt_debugger.gif)
 
@@ -186,17 +200,87 @@ First, we import `jwt`, `time` and `app`. Thereafter, we define a method called 
 To verify a token, the method `verify_reset_password_token()` has been used to decode the result of `get_reset_password_token()`. If the token is verified, the user indentified by the `id` will be returned.
 
 
-
-
 ## Sending A Password Reset Email
 
+The view function `request_password_reset()` we created earlier to render the template that allows a user to reset their password relies on another function called `send_password_reset_email()` to actually send the link to reset a password to a user's email inbox. This function, as we noted, was being imported from a new module called `email.py`. Let us create a new file within the _app_ subdirectory:
 
+![Create email module](images/email_support/create_email_module.png)
 
+This module will contain the function `send_password_reset_email()` that defines the actual email to be sent out to a user. Let us update it as follows:
 
+![Update email module](images/email_support/update_email_module.png)
 
+We begin by defining the framework we can use to send an email. This framework is a function that consists of a subject, the sender, the recipients and the messages in both text and HTML formats. Thereafter, we define another function that helps us to specify the email to send out. In this case, the email we are sending out is about a password reset. 
 
+The first thing to do is to ensure we generate a token to attach to the link we will send to the user. Since we already know who the user is, as you can see the user is an argument called `user`, we can generate a token for him as follows:
 
+```python
+token = user.get_reset_password_token()
+```
 
+The email framework expects that we provide all the fields needed in an email (I have left out the concept of **cc**, **bcc** and **attachment** in this illustration, but if you would like to learn how to add them, you can check the [flask-mail documentation](https://pythonhosted.org/Flask-Mail/))
+
+At this stage, everything is looking good. We now need to create the email templates so that we can craft a message for our user. If you paid attention, you probably noticed that the `reset_password.txt` and `reset_password.html` templates are all found in a folder called **email**. So, remember to create this folder before adding the individual templates.
+
+![Create email templates](images/email_support/create_email_templates.png)
+
+We can now craft a custom message for our user, starting with the HTML template as follows:
+
+![Craft html message](images/email_support/craft_html_message.png)
+
+And the text email message can look like this:
+
+![Craft text message](images/email_support/craft_text_message.png)
+
+We have included a new view function called `reset_password()` in these two email templates (it does not exist yet; we will add it in the [next section](#resetting-a-users-password)). The argument `_external=True` has also been added to the URL. Usually, a plain URL is sufficient for the browser. However, when sending a URL by email, the context and additional arguments do not exist to make fully qualified URLs. This argument `_external=True` to complete the URL when one is sent though email.
+
+## Resetting A User's Password
+
+Once the email above has been sent to a user, they will click on the link to access another page where they can now reset their password. Let us begin by defining the `reset_password()` view function below:
+
+![Reset password view function](images/email_support/reset_password_view_function.png)
+
+Once again, if the user is already logged in, there is no point of him/her resetting their password. For any logged-in user who tries to access this page, we redirect them back to the `index` page. However, if the user is not logged in, we verify the token passed in the URL using the helper method `verify_reset_password_token()`. If the token is not valid or has expired, the application will not verify it, and instead, redirect them back to the `index` page. If the token is valid, we present them with the form to reset their password and update their password accordingly. Notice that we redirect them to the login page to ensure that they can confirm this new password.
+
+The form `ResetPasswordForm()` does not exist. So, we will need to create it. Within the `forms.py` module, add the following:
+
+![Reset password form](images/email_support/reset_password_form.png)
+
+This form is fairly similar to the others. We have added a new validator called `EqualTo` that is used to compare the content of the fiel `password` to that of `confirm_password`. What this validator does is to ensure both values in each field match.
+
+And now, to display the form, we will need to create a new template called `reset_password.html` as follows:
+
+![Reset password template](images/email_support/reset_password_template.png)
+
+## Try
+
+The password reset feature is now complete. Let us try it:
+- Register a new user (provide a valid email address)
+- Click on the forgot password link to request for a new password
+- Check your inbox for the reset email
+- Click on the link found in your inbox
+- Update the new user's password
+- Try to log them into their account using their new password
+
+![Test reset password feature](images/email_support/test_password_reset_feature.gif)
+
+## Speed Up Performance
+
+You probably have noticed that as soon as you request to reset your password, the application slows down a bit as it processes the request. During this time, there is nothing else you can do in the application. You are forced to wait for that action to complete before trying to make another request.
+
+What happens is that the email processing occurs on the foreground, meaning, it is part of the linear tasks the application needs to execute. With linear tasks, one task needs to be completed before another can start. Imagine a scenario where there are many email requests being processed. As a user, you will have to wait for each process to be completed before you can do something else. 
+
+This experience is not entirely nice. It would be better if the application can continue with other tasks while the longer-running ones are still being processed. When tasks are running linearly (or one after the other), we call this **synchronous**. It is an english word meaning:
+
+> Occurring or existing at the same time. <br>
+Moving or operating at the same rate. <br>
+Having identical periods.
+
+If we want to have the tasks of sending emails to happen in the background, we can free up the application to continue doing other tasks while this slow process of processing emails is sent to the background. Python supports asynchronous tasks using `threading` and `multiprocessing`. We shall us the threading method to send the task of processing emails to a background thread.
+
+![async email](images/email_support/async_email.png)
+
+The `send_async_email` function now runs in the background as a thread, invoked via the `Thread` class in the last line of `send_email()`.With this change, the process will run in a thread and clean itself up once done. You will notice an improvement in speed.
 
 
 ## Assessment
