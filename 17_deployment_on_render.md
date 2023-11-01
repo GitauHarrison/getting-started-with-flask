@@ -133,7 +133,7 @@ You will notice that the list will be updated automatically for us. When we depl
 
 ### Push Your Work To GitHub
 
-As soon as you update the `requirements.txt` file, we need to push our changes to GitHub. Render will use the repository containing our code to host our application. Kindly do so.
+As soon as we update the `requirements.txt` file, we need to push our changes to GitHub. Render will use the repository containing our code to host our application. Kindly do so.
 
 ```python
 (venv) git status
@@ -142,7 +142,7 @@ As soon as you update the `requirements.txt` file, we need to push our changes t
 (venv) git push origin main
 ```
 
-You should see all your work in GitHub. Remember to include an updated `READMe.md` file exhaustively describing what the project is about and how to use it.
+You should see all your work in GitHub. Remember to include an updated `README.md` file exhaustively describing what the project is about and how to use it.
 
 ![Project in GitHub](images/deployment/project_in_github.png)
 
@@ -166,7 +166,7 @@ From the list shown, click on the button called "Connect" which is linked to you
 
 ![Click connect](images/deployment/click_connect.png)
 
-The new web service will need us to configure (set up) a few things. For instance, we need to give our new service a **Name**. We also need to ensure that the "Start Command" input field is correctly set as `gunicorn main:app`.
+The new web service will need us to configure (set up) a few things. For instance, we need to give our new service a **Name**. We also need to ensure that the "Start Command" input field is correctly set as `gunicorn main:app`. We have replatced `app:app` to `main:app` because our entry file into the application is the `main.py`. Hence the name `main` in the Startup Command.
 
 ![Configure web service](images/deployment/configure_web_service.png)
 
