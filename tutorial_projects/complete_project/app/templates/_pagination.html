@@ -1,0 +1,24 @@
+<div class="row text-center">
+    <div class="col-md-6">
+        {% if prev_url %}
+            <a class="text-primary" href="{{ prev_url or '#' }}">
+                <span aria-hidden="true">&#60;</span> Newer Posts
+            </a>
+        {% else %}
+            <a class="link_disabled" href="{{ prev_url or '#' }}">
+                <span aria-hidden="true">&#60;</span> Newer Posts
+            </a>
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        {% if next_url %}
+            <a class="text-primary" href="{{ next_url or '#' }}">
+                Older Posts <span aria-hidden="true">&#62;</span>
+            </a>
+        {% else %}
+            <a class="link_disabled" href="{{ next_url or '#' }}">
+                Older Posts <span aria-hidden="true">&#62;</span>
+            </a>
+        {% endif %}
+    </div>
+</div>

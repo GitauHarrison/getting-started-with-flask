@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-md-5 text-center">
             <p>
                 <img src="{{ user.avatar(120) }}" alt="User avatar">
@@ -24,27 +24,27 @@
                     <strong>About me: </strong> {{ user.about_me }}
                 </p>
             {% endif %}
-            <p>
-                <a href="{{ url_for('edit_profile') }}">Edit profile</a>
-            </p>
+            {% if user == current_user %}
+                <p>
+                    <a href="{{ url_for('edit_profile') }}">Edit profile</a>
+                </p>
+            {% endif %}
         </div>
     </div>
     <hr>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <!-- Start: posts -->
             {% for post in posts %}
-                {% if post %}
-                    {% include '_post.html' %}
-                {% endif %}
+                {% include '_post.html' %}
             {% endfor %}
+            <!-- End: posts -->
 
-             <!-- Pagination -->
-             {% if prev_url %}
-                <a href=" {{ prev_url }} ">Newer posts</a>
-            {% endif %}
-            {% if next_url %}
-                <a href=" {{ next_url }} ">Older posts</a>
-            {% endif %}
+            <!-- Start: pagination -->
+            {% include '_pagination.html' %}
+            <!-- End: pagination -->
         </div>
+        <div class="col-md-2"></div>
     </div>
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row text-center hero-heading">
+        <div class="col-md-12">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
+    <div class="row text-center hero-image">
+        <div class="col-md-6">
+            <img 
+                src="{{ url_for('static', filename='images/landing_page1.jpg') }}" 
+                alt="Landing page image 1" 
+                class="img img-fluid"
+                style="width: 80%; height: auto;">
+        </div>
+        <div class="col-md-6">
+            <img 
+                src="{{ url_for('static', filename='images/landing_page2.jpg') }}" 
+                alt="Landing page image 2" 
+                class="img img-fluid"
+                style="width: 80%; height: auto;">
+        </div>
+    </div>
+    <div class="row text-center hero-button">
+        <div class="col-md-12">
+            <a href="{{ url_for('register') }}">
+                <button class="btn bg-primary">Get Started</button>
+            </a>            
+        </div>
+    </div>
+{% endblock %}
