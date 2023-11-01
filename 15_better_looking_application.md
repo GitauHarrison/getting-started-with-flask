@@ -1,8 +1,8 @@
 # Facelift
 
-One thing that you probably have noticed is that we have been paying a lot of attention on the functionality of the application (**functionality** means how the application works) and less on how it looks. Even though our `base.html` template uses [Bootstrap](/05_bootstrap_intro.md), a lot is left to be desired. In this chapter, we are going to take a break from adding any more functionality and focus making the application look a bit more polished and professional.
+One thing that you probably have noticed is that we have been paying a lot of attention to the functionality of the application (**functionality** means how the application works) and less on how it looks. Even though our `base.html` template uses [Bootstrap](/05_bootstrap_intro.md), a lot is left to be desired. In this chapter, we are going to take a break from adding any more functionality and focus on making the application look a bit more polished and professional.
 
-Throughout this tutorial, these are the reference links of the things we will be looking at. At your own convinience, you can navigate to whatever article you want to refer to:
+Throughout this tutorial, these are the reference links for the things we will be looking at. At your convenience, you can navigate to whatever article you want to refer to:
 
 2. [Getting Started with HTML and CSS](02_getting_started_with_HTML_and_CSS.md)
 3. [Git and GitHub](03_git_and_github.md)
@@ -38,20 +38,20 @@ By the end of this lesson, you should be able to:
 
 ## CSS Frameworks
 
-There is no denying that coding is hard, hard work. However, we must admit that there is no pain greater than those experienced by front-end developers, who write templates that look nice and consistent across all web browsers. It has gotten better in recent years, but there are still obscure bugs or quirks in some browsers that make the task of designing web pages that look nice everywhere very hard. This is even harder if you also need to target resource and screen limited browsers of tablets and smartphones.
+There is no denying that coding is hard, hard work. However, we must admit that there is no pain greater than that experienced by front-end developers, who write templates that look nice and consistent across all web browsers. It has gotten better in recent years, but there are still obscure bugs or quirks in some browsers that make the task of designing web pages that look nice everywhere very hard. This is even harder if you also need to target resources and screen-limited browsers of tablets and smartphones.
 
 From the beginning, we have been using Bootstrap deliberately so that we focus on **making things work** rather than **how they look**. This CSS framework allows for the use of high-level CSS classes with pre-made styles for common user interfaces, with a touch of JavaScript here and there.
 
-Some of you probably already know that we have a Flask-specific version of Bootstrap which can be installed by running `pip3 install flask-bootstrap`. However the approach we have used was to get the CSS and JS links from the Bootstrap site and add them directly in our templates.
+Some of you probably already know that we have a Flask-specific version of Bootstrap which can be installed by running `pip3 install flask-bootstrap`. However, the approach we used was to get the CSS and JS links from the Bootstrap site and add them directly to our templates.
 
 
 ## Update The Navigation Bar
 
-Our current navigation bar is pretty basic. It is the first part of our application we are going to update. If you visit [Bootstrap Navbar](https://getbootstrap.com/docs/5.3/components/navbar/), you will see plenty of sample navigation bars that you can pick. If there is any that you like, consider copying its code and use it in your `base.html` file. 
+Our current navigation bar is pretty basic. It is the first part of our application we are going to update. If you visit [Bootstrap Navbar](https://getbootstrap.com/docs/5.3/components/navbar/), you will see plenty of sample navigation bars that you can pick. If there is any that you like, consider copying its code and using it in your `base.html` file. 
 
 ![Sample navbars from Bootstrap](images/facelift/sample_navbars_from_bootstrap.gif)
 
-The Bootstrap documentation is a good source of examples, but there are plenty of Bootstrap examples you can find online too. For instance, if you search "Bootstrap Navbar" in your favourite browser, you will find links to multiple examples that other people have created. 
+The Bootstrap documentation is a good source of examples, but there are plenty of Bootstrap examples you can find online too. For instance, if you search "Bootstrap Navbar" in your favorite browser, you will find links to multiple examples that other people have created. 
 
 ![Sample navbars online](images/facelift/sample_navbars_online.gif)
 
@@ -178,7 +178,7 @@ Within the `head` element, you will see:
 <link rel="icon" type="image/svg" href="{{ url_for('static', filename = 'images/tinker_logo.png') }}">
 ```
 
-This link has been used to display a tiny image within the page's meta data. When you run the application, you will notice that there is a tiny image being displayed on the page's tab area.
+This link has been used to display a tiny image within the page's metadata. When you run the application, you will notice that there is a tiny image being displayed on the page's tab area.
 
 ![Tab icon](images/facelift/tab_icon.png)
 
@@ -206,7 +206,7 @@ You will need to create this file too.
 
 ![CSS file](images/facelift/css_file.png)
 
-> To serve static resources (these are resources that typicaly exist within the **/static** sub-folder, for example CSS, JS, and images), Flask uses the following syntax:
+> To serve static resources (these are resources that typically exist within the **/static** sub-folder, for example, CSS, JS, and images), Flask uses the following syntax:
 >
 >```html
 >{{ url_for('static', filename='static_folder/static_resource.ext) }}
@@ -299,7 +299,7 @@ If you check the form pages, they look outdated. But before we can give them a m
 - `content`
 - `app_content`
 
-The block `content` is the parent block that houses the `app_content`. Given that our **flash** message live in the block `content`, all other child templates that inherit `base.html` will use the block `app_content`. Ensure that you update all other templates to use the block `app_content`. Let us start with the `login` form.
+The block `content` is the parent block that houses the `app_content`. Given that our **flash** message lives in the block `content`, all other child templates that inherit `base.html` will use the block `app_content`. Ensure that you update all other templates to use the block `app_content`. Let us start with the `login` form.
 
 ```html
 <!-- app/templates/login.html: Login template -->
@@ -518,7 +518,7 @@ Our `request_password_reset.html` template will look like this:
 {% endblock %}
 ```
 
-This is how the new page looks like:
+This is what the new page looks like:
 
 ![Request password reset page](images/facelift/request_password_reset.png)
 
@@ -579,7 +579,7 @@ Our `reset_password.html` template will look like this:
 {% endblock %}
 ```
 
-This is how the new page looks like:
+This is what the new page looks like:
 
 ![Reset password page](images/facelift/reset_password.png)
 
@@ -728,7 +728,7 @@ This is how the landing page now looks like:
 
 ## Updated Error Pages
 
-Our error handling mechanism is working fine, but it looks a bit off given the general updates we have made to our user interface. Let us make the following changes to the `404.html` file.
+Our error-handling mechanism is working fine, but it looks a bit off given the general updates we have made to our user interface. Let us make the following changes to the `404.html` file.
 
 ```html
 <!-- app/templates/404.html: Update 404 page -->
@@ -788,7 +788,7 @@ And now the `500.html` page will look similar to the `404.html` template. Add th
 
 ## Update The Home Page
 
-All our anonymously accessed pages look good at this stage. But once a user logs in, the internal and private pages are not inviting. Starting with the home page, let us give it a complete makeover.
+All our anonymously accessed pages look good at this stage. However, once a user logs in, the internal and private pages are not inviting. Starting with the home page, let us give it a complete makeover.
 
 ```html
 <!-- app/templates/index.html: Home page makeover -->
@@ -856,7 +856,7 @@ A lot of what is going on in the template is self-explanatory.
 
 ![Template inclusion](images/facelift/template_inclusion.png)
 
-I would like us to pay attention to the `_post.html`. In [Chapter 14: Pagination](/13_pagination.md), you learnt how to paginate a list of user `posts`. To access each `post`, we use the `for` loop, but these posts do not exist in `index.html`. Above, we have used the `include` command from Jinja to access the `_post.html`, the file containing each post. We could have added our post here in `index.html` but to define it in its own template allows us the freedom to **include** it in multiple other templates without duplicating our work.
+I would like us to pay attention to the `_post.html`. In [Chapter 14: Pagination](/13_pagination.md), you learned how to paginate a list of user `posts`. To access each `post`, we use the `for` loop, but these posts do not exist in `index.html`. Above, we have used the `include` command from Jinja to access the `_post.html`, the file containing each post. We could have added our post here in `index.html` but to define it in its template allows us the freedom to **include** it in multiple other templates without duplicating our work.
 
 ![Post design](images/facelift/post_design.png)
 
@@ -884,9 +884,9 @@ Here is the code:
 </table>
 ```
 
-Remember, the other place in our chat application that displays a list of user posts in the `profile` page. We are going to **include** `_post.html` there as well, without us duplicating our work. 
+Remember, the other place in our chat application that displays a list of user posts is the `profile` page. We are going to **include** `_post.html` there as well, without us duplicating our work. 
 
-But before that, let us work on the pagination of our user `posts`. Once again, you saw above that we are **including** the `_pagination.html` file instead of writing the actual pagination code. This freedom removes instances where we end up duplicating our work. The file does not exist yet, so be sure to create it and add the following code:
+But before that, let us work on the pagination of our users `posts`. Once again, you saw above that we are **including** the `_pagination.html` file instead of writing the actual pagination code. This freedom removes instances where we end up duplicating our work. The file does not exist yet, so be sure to create it and add the following code:
 
 ![Pagination design](images/facelift/pagination_design.png)
 
@@ -994,7 +994,7 @@ Notice that we are **including** `_post.html` and `_pagination.html` here too. C
 
 ## Project Assessment
 
-One last thing: the **Edit profile** link. If you click on this link from your user profile, you will be redirected to a rather flat edit profile form page. Given what you have learnt so far, can you update this page so that its look and feel is consistent with the entire application? 
+One last thing: the **Edit profile** link. If you click on this link from your user profile, you will be redirected to a rather flat edit profile form page. Given what you have learned so far, can you update this page so that its look and feel are consistent with the entire application? 
 
 Try to come up with a decent design such as this:
 
