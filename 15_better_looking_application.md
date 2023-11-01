@@ -722,7 +722,11 @@ Now, we can display some useful general content in the landing page primarily to
     </div>
 {% endblock %}
 ```
-This is how the landing page now looks like:
+This page has some custom CSS styles seen by the classes such as `hero-heading`, `hero-image` and `hero-button`. Ensure you have these added too.
+
+![Custom CSS](images/facelift/custom_css.png)
+
+This is what the landing page now looks like:
 
 ![Landing page](images/facelift/landing_page.png)
 
