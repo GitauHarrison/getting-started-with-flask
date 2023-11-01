@@ -1,5 +1,7 @@
 # Facelift
 
+![Facelift](images/facelift/facelift.jpg)
+
 One thing that you probably have noticed is that we have been paying a lot of attention to the functionality of the application (**functionality** means how the application works) and less on how it looks. Even though our `base.html` template uses [Bootstrap](/05_bootstrap_intro.md), a lot is left to be desired. In this chapter, we are going to take a break from adding any more functionality and focus on making the application look a bit more polished and professional.
 
 Throughout this tutorial, these are the reference links for the things we will be looking at. At your convenience, you can navigate to whatever article you want to refer to:
@@ -950,7 +952,7 @@ The last page in our facelift is the **profile** page. This page contains the de
 
 {% extends 'base.html' %}
 
-{% block content %}
+{% block app_content %}
     <div class="row mt-4">
         <div class="col-md-5 text-center">
             <p>
@@ -1002,7 +1004,7 @@ The last page in our facelift is the **profile** page. This page contains the de
 
 ![Redesigned profile page](images/facelift/profile_template.png)
 
-Notice that we are **including** `_post.html` and `_pagination.html` here too. Can you tell the advantage of doing this?
+Notice that we are **including** `_post.html` and `_pagination.html` here too. **Can you tell the advantage of doing this?**
 
 ![Redesigned profile page](images/facelift/new_profile_page.png)
 
@@ -1046,3 +1048,10 @@ Try to come up with a decent design such as this:
 - [ ] exclude
 - [x] include
 - [ ] import
+
+5. Which among the following is not a CSS Framework?
+
+- [ ] Bootstrap
+- [ ] Foundation
+- [ ] Tailwind
+- [x] Flask
