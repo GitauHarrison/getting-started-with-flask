@@ -4,7 +4,7 @@
 
 Let us think about this: Where do users of our application live? Are they in Kenya, from around Africa, or possibly from far and wide? Do you know that when you travel to, say Britain, the time changes by three hours less? And when you are in Korea, you are six hours ahead? In this chapter, we are going to pay attention to time and dates.
 
-Throughout this tutorial, these are the reference links for the things we will be looking at. At your convinience, you can navigate to whatever article you want to refer to:
+Throughout this tutorial, these are the reference links for the things we will be looking at. At your convenience, you can navigate to whatever article you want to refer to:
 
 2. [Getting Started with HTML and CSS](02_getting_started_with_HTML_and_CSS.md)
 3. [Git and GitHub](03_git_and_github.md)
