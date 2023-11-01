@@ -21,7 +21,7 @@ Throughout this tutorial, these are the reference links for the things we will b
 12. [Error Handling](12_error_handling.md)
 13. [Pagination](13_pagination.md)
 14. [Working With Email](14_working_with_email.md)
-15. [Better-looking Application](15_better_looking_application.md)
+15. [Facelift](15_better_looking_application.md)
 16. [Timestamp](16_timestamp.md)
 17. [Deployment on Render](17_deployment_on_render.md)
 
