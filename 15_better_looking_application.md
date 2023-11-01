@@ -928,3 +928,106 @@ With that, our **index** page looks like this:
 
 ## Update The Profile Page
 
+The last page in our facelift is the **profile** page. This page contains the details of a user of the application, including posts related to them. Let us make the following changes:
+
+```html
+<!-- app/templates/profile.html: Redesign the profile page -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row mt-4">
+        <div class="col-md-5 text-center">
+            <p>
+                <img src="{{ user.avatar(120) }}" alt="User avatar">
+            </p>
+        </div>
+        <div class="col-md-7">
+            <p>
+                <strong>Username: </strong>  {{ user.username }}
+            </p>
+            <p>
+                <strong>Email: </strong> {{ user.email }}
+            </p>
+            {% if user.last_seen %}
+                <p>
+                    <strong>Last Seen: </strong> {{ user.last_seen }}
+                </p>
+            {% endif %}
+            {% if user.about_me %}
+                <p>
+                    <strong>About me: </strong> {{ user.about_me }}
+                </p>
+            {% endif %}
+            {% if user == current_user %}
+                <p>
+                    <a href="{{ url_for('edit_profile') }}">Edit profile</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <!-- Start: posts -->
+            {% for post in posts %}
+                {% include '_post.html' %}
+            {% endfor %}
+            <!-- End: posts -->
+
+            <!-- Start: pagination -->
+            {% include '_pagination.html' %}
+            <!-- End: pagination -->
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}
+```
+
+![Redesigned profile page](images/facelift/profile_template.png)
+
+Notice that we are **including** `_post.html` and `_pagination.html` here too. Can you tell the advantage of doing this?
+
+![Redesigned profile page](images/facelift/new_profile_page.png)
+
+
+## Project Assessment
+
+One last thing: the **Edit profile** link. If you click on this link from your user profile, you will be redirected to a rather flat edit profile form page. Given what you have learnt so far, can you update this page so that its look and feel is consistent with the entire application? 
+
+Try to come up with a decent design such as this:
+
+![Redesigned edit profile page](images/facelift/new_edit_profile_page.png)
+
+
+
+## Quiz
+
+1. Which of the following Flask extensions is used to style a page?
+
+- [x] Flask-bootstrap
+- [ ] Flask-migrate
+- [ ] Pyjwt
+- [ ] Flask
+
+2. Which command below is used to inherit another template?
+
+- [ ] inherit
+- [x] extends
+- [ ] for
+- [ ] flask-inherit
+
+3. Which of the following is true about investing the time to build good-looking websites?
+
+- [ ] Bootstrap is the only front-end framework
+- [ ] They require too much technology to build one
+- [ ] They are too much work to build
+- [x] They increase user traffic
+
+4. What can you use to include one template in another?
+
+- [ ] extends
+- [ ] exclude
+- [x] include
+- [ ] import
