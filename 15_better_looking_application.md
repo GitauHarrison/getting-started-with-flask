@@ -17,7 +17,7 @@ Throughout this tutorial, these are the reference links of the things we will be
 12. [Error Handling](12_error_handling.md)
 13. [Pagination](13_pagination.md)
 14. [Working With Email](14_working_with_email.md)
-15. [Better-looking Application](15_better_looking_application.md) (this article)
+15. [Facelift](15_better_looking_application.md) (this article)
 16. [Timestamp](16_timestamp.md)
 17. [Deployment on Render](17_deployment_on_render.md)
 
@@ -689,5 +689,242 @@ Now, we can display some useful general content in the landing page primarily to
 ```html
 <!-- app/templates/landing_page.html: Update template -->
 
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row text-center hero-heading">
+        <div class="col-md-12">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
+    <div class="row text-center hero-image">
+        <div class="col-md-6">
+            <img 
+                src="{{ url_for('static', filename='images/landing_page1.jpg') }}" 
+                alt="Landing page image 1" 
+                class="img img-fluid"
+                style="width: 80%; height: auto;">
+        </div>
+        <div class="col-md-6">
+            <img 
+                src="{{ url_for('static', filename='images/landing_page2.jpg') }}" 
+                alt="Landing page image 2" 
+                class="img img-fluid"
+                style="width: 80%; height: auto;">
+        </div>
+    </div>
+    <div class="row text-center hero-button">
+        <div class="col-md-12">
+            <a href="{{ url_for('register') }}">
+                <button class="btn bg-primary">Get Started</button>
+            </a>            
+        </div>
+    </div>
+{% endblock %}
+```
+This is how the landing page now looks like:
+
+![Landing page](images/facelift/landing_page.png)
+
+## Updated Error Pages
+
+Our error handling mechanism is working fine, but it looks a bit off given the general updates we have made to our user interface. Let us make the following changes to the `404.html` file.
+
+```html
+<!-- app/templates/404.html: Update 404 page -->
+
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row text-center mt-4">
+        <div class="col-md-12">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-12">
+            <img 
+                src="{{ url_for('static', filename='images/404.jpg') }}" 
+                alt="Landing page image 1" 
+                class="img img-fluid"
+                style="width: 50%; height: auto;">
+            <p class="mt-4"><a href="{{ url_for('index') }}">Back</a></p>
+        </div>
+    </div>
+{% endblock %}
+```
+
+![404 template](images/facelift/404.png)
+
+And now the `500.html` page will look similar to the `404.html` template. Add these updates:
+
+```html
+<!-- app/templates/500.html: Update 404 page -->
+
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row text-center mt-4">
+        <div class="col-md-12">
+            <h1>{{ title }}</h1>
+            <p>The administrator has been notified. Sorry for the inconvenience!</p>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-12">
+            <img 
+                src="{{ url_for('static', filename='images/500.jpg') }}" 
+                alt="Landing page image 1" 
+                class="img img-fluid"
+                style="width: 50%; height: auto;">
+            <p class="mb-4"><a href="{{ url_for('index') }}">Back</a></p>
+        </div>
+    </div>
+{% endblock %}
 
 ```
+
+![500 template](images/facelift/500.png)
+
+## Update The Home Page
+
+All our anonymously accessed pages look good at this stage. But once a user logs in, the internal and private pages are not inviting. Starting with the home page, let us give it a complete makeover.
+
+```html
+<!-- app/templates/index.html: Home page makeover -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Start: welcome message -->
+    <div class="row text-center mt-4 mb-4">
+        <div class="col-md-12">
+            <h1>Hello {{ current_user.username }}, say something:</h1>            
+        </div>
+    </div>
+    <!-- End: welcome message -->
+
+    <!-- Start: form -->
+    <div class="row mb-4">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form role="form" action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="form-group position-relative mb-4">
+                            {{ form.body.label }} <span class="text-danger">*</span> <br>
+                            {{ form.body(class_='form-control') }}
+                            {% for error in form.body.errors %}
+                                <span style="color: red;">{{error}}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mb-4">
+                        {{ form.submit(class_='btn bg-primary w-100') }}
+                    </div>
+                </div>                                   
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!-- End: form -->
+
+    <hr class="horizontal gray-light my-4">
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <!-- Start: posts -->
+            {% for post in posts %}
+                {% include '_post.html' %}
+            {% endfor %}
+            <!-- End: posts -->
+
+            <!-- Start: pagination -->
+            {% include '_pagination.html' %}
+            <!-- End: pagination -->
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}
+```
+
+A lot of what is going on in the template is self-explanatory. 
+
+![Template inclusion](images/facelift/template_inclusion.png)
+
+I would like us to pay attention to the `_post.html`. In [Chapter 14: Pagination](/13_pagination.md), you learnt how to paginate a list of user `posts`. To access each `post`, we use the `for` loop, but these posts do not exist in `index.html`. Above, we have used the `include` command from Jinja to access the `_post.html`, the file containing each post. We could have added our post here in `index.html` but to define it in its own template allows us the freedom to **include** it in multiple other templates without duplicating our work.
+
+![Post design](images/facelift/post_design.png)
+
+Here is the code:
+
+```html
+<!-- app/templates/_post.html: Redesigned posts -->
+
+<table class="table table-hover">
+    <tr>
+        <td width="70px">
+            <a href="{{ url_for('profile', username=post.author.username) }}">
+                <img src="{{ post.author.avatar(70) }}" />
+            </a>
+        </td>
+        <td>
+            <a href="{{ url_for('profile', username=post.author.username) }}">
+                {{ post.author.username }}
+            </a>
+            says:
+            <br>
+            {{ post.body }}
+        </td>
+    </tr>
+</table>
+```
+
+Remember, the other place in our chat application that displays a list of user posts in the `profile` page. We are going to **include** `_post.html` there as well, without us duplicating our work. 
+
+But before that, let us work on the pagination of our user `posts`. Once again, you saw above that we are **including** the `_pagination.html` file instead of writing the actual pagination code. This freedom removes instances where we end up duplicating our work. The file does not exist yet, so be sure to create it and add the following code:
+
+![Pagination design](images/facelift/pagination_design.png)
+
+Here is the code:
+
+```html
+<!-- app/templates/_pagination.html: Redesign pagination -->
+
+<div class="row text-center">
+    <div class="col-md-6">
+        {% if prev_url %}
+            <a class="text-primary" href="{{ prev_url or '#' }}">
+                <span aria-hidden="true">&#60;</span> Newer Posts
+            </a>
+        {% else %}
+            <a class="link_disabled" href="{{ prev_url or '#' }}">
+                <span aria-hidden="true">&#60;</span> Newer Posts
+            </a>
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        {% if next_url %}
+            <a class="text-primary" href="{{ next_url or '#' }}">
+                Older Posts <span aria-hidden="true">&#62;</span>
+            </a>
+        {% else %}
+            <a class="link_disabled" href="{{ next_url or '#' }}">
+                Older Posts <span aria-hidden="true">&#62;</span>
+            </a>
+        {% endif %}
+    </div>
+</div>
+```
+
+With that, our **index** page looks like this:
+
+![Redesigned index page](images/facelift/redesigned_index_page.png)
+
+
+## Update The Profile Page
+
