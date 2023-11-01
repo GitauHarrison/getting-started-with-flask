@@ -27,13 +27,24 @@ Throughout this tutorial, these are the reference links for the things we will b
 By the end of this lesson, you should be able to:
 
 - Use more Bootstrap components
-- Add custom styles in your `custom.css`
+- Add custom styles in your `style.css`
 - Provide more user-friendly error pages
 - Make your pagination links more attractive
 
 ### Table of Contents
 
 - [CSS Frameworks](#css-frameworks)
+- [Update The Navigation Bar](#update-the-navigation-bar)
+    - [Static Resources](#static-resources)
+- [Style the Flash Message](#style-the-flash-message)
+- [Update The Forms](#update-the-forms)
+- [Create A Landing Page](#create-a-landing-page)
+- [Update Error Pages](#update-error-pages)
+- [Update The Home Page](#update-the-home-page)
+- [Update The Profile Page](#update-the-profile-page)
+- [Assessment](#assessment)
+- [Quiz](#quiz)
+
 
 
 ## CSS Frameworks
@@ -730,7 +741,7 @@ This is what the landing page now looks like:
 
 ![Landing page](images/facelift/landing_page.png)
 
-## Updated Error Pages
+## Update Error Pages
 
 Our error-handling mechanism is working fine, but it looks a bit off given the general updates we have made to our user interface. Let us make the following changes to the `404.html` file.
 
@@ -996,7 +1007,7 @@ Notice that we are **including** `_post.html` and `_pagination.html` here too. C
 ![Redesigned profile page](images/facelift/new_profile_page.png)
 
 
-## Project Assessment
+## Assessment
 
 One last thing: the **Edit profile** link. If you click on this link from your user profile, you will be redirected to a rather flat edit profile form page. Given what you have learned so far, can you update this page so that its look and feel are consistent with the entire application? 
 
