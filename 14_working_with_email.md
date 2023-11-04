@@ -47,7 +47,7 @@ By the end of this lesson, you should be able to:
 - [Resetting A User's Password](#resetting-a-users-password)
 - [Try](#try)
 - [Speed Up Performance](#speed-up-performance)
-- [Assessment](#assessment)
+- [Assessment Project](#assessment-project)
 - [Quiz](#quiz)
 
 
@@ -283,7 +283,7 @@ If we want to have the tasks of sending emails happen in the background, we can 
 The `send_async_email` function now runs in the background as a thread, invoked via the `Thread` class in the last line of `send_email()`.With this change, the process will run in a thread and clean itself up once done. You will notice a speed improvement.
 
 
-## Assessment
+## Assessment Project
 
 The application below shows a simple authentication system. A user can register and sign in before being taken to the home page. There is also a password reset link to allow them to change their password.
 

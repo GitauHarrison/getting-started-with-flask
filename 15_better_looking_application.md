@@ -44,7 +44,7 @@ By the end of this lesson, you should be able to:
 - [Update Error Pages](#update-error-pages)
 - [Update The Home Page](#update-the-home-page)
 - [Update The Profile Page](#update-the-profile-page)
-- [Assessment](#assessment)
+- [Assessment Project](#assessment-project)
 - [Quiz](#quiz)
 
 
@@ -1009,7 +1009,7 @@ Notice that we are **including** `_post.html` and `_pagination.html` here too. *
 ![Redesigned profile page](images/facelift/new_profile_page.png)
 
 
-## Assessment
+## Assessment Project
 
 One last thing: the **Edit profile** link. If you click on this link from your user profile, you will be redirected to a rather flat edit profile form page. Given what you have learned so far, can you update this page so that its look and feel are consistent with the entire application? 
 

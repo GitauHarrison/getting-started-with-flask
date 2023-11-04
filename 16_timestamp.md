@@ -38,7 +38,7 @@ By the end of this lesson, you should be able to:
 - [Timezone Conversion](#timezone-conversion)
 - [Using Moment.js](#using-momentjs)
     - [Update User's Last Seen](#update-users-last-seen)
-- [Assessment](#assessment)
+- [Assessment Project](#assessment-project)
 - [Quiz](#quiz)
 
 
@@ -106,7 +106,7 @@ Now, if we refresh a user's profile page, we will see a change in their `last_se
 ![Display last seen formatted](images/timestamp/display_last_seen_formatted.png)
 
 
-## Assessment
+## Assessment Project
 
 #### Update User's Post Timestamp
 

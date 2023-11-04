@@ -45,7 +45,7 @@ By the end of this lesson, you should be able to:
     - [Update Dependency File](#update-dependancy-file)
     - [Push Your Work To GitHub](#push-your-work-to-github)
 - [Deploy On Render](#deploy-on-render)
-- [Assessment](#assessment)
+- [Assessment Project](#assessment-project)
 - [Quiz](#quiz)
 
 
@@ -207,7 +207,7 @@ Should the latest deployment indicate "Deploy live ...", then you can click on y
 
 And there you have your publicly accessible live link that can handle user traffic! Congratulations! Feel free to share this link with other people. Begin by sharing it in the "Explore Community" chat feature of our eLearning app.
 
-## Assessment
+## Assessment Project
 
 
 Add a link to your GitHub repo redirecting to your live application. 

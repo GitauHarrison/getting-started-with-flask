@@ -42,7 +42,7 @@ By the end of this lesson, you should be able to:
 - [Pagination Configuration](#pagination-configuration)
 - [Implementing Pagination](#implementing-pagination)
 - [Page Navigation](#page-navigation)
-- [Assessment](#ass)
+- [Assessment Project](#assessment-project)
 - [Quiz](#quiz)
 
 
@@ -287,7 +287,7 @@ The first link is labeled "Newer posts" and it points to the previous page becau
 
 You will need to restart your Flask server to see the changes (we disabled the debug mode with its reloader feature). After you are done experimenting with the pagination feature, you can set `POSTS_PER_PAGE` to a more reasonable value, say 25.
 
-## Assessment
+## Assessment Project
 
 Below is a chat application that has a basic user authentication system. You are required to rebuild the project as it is. Note that the **Home** page displays all posts on one side and the current user's posts on the other side.
 
