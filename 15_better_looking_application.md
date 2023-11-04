@@ -873,7 +873,7 @@ A lot of what is going on in the template is self-explanatory.
 
 ![Template inclusion](images/facelift/template_inclusion.png)
 
-I would like us to pay attention to the `_post.html`. In [Chapter 14: Pagination](/13_pagination.md), you learned how to paginate a list of user `posts`. To access each `post`, we use the `for` loop, but these posts do not exist in `index.html`. Above, we have used the `include` command from Jinja to access the `_post.html`, the file containing each post. We could have added our post here in `index.html` but to define it in its template allows us the freedom to **include** it in multiple other templates without duplicating our work.
+I would like us to pay attention to the `_post.html`. In [Chapter 13: Pagination](/13_pagination.md), you learned how to paginate a list of user `posts`. To access each `post`, we use the `for` loop, but these posts do not exist in `index.html`. Above, we have used the `include` command from Jinja to access the `_post.html`, the file containing each post. We could have added our post here in `index.html` but to define it in its template allows us the freedom to **include** it in multiple other templates without duplicating our work.
 
 ![Post design](images/facelift/post_design.png)
 

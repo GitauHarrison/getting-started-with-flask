@@ -166,7 +166,7 @@ From the list shown, click on the button called "Connect" which is linked to you
 
 ![Click connect](images/deployment/click_connect.png)
 
-The new web service will need us to configure (set up) a few things. For instance, we need to give our new service a **Name**. We also need to ensure that the "Start Command" input field is correctly set as `gunicorn main:app`. We have replatced `app:app` to `main:app` because our entry file into the application is the `main.py`. Hence the name `main` in the Startup Command.
+The new web service will need us to configure (set up) a few things. For instance, we need to give our new service a **Name**. We also need to ensure that the "Start Command" input field is correctly set as `gunicorn main:app`. We have replaced `app:app` with `main:app` because our entry file into the application is the `main.py`. Hence the name `main` in the Startup Command.
 
 ![Configure web service](images/deployment/configure_web_service.png)
 
@@ -222,7 +222,7 @@ Then, share the link to your GitHub repository in the quiz section below.
 
 - [ ] Nginx
 - [x] Gunicorn
-- [ ] Requirements.txt
+- [ ] requirements.txt
 - [ ] Render
 
 2. What can you use to isolate the needs of your application from another during installation?

@@ -144,8 +144,8 @@ Use a timestamp format of your choice from the [_Moment.js_](https://momentjs.co
 
 - [ ] __init__.py
 - [ ] routes.py
-- [ ] the terminal
-- [ ] base.html
+- [ ] The terminal
+- [x] base.html
 
 5. Which command would you run to help support your time conversion in Flask?
 
