@@ -287,6 +287,14 @@ This file is a text file. Let us update this new file with the following pieces 
     ![List of apps in gmail](images/handling_errors/list_of_apps.png)
 - Update the value of `MAIL_PASSWORD` in `.env` with the password copied from GMAIL. You will have something such as `MAIL_PASSWORD=paste-your-password-here`.
 
+#### No Link To App Password?
+
+*   You may notice that there is no link to **App Passwords** once your two-step verification is set. ![No app password link](images/handling_errors/no_app_password_link.png)
+*   To get the link to set up _App Password_, [click here](https://security.google.com/settings/security/apppasswords). You may be asked to sign in to your Google Account. You will see this page ![App password page](images/handling_errors/app_password_page2.png)
+*   From this new page, you can add the name for your app, a name that closely tells what your project is about. In our case, a name may be _TinkerChatApp_ ![App password values](images/handling_errors/app_password_values.png)
+*   When done, you will see your _TinkerChatApp_ created. You can delete it by clicking the _Trash_ icon. **But DO NOT delete it just yet.** ![Delete app password](images/handling_errors/delete_app_password.png)
+*   Back to [Security](https://myaccount.google.com/security?rapt=AEjHL4Ow0TjIFb04GMsoa2ghs9421AiGQCST8ac6vpnopB1eOQIcBOgwByHlOe7t2fJdSgpO6wTYGTeXb0QDNjZ6w5yY0DQHLxeG2mG_KU8hO7axOkwzP8s) page, you will see _App Password Created_ event. What this means is that you have an _App Password_ created and available for your GMAIL account. ![Listd app password event](images/handling_errors/listed_app_password_event.png)
+
 
 ### Email logs
 
