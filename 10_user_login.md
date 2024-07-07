@@ -101,7 +101,7 @@ If the hash does not match the password to verify, in our case above the passwor
 
 Now that we know how to protect a user's account using password hashing, how can we implement this in our application? Remember, the `password_hash` field exists in the `User` model in `app/models.py`. This is the best place to do this.
 
-![Implement password hash](images/user_login/implement_password_hash.png)
+![Implement password hash](images/user_login/implement_password_hash2.png)
 
 We begin by importing `generate_password_hash` and `check_password_hash` from `werkzeug.security`. Right under the `User` model, we add two functions:
 
