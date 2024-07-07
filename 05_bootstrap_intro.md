@@ -263,7 +263,7 @@ Ensure that you have selected "Responsive" from the dropdown menu.
 
 Drag the edge of the inspection page to view how the page will look like in different viewports.
 
-![Responsiveness](images/bootstrap_intro/responsiveness.gif)
+![Responsiveness](images/bootstrap_intro/responsiveness.mp4)
 
 
 ## Assignment: Responsive Web Page

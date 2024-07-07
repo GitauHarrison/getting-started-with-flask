@@ -131,11 +131,11 @@ You can see that the terminal output reveals our debug mode is on. Now, let us m
 
 When we say this debugger is interactive, we mean that it allows us to perform certain actions through it, just as we would in a normal Python prompt. We can expand each stack frame and see the corresponding source code. See the image below.
 
-![Expand debugger](images/handling_errors/expand_debugger.gif)
+![Expand debugger](images/handling_errors/expand_debugger.mp4)
 
 We can also open a Python prompt on any of the frames and execute any valid Python expression such as to check the values of a variable.
 
-![Interactivity of debugger](images/handling_errors/interactivity_of_debugger.gif)
+![Interactivity of debugger](images/handling_errors/interactivity_of_debugger.mp4)
 
 
 ### Caution When Using Debug Mode
@@ -223,13 +223,13 @@ Why the change? Remember we said that `FLASK_DEBUG=True` invokes the debugger wh
 
 Now, let us stop our server by pressing `Ctrl + C`. Restart the server by running `flask run`, then try out the username duplicate error once more. We should see a much friendlier error page.
 
-![Sample custom 500 page](images/handling_errors/sample_500_error_page.gif)
+![Sample custom 500 page](images/handling_errors/sample_500_error_page.mp4)
 
 Super friendly, right? Note that in our terminal, we can see the error message as before.
 
 Also, if we try to access a page that does not exist, say updating the route from "http://127.0.0.1/home" to "http://127.0.0.1/contact", we will see a far cleaner page rather than a "404 Not Found" error.
 
-![Sample custom 404 page](images/handling_errors/sample_404_error_page.gif)
+![Sample custom 404 page](images/handling_errors/sample_404_error_page.mp4)
 
 
 ## Sending Errors By Email
@@ -385,7 +385,7 @@ You will notice that the `edit_profile()` view function has an error the first t
 
 Now, we can try the duplicate username bug one more time.
 
-![Fixed duplicate username bug](images/handling_errors/fix_duplicate_username_bug.gif)
+![Fixed duplicate username bug](images/handling_errors/fix_duplicate_username_bug.mp4)
 
 Also, try creating another user whose username already exists. Your application should be intelligent enough to know that the username already exists, and it should not crash.
 
@@ -393,7 +393,7 @@ Also, try creating another user whose username already exists. Your application 
 
 Below is a sample user registration project. The goal of the assessment project is to help guide a user from registering as an existing user.
 
-![Chapter11 Assessment quiz](images/handling_errors/chapter11_assessment_quiz.gif)
+![Chapter11 Assessment quiz](images/handling_errors/chapter11_assessment_quiz.mp4)
 
 - Create a new project and update its Flask structure
 - Add a **home** route and a **registration** route

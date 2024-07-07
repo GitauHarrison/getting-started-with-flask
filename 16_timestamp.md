@@ -114,7 +114,7 @@ The other place that needs a timestamp makeover is the actual post in `_post.htm
 
 Use a timestamp format of your choice from the [_Moment.js_](https://momentjs.com/) library to capture when the post was. See the image below.
 
-![Post timestamps](images/timestamp/post_timestamps.gif)
+![Post timestamps](images/timestamp/post_timestamps.mp4)
 
 
 ## Quiz

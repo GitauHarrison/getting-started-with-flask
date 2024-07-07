@@ -218,7 +218,7 @@ We have added a link to the "About me" page, though it does not exist. To comple
 
 Check your browser to see the new output.
 
-![Mulitple pages](/images/flask_templates/multiple_pages.gif)
+![Mulitple pages](/images/flask_templates/multiple_pages.mp4)
 
 
 ## Assignment: Push To GitHub

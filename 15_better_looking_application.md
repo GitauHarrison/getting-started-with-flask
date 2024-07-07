@@ -62,11 +62,11 @@ Some of you probably already know that we have a Flask-specific version of Boots
 
 Our current navigation bar is pretty basic. It is the first part of our application we are going to update. If you visit [Bootstrap Navbar](https://getbootstrap.com/docs/5.3/components/navbar/), you will see plenty of sample navigation bars that you can pick. If there is any that you like, consider copying its code and using it in your `base.html` file. 
 
-![Sample navbars from Bootstrap](images/facelift/sample_navbars_from_bootstrap.gif)
+![Sample navbars from Bootstrap](images/facelift/sample_navbars_from_bootstrap.mp4)
 
 The Bootstrap documentation is a good source of examples, but there are plenty of Bootstrap examples you can find online too. For instance, if you search "Bootstrap Navbar" in your favorite browser, you will find links to multiple examples that other people have created. 
 
-![Sample navbars online](images/facelift/sample_navbars_online.gif)
+![Sample navbars online](images/facelift/sample_navbars_online.mp4)
 
 Find one that you like and use it. 
 

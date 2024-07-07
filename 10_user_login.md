@@ -2,7 +2,7 @@
 
 In [chapter 8](08_web_forms.md), you learned how to create web forms. You saw how to create a Login form as well as a Registration form. In this chapter, you will learn how to combine these concepts to create a simple user login system.
 
-![Display current user](images/user_login/current_user.gif)
+![Display current user](images/user_login/current_user.mp4)
 
 Throughout this tutorial, these are the reference links for the things we will be looking at. At your convinience, you can navigate to whatever article you want to refer to:
 
@@ -189,7 +189,7 @@ If the user is accurately identified from our database, and the password given i
 
 Notice that with the authentication working properly, there is an aspect of incomplete user experience when logging into an account (see the image below). There is no visible link to log out. Additionally, if the user has already logged in, it does not make sense to have the _login_ link persist. It should either change to _logout_ or not be there at all. I think that having it changed to _logout_ is a much better approach.
 
-![No logout link](images/user_login/no_logout_link.gif)
+![No logout link](images/user_login/no_logout_link.mp4)
 
 It is possible to make the application display the correct state of a user. Since we would want a _logout_ link to be present across all templates once a user has logged in, the changes below are to be done in the `base.html` template.
 
@@ -197,7 +197,7 @@ It is possible to make the application display the correct state of a user. Sinc
 
 Above, we have used the Njinja2 templating engine syntax to add a condition that checks if the current user has been authenticated. If this user has been authenticated, then the _Logout_ link will be displayed. However, if this user has not logged into their account, then they will see the _Login_ link.
 
-![Display logout link](images/user_login/display_logout_link2.gif)
+![Display logout link](images/user_login/display_logout_link2.mp4)
 
 
 ## Require Users To Login
@@ -216,7 +216,7 @@ Above, we instruct `flask-login` (which handles user login and state management)
 
 Now, if a user clicks on either _Home_ or _About Me_ pages, he or she will be redirected to the _Login_ page first. Here, they will need to identify themselves after which they will be redirected to the relevant pages. If it was the _Home_ page that was clicked, then, once logged in, the user will be redirected to the _Home_ page.
 
-![Enforce login required](images/user_login/enforce_login_required.gif)
+![Enforce login required](images/user_login/enforce_login_required.mp4)
 
 When we check the URL bar, we can see that page restriction and page redirection are adequately displayed. For example, if the restricted _Home_ page is clicked, the URL bar will display something such as `http://127.0.0.1:5000/login?next=%2Fhome`. This says that once logged in, the next page will be the _Home_ page.
 
@@ -225,7 +225,7 @@ When we check the URL bar, we can see that page restriction and page redirection
 
 Wouldn't it be nice that besides the flash message, we can show who has logged in? For instance, when "Muthoni" logs into her account, she gets to see some text such as "Username: Muthoni". The problem with a flash message is that once you refresh a page, it disappears. The session handling the flash message is cleared and there is no more flash message to show. Therefore, having something more permanent on the page provides for a better user experience.
 
-![Display current user](images/user_login/current_user.gif)
+![Display current user](images/user_login/current_user.mp4)
 
 Within the `index.html` template, we can make adjustments as seen below:
 
@@ -237,7 +237,7 @@ Double curly braces is Jinja2 syntax used to display variables whose data is lik
 
 Below is a sample project with a basic user authentication system. The system allows a user to register for an account, and log in to access certain pages. You are required to recreate it with the same features.
 
-![Chapter 8 Assessment project](images/user_login/chapter8_assessment_project.gif)
+![Chapter 8 Assessment project](images/user_login/chapter8_assessment_project.mp4)
 
 
 - Create a new project folder on your desktop called **chapter8_user_authentication**

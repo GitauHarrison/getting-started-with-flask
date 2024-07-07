@@ -73,7 +73,7 @@ GitHub allows you to not only access your code remotely, it also allows other de
 
 Follow the instructions as guided.
 
-![Create github account](images/git_and_github/create_github_account.gif)
+![Create github account](images/git_and_github/create_github_account.mp4)
 
 With your account now created, you can check your profile page. Click on your avatar as seen below, then select "Your Profile".
 

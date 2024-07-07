@@ -188,7 +188,7 @@ There is no visible change in the structure of our application after running thi
 
 In [chapter 6](06_web_forms.md), we saw that our end project will allow us to not only create a user but also allow the registered user to log in and post comments.
 
-![Simple chat app](images/web_forms/simple_chat_app.gif)
+![Simple chat app](images/web_forms/simple_chat_app.mp4)
 
 Every time a user posts a comment or makes a post, this post is directly linked and related to him or her. A user can make many posts, and many posts can belong to one user. To implement this dynamic, we will need to update our models to accommodate a new `Post` model linked to our existing `User` model.
 
@@ -360,7 +360,7 @@ If you try the above and get `NameError` exceptions when you try to access `db`,
 
 Below is [chapter 7: Web Forms](06_web_forms.md) project that you have probably completed. You are required to update it to include a database as described below.
 
-![Chapter 7 Assessment project](images/database/chapter7.gif)
+![Chapter 7 Assessment project](images/database/chapter7.mp4)
 
 Notice the project has a registration form that highlights the need to store a new user information. Additionally, the "Add Product" page has a form that tells us we need to add a new product. 
 

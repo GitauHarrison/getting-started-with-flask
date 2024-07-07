@@ -2,7 +2,7 @@
 
 Now that you have learnt about [templates in Flask](07_working_with_templates.md), we are ready to build a more robust and useful application. Below is the app we shall focus on throughout the remainder of our lessons.
 
-![Simple chat app](images/web_forms/simple_chat_app.gif)
+![Simple chat app](images/web_forms/simple_chat_app.mp4)
 
 
 Throughout this tutorial, these are the reference links of the things we will be looking at. At your own convinience, you can navigate to whatever article you want to refer to:
@@ -239,7 +239,7 @@ The first step to overcoming this error is to explictly define both `POST` and `
 
 Now, if you try to click on the submit button found in our Login form, you will not get the 405 error we experienced earlier.
 
-![Define post and get methods](images/web_forms/post_get_methods.gif)
+![Define post and get methods](images/web_forms/post_get_methods.mp4)
 
 Have you noticed that when we click the Submit button the form does not tell us that we need to in fill in the username and password fields? Remember we said that the constraint `DataRequired()` in our `forms.py` file is meant to force for a user's input. How come it is not working in our new form? [This is something we shall revisit in another subsection within our lesson](#step-3-flash-message).
 
@@ -257,7 +257,7 @@ We can now process the data a user submits through our login form. This can be h
 
 Let us try to fill in some user data to test how this feature works.
 
-![Login flash and redirect](images/web_forms/login_flash_redirect.gif)
+![Login flash and redirect](images/web_forms/login_flash_redirect.mp4)
 
 
 ### Step 3: Flash Message
@@ -268,7 +268,7 @@ Once the submit button is pressed, I am redirected to the index template. Howeve
 
 Now, if I try to login in as "tanya", there will be a nice little flash message.
 
-![Flash message working](images/web_forms/flash_message_working.gif)
+![Flash message working](images/web_forms/flash_message_working.mp4)
 
 
 ## Improving Form Validation
@@ -290,7 +290,7 @@ Let us update `login.html` file to provide user feedback.
 
 Once again, let us test this feature. Head over to your application on the browser and try clicking the "Submit" button without filling in user information.
 
-![Form flash message](images/web_forms/form_flash_message.gif)
+![Form flash message](images/web_forms/form_flash_message.mp4)
 
 
 ## Generating Links
@@ -316,7 +316,7 @@ Throughout the base template, we have been explictly using the URL of a page to 
 
 What if later we decide to change the URL to any of these pages to something else? Say we now think that the home page should no longer be accessed using `/index` but instead the URL `/home` should be used. What happens if we try to do so in our browser?
 
-![Change URL](images/web_forms/change_url.gif)
+![Change URL](images/web_forms/change_url.mp4)
 
 Obviously, we get an error because there is no URL such as `/home` anywhere in our application. To avoid such inconviniencing situations, especially when your application become bigger, it is recommended that we use a flask function called `url_for()`. 
 

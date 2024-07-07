@@ -180,7 +180,7 @@ First, we loop through all our `posts` to get individual posts. Then, we use the
 
 At this stage, we can try the application once again to experience these last user interface enhancements.
 
-![Display posts](images/pagination/display_posts.gif)
+![Display posts](images/pagination/display_posts.mp4)
 
 The display of posts is similar to before, but we have improved the structure and build process of our application by getting rid of situations that may warrant duplicates.
 
@@ -245,7 +245,7 @@ Now, these two pages, **Home** and **Profile**, will determine the page number t
 
 Now, let us add a few more posts from our **Home** page. Then we will update our URL to see more posts. Check the image below.
 
-![Pagination in action](images/pagination/pagination_in_action.gif)
+![Pagination in action](images/pagination/pagination_in_action.mp4)
 
 You will notice that only three posts are displayed on a page. When you add the query string `?page=2` at the end of the URL, you will see the other posts made earlier.
 
@@ -283,7 +283,7 @@ We also need to do the same on the **Profile** page.
 
 The first link is labeled "Newer posts" and it points to the previous page because we sorted our list to display posts from the latest to the oldest. The second link is labeled "Older posts" and it points to the next page of posts. If any of the pages is `None`, meaning there are no more posts to show, then it is omitted from the page through a conditional statement.
 
-![Page navs](images/pagination/page_navs.gif)
+![Page navs](images/pagination/page_navs.mp4)
 
 You will need to restart your Flask server to see the changes (we disabled the debug mode with its reloader feature). After you are done experimenting with the pagination feature, you can set `POSTS_PER_PAGE` to a more reasonable value, say 25.
 
@@ -291,7 +291,7 @@ You will need to restart your Flask server to see the changes (we disabled the d
 
 Below is a chat application that has a basic user authentication system. You are required to rebuild the project as it is. Note that the **Home** page displays all posts on one side and the current user's posts on the other side.
 
-![Chapter12 assessment project](images/pagination/chapter12_assessement.gif)
+![Chapter12 assessment project](images/pagination/chapter12_assessement.mp4)
 
 - Create a new project directory called **chapter12_assessment_project**
 - Build a basic Flask structure

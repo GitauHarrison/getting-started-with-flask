@@ -2,7 +2,7 @@
 
 During this lesson, we are going to learn how to add a profile page for the user. A profile page allows a user to see his or her details. It is on this page that the user can update or modify personal information.
 
-![Chapter 9 final app](images/profile_page_avatars/profile_page_avata.gif)
+![Chapter 9 final app](images/profile_page_avatars/profile_page_avata.mp4)
 
 Throughout this tutorial, these are the reference links for the things we will be looking at. At your convinience, you can navigate to whatever article you want to refer to:
 
@@ -71,7 +71,7 @@ In our [previous lesson](08_user_login.md), you learned how to create a basic us
 
 Remember the final application we have in mind? It is a simple chat application (see the image below. It is also what we discussed in the overview of [chapter 6](06_web_forms.md#overview)).
 
-![Simple chat app](images/web_forms/simple_chat_app.gif)
+![Simple chat app](images/web_forms/simple_chat_app.mp4)
 
 In this lesson, we are going to make several modifications to our existing application, namely:
 
@@ -152,7 +152,7 @@ With the view function in place, we can now update our `base.html` file to show 
 
 The column sizes have been modified to `col-md-4`. A new link called **Profile** has been added to the list of links visible to a user has been authenticated. Unlike all other links, the **Profile** page link is slightly different. It includes an additional section ` {{ (..., username=current_user.username) }}`. This is so because we are passing the current user's username into the URL. Every time we have a view function that requires a variable in the URL, we shall always be adding this section to it.
 
-![Profile page](images/profile_page_avatars/profile_page.gif)
+![Profile page](images/profile_page_avatars/profile_page.mp4)
 
 
 ## Add User Email Field In The Database
@@ -278,7 +278,7 @@ The `@before_request` decorator from Flask is executed right before the view fun
 
 In our `profile` template above, you saw us add a link to **Edit profile**. See what has been enabled for a user:
 
-![Edit user profile](images/profile_page_avatars/edit_user_profile.gif)
+![Edit user profile](images/profile_page_avatars/edit_user_profile.mp4)
 
 This link will direct a user to a form that will allow him or her to change (1) their username and (2) their bio data. At the moment, we do not have this form. So, let us define a new **Edit Profile Form**.
 
@@ -442,7 +442,7 @@ Now, if we click on the **Profile** page, we will see only the posts belonging t
 
 Below is a sample project with a basic user authentication system. The system allows a user to register for an account, and log in to access certain pages. You are required to recreate it with the same features.
 
-![Chapter 8 Assessment project](images/profile_page_avatars/chapter9_assessment_project.gif)
+![Chapter 8 Assessment project](images/profile_page_avatars/chapter9_assessment_project.mp4)
 
 
 - Create a new project folder on your desktop called **chapter9_profile_page**

@@ -90,7 +90,7 @@ At this point, we not only have a project in mind, but we also have developers r
 
 ## Inter-student Collaboration Project
 
-![Inter-student collaboration project](/images/collaboration_github/inter_student_collaboration_project.gif)
+![Inter-student collaboration project](/images/collaboration_github/inter_student_collaboration_project.mp4)
 
 Our focus project seen in the image above, and accessible on [this link](https://collab-project-1-using-flask.onrender.com/) (click here), features three distinct pages:
 
@@ -749,7 +749,7 @@ As soon as Developer C makes a pull request, you will repeat the same steps to u
 
 Below is an image of the sample project you are required to collaborate on. If you would like to see the live app for more reference, [click here](https://chapter4-inter-student-collaboration.onrender.com).
 
-![Assessment project](images/collaboration_github/assessment_project.gif)
+![Assessment project](images/collaboration_github/assessment_project.mp4)
 
 - The idea stage, which is usually the first step to collaboration, has already been done for you.
 - In a team of three, assign yourselves roles:

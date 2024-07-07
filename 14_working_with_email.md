@@ -189,7 +189,7 @@ To generate a token from `jwt`, we provide a payload (the most important part of
 
 As you can see, the token generated looks fairly complex, having been derived from a simple payload whose value is `muthoni123`. Feels safe to use it, right? I mean, who can guess such a key? The truth of the matter is that the key is not entirely safe and can be easily decoded by anyone. Don't believe me? Paste the token you have generated in the [JWT Debugger (click here)](https://jwt.io/#debugger-io) and see the results yourself.
 
-![JWT Debugger](images/email_support/jwt_debugger.gif)
+![JWT Debugger](images/email_support/jwt_debugger.mp4)
 
 So, what can we do to prove our claim that tokens are more secure? We can **sign** the payload such that should anyone try to tamper with it (the payload), then the signature becomes invalid. Also, we can add an expiration time to help further protect a payload. Let us update our `models.py` to include the generation and verification of a password reset token.
 
@@ -262,7 +262,7 @@ The password reset feature is now complete. Let us try it:
 - Update the new user's password
 - Try to log them into their account using their new password
 
-![Test reset password feature](images/email_support/test_password_reset_feature.gif)
+![Test reset password feature](images/email_support/test_password_reset_feature.mp4)
 
 ## Speed Up Performance
 
@@ -287,7 +287,7 @@ The `send_async_email` function now runs in the background as a thread, invoked 
 
 The application below shows a simple authentication system. A user can register and sign in before being taken to the home page. There is also a password reset link to allow them to change their password.
 
-![Chapter 14 Assessment Project](images/email_support/chapter14_assessment_project.gif)
+![Chapter 14 Assessment Project](images/email_support/chapter14_assessment_project.mp4)
 
 - Create a new project folder called **chapter14_email_support**
 - Use Flask to complete the project:
